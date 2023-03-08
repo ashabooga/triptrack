@@ -11,16 +11,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hi1")
-        print ("testing ellohhhhhhh")
-        print("twest")
-        print("hello")
-        print("push")
-        print("jjjjj")
-        print("ok")
+        
+        
         // Do any additional setup after loading the view.
     }
 
 
+    @IBAction func toJournal(_ sender: Any) {
+        performSegue(withIdentifier: "toJournal", sender: nil)
+    }
 }
 
