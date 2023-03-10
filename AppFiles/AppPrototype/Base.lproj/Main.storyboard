@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
                                 <rect key="frame" x="-3" y="47" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="PLAN" style="editor" id="nK6-6i-z7d">
@@ -48,6 +47,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I4e-iG-T6k"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <constraints>
+                            <constraint firstItem="6MP-19-gQD" firstAttribute="leading" secondItem="WTe-lE-q9Q" secondAttribute="leadingMargin" constant="-19" id="DnI-Qr-jJ2"/>
+                            <constraint firstItem="6MP-19-gQD" firstAttribute="trailing" secondItem="I4e-iG-T6k" secondAttribute="trailing" id="W8n-0o-3hG"/>
+                            <constraint firstItem="6MP-19-gQD" firstAttribute="top" secondItem="I4e-iG-T6k" secondAttribute="top" id="ZZc-y6-Gs1"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Plan" image="paperplane.fill" catalog="system" id="JNe-Zf-shO"/>
                 </viewController>
@@ -63,9 +67,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Dl-v2g">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tqL-wx-4bs">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="670" id="pXn-tg-c7w"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="journalCell" id="3b0-Ic-zcl">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3b0-Ic-zcl" id="KYA-dV-XzI">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8Bf-HS-3Fo" id="qMU-IV-JiX"/>
+                                    <outlet property="delegate" destination="8Bf-HS-3Fo" id="GS1-Wh-hfN"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Dl-v2g">
                                 <rect key="frame" x="-3" y="47" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL" style="editor" id="YNr-i6-lWL">
@@ -91,12 +115,39 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ku1-wA-ucj"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="tqL-wx-4bs" firstAttribute="centerX" secondItem="vnN-1i-tAn" secondAttribute="centerX" id="6af-nB-xgi"/>
+                            <constraint firstItem="hSm-Dl-v2g" firstAttribute="leading" secondItem="vnN-1i-tAn" secondAttribute="leadingMargin" constant="-19" id="GmZ-H6-DHp"/>
+                            <constraint firstItem="tqL-wx-4bs" firstAttribute="top" secondItem="hSm-Dl-v2g" secondAttribute="bottom" id="Tnq-SQ-QDN"/>
+                            <constraint firstItem="tqL-wx-4bs" firstAttribute="leading" secondItem="ku1-wA-ucj" secondAttribute="leading" id="d3w-8C-qpB"/>
+                            <constraint firstItem="tqL-wx-4bs" firstAttribute="trailing" secondItem="hSm-Dl-v2g" secondAttribute="trailing" id="yJP-5o-ZFa"/>
+                            <constraint firstItem="tqL-wx-4bs" firstAttribute="bottom" secondItem="ku1-wA-ucj" secondAttribute="bottom" id="yQE-a2-m5U"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="Zrs-aa-qcS"/>
+                    <connections>
+                        <segue destination="JD6-0L-Jw0" kind="show" identifier="toJournalDetail" id="PYB-d7-Xe9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB6-wp-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="256.92307692307691" y="-255.21327014218008"/>
+        </scene>
+        <!--Journal Detail View Controller-->
+        <scene sceneID="mLx-J3-HFs">
+            <objects>
+                <viewController id="JD6-0L-Jw0" customClass="JournalDetailViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uVu-cb-wqK">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="AGb-nc-q4e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fJi-Es-5MJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1120" y="-28"/>
         </scene>
         <!--Map-->
         <scene sceneID="ezD-To-fos">
@@ -106,9 +157,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
-                                <rect key="frame" x="-3" y="47" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-DB-6Ay">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
+                                <rect key="frame" x="-1" y="47" width="393" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="MAP" style="editor" id="d48-Hr-NFH">
@@ -132,14 +186,18 @@
                                 </items>
                                 <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-DB-6Ay">
-                                <rect key="frame" x="0.0" y="111" width="390" height="638"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <standardMapConfiguration key="preferredConfiguration"/>
-                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ahx-Bm-JaC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q4o-vo-405" firstAttribute="trailing" secondItem="6jd-DB-6Ay" secondAttribute="trailing" constant="2" id="3Rg-p8-CO1"/>
+                            <constraint firstItem="6jd-DB-6Ay" firstAttribute="top" secondItem="q4o-vo-405" secondAttribute="bottom" id="HyS-wz-F5x"/>
+                            <constraint firstItem="6jd-DB-6Ay" firstAttribute="centerX" secondItem="eJM-4n-gUb" secondAttribute="centerX" id="JTS-fg-A91"/>
+                            <constraint firstItem="q4o-vo-405" firstAttribute="top" secondItem="Ahx-Bm-JaC" secondAttribute="top" id="Sqa-TP-Evy"/>
+                            <constraint firstItem="q4o-vo-405" firstAttribute="trailing" secondItem="Ahx-Bm-JaC" secondAttribute="trailing" constant="2" id="T4a-cX-SkQ"/>
+                            <constraint firstItem="Ahx-Bm-JaC" firstAttribute="bottom" secondItem="6jd-DB-6Ay" secondAttribute="bottom" id="TMQ-9o-0l2"/>
+                            <constraint firstItem="q4o-vo-405" firstAttribute="leading" secondItem="eJM-4n-gUb" secondAttribute="leadingMargin" constant="-17" id="sES-kT-JbF"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map.fill" catalog="system" id="qeT-x6-SWH"/>
                 </viewController>
