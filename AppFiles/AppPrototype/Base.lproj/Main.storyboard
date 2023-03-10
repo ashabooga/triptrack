@@ -36,6 +36,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="newPlanButton:" destination="BcE-8j-vTG" eventType="touchUpInside" id="Hhf-qI-boV"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -78,6 +81,7 @@
                     <tabBarItem key="tabBarItem" title="Plan" image="paperplane.fill" catalog="system" id="JNe-Zf-shO"/>
                     <connections>
                         <segue destination="RzU-e1-eDh" kind="showDetail" identifier="toPlanDetail" id="Qex-9m-6Kc"/>
+                        <segue destination="2d8-rd-KIl" kind="showDetail" identifier="toNewPlan" id="NOV-a3-U9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aET-MG-qGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -96,13 +100,13 @@
                                 <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="NEW PLAN" id="ofo-5B-Kdf">
+                                    <navigationItem title="PLAN DETAILS" id="ofo-5B-Kdf">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="bb6-sa-fVL">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="1M1-75-aEa">
                                                 <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="return" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title=" Plan"/>
                                                 <connections>
                                                     <segue destination="h4c-rf-8tk" kind="unwind" unwindAction="unwindToPlan:" id="HdN-O1-tKh"/>
                                                 </connections>
@@ -127,7 +131,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbC-1u-Lw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="h4c-rf-8tk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="466" y="476"/>
+            <point key="canvasLocation" x="465" y="869"/>
+        </scene>
+        <!--Plan New View Controller-->
+        <scene sceneID="0UJ-17-V0E">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="2d8-rd-KIl" customClass="PlanNewViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qmz-rY-Cef">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6Y-4J-LKo">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="NEW PLAN" id="a5T-a1-OD2">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="T9b-rL-Qjh">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="985-yx-PS2">
+                                                <rect key="frame" x="16" y="5" width="90.666666666666671" height="34.333333333333336"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Plan"/>
+                                                <connections>
+                                                    <segue destination="hyb-pC-5Rt" kind="unwind" unwindAction="unwindToPlan:" id="4kd-BI-kTQ"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyQ-Tj-XWE">
+                                <rect key="frame" x="16" y="126" width="46" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bMU-1Q-sUP">
+                                <rect key="frame" x="16" y="162" width="358" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pOd-Vg-dNz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPf-Me-5Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hyb-pC-5Rt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1313.8461538461538" y="475.59241706161134"/>
         </scene>
         <!--Journal-->
         <scene sceneID="Sn3-N0-6h5">
@@ -334,6 +388,8 @@
     </scenes>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>

@@ -23,6 +23,11 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    @IBAction func newPlanButton(_ sender: Any) {
+        performSegue(withIdentifier: "toNewPlan", sender: nil)
+    }
+    
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
