@@ -147,7 +147,7 @@
                                 <items>
                                     <navigationItem title="NEW PLAN" id="a5T-a1-OD2">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="T9b-rL-Qjh">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="985-yx-PS2">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="985-yx-PS2">
                                                 <rect key="frame" x="16" y="5" width="90.666666666666671" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
@@ -230,6 +230,9 @@
                                                 <rect key="frame" x="276.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="newEntryButton:" destination="8Bf-HS-3Fo" eventType="touchUpInside" id="8vV-Gc-ycf"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -251,16 +254,69 @@
                     <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="Zrs-aa-qcS"/>
                     <connections>
                         <segue destination="JD6-0L-Jw0" kind="showDetail" identifier="toJournalDetail" id="PYB-d7-Xe9"/>
+                        <segue destination="gwN-QZ-Maq" kind="showDetail" identifier="toNewEntry" id="ibw-WI-D2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB6-wp-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="256.92307692307691" y="-255.21327014218008"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="yZU-oB-LCb">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="gwN-QZ-Maq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OdG-oM-OBe">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxm-BE-r9n">
+                                <rect key="frame" x="-3" y="47" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="NEW ENTRY" style="editor" id="exz-Kf-q79">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="qfh-ha-OXH">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="XI2-Qt-n7H">
+                                                <rect key="frame" x="16.000000000000007" y="5" width="100.66666666666669" height="34.333333333333336"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
+                                                <connections>
+                                                    <segue destination="Hfj-eH-swq" kind="unwind" unwindAction="unwindToJournal:" id="6fO-Qx-GF0"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="scrollEdgeAppearance"/>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dg-E0-lw2">
+                                <rect key="frame" x="16" y="126" width="46" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-3f-oz1">
+                                <rect key="frame" x="16" y="162" width="358" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rmZ-Ph-TZm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Hfj-eH-swq" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1454" y="-404"/>
+        </scene>
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="JD6-0L-Jw0" customClass="JournalDetailViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="JD6-0L-Jw0" customClass="JournalDetailViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uVu-cb-wqK">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,15 +326,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="JOURNAL" style="editor" id="Mhr-zt-c0C">
+                                    <navigationItem title="JOURNAL ENTRY" style="editor" id="Mhr-zt-c0C">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="yQQ-fh-GOk">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="zw7-18-ovZ">
-                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16.000000000000007" y="5" width="100.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="return" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
-                                                    <segue destination="ruz-Hn-8qH" kind="unwind" unwindAction="unwindToVC:" id="Pxx-uv-WKR"/>
+                                                    <segue destination="ruz-Hn-8qH" kind="unwind" unwindAction="unwindToJournal:" id="ete-6k-Q98"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -286,7 +342,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0ru-7w-LgE">
                                                 <rect key="frame" x="277.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Edit"/>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -302,7 +358,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ruz-Hn-8qH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="-255"/>
+            <point key="canvasLocation" x="1352" y="-1176"/>
         </scene>
         <!--Map-->
         <scene sceneID="ezD-To-fos">
@@ -394,7 +450,6 @@
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="return" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

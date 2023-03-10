@@ -36,9 +36,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
+    @IBAction func newEntryButton(_ sender: Any) {
+        performSegue(withIdentifier: "toNewEntry", sender: nil)
+    }
     
     //Unwind segue called when back button pressed in second view controller
-    @IBAction func unwindToVC(_ unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwindToJournal(_ unwindSegue: UIStoryboardSegue) {
 
         _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
