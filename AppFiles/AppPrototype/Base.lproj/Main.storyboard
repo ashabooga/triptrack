@@ -193,7 +193,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="Zrs-aa-qcS"/>
                     <connections>
-                        <segue destination="JD6-0L-Jw0" kind="show" identifier="toJournalDetail" id="PYB-d7-Xe9"/>
+                        <segue destination="JD6-0L-Jw0" kind="showDetail" identifier="toJournalDetail" id="PYB-d7-Xe9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB6-wp-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -203,18 +203,49 @@
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
             <objects>
-                <viewController id="JD6-0L-Jw0" customClass="JournalDetailViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="JD6-0L-Jw0" customClass="JournalDetailViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uVu-cb-wqK">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JkL-cD-nnc">
+                                <rect key="frame" x="-3" y="47" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="JOURNAL" style="editor" id="Mhr-zt-c0C">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="yQQ-fh-GOk">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="zw7-18-ovZ">
+                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="return" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="ruz-Hn-8qH" kind="unwind" unwindAction="unwindToVC:" id="Pxx-uv-WKR"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="PPI-r6-tY5">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0ru-7w-LgE">
+                                                <rect key="frame" x="276.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="scrollEdgeAppearance"/>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AGb-nc-q4e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="fJi-Es-5MJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ruz-Hn-8qH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1120" y="-28"/>
+            <point key="canvasLocation" x="1140" y="-255"/>
         </scene>
         <!--Map-->
         <scene sceneID="ezD-To-fos">

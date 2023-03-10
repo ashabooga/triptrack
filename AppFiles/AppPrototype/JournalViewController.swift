@@ -34,6 +34,18 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    
+    
+    //Unwind segue called when back button pressed in second view controller
+    @IBAction func unwindToVC(_ unwindSegue: UIStoryboardSegue) {
+
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
