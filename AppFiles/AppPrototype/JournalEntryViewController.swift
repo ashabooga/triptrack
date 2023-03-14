@@ -12,6 +12,7 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBOutlet weak var countryPicker: UITextField!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     
     var selectedCountry: String?
