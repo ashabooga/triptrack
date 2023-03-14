@@ -16,6 +16,9 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBOutlet weak var imageTest: UIImageView!
     
+    @IBOutlet weak var thoughtTextView: UITextView!
+    
+    
     var imagePicker = UIImagePickerController()
     var selectedCountry: String?
     var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
@@ -28,7 +31,7 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -40,8 +43,6 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
-
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

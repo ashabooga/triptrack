@@ -330,6 +330,14 @@
                                     <constraint firstAttribute="height" constant="128" id="f00-fC-aj0"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Your Thoughts" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
+                                <rect key="frame" x="16" y="224" width="358" height="264"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rmZ-Ph-TZm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -355,6 +363,7 @@
                         <outlet property="countryPicker" destination="c2B-59-ZJY" id="ek4-Pr-32s"/>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
                         <outlet property="imageTest" destination="Mpa-6l-RZk" id="yoJ-o5-Thq"/>
+                        <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
