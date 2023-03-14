@@ -7,16 +7,41 @@
 
 import UIKit
 
-class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var countryPicker: UITextField!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var imageTest: UIImageView!
     
+    var imagePicker = UIImagePickerController()
     var selectedCountry: String?
     var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
+    var currentDate = Date()
+    
+    
+    
+    @IBAction func addPhotoButton(_ sender: Any) {
+        print(currentDate)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {fatalError("bad")}
+        imageTest.image = selectedImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -62,9 +87,11 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.maximumDate = currentDate
         createPickerView()
         dismissPickerView()
-
+        
+        
         // Do any additional setup after loading the view.
     }
     
