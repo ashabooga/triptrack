@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import PhotosUI
 
-class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+    
     
     
     @IBOutlet weak var countryPicker: UITextField!
@@ -23,87 +25,50 @@ class JournalEntryViewController: UIViewController, UIPickerViewDelegate, UIPick
     var selectedCountry: String?
     var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
     var currentDate = Date()
+    var imageList = [UIImage]()
     
     
     
     @IBAction func addPhotoButton(_ sender: Any) {
         print(currentDate)
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true)
+        
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 5
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {fatalError("bad")}
-        imageTest.image = selectedImage
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return countryList.count
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return countryList[row]
-    }
-
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCountry = countryList[row] // selected item
-        countryPicker.text = selectedCountry
-
-    }
-    
-    func createPickerView() {
-           let pickerView = UIPickerView()
-           pickerView.delegate = self
-           countryPicker.inputView = pickerView
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            dismiss(animated: true, completion: nil)
+            
+        
+        for result in results {
+            
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let self = self, let image = image as? UIImage else { return }
+                
+                self.imageList.append(image)
+                
+                DispatchQueue.main.async {
+                    self.imagesPicked()
+                }
+            }
+        }
     }
     
     
-    func dismissPickerView() {
-       let toolBar = UIToolbar()
-       toolBar.sizeToFit()
-       let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
-       toolBar.setItems([button], animated: true)
-       toolBar.isUserInteractionEnabled = true
-       countryPicker.inputAccessoryView = toolBar
+    func imagesPicked() {
+        imageTest.image = imageList[0]
+//        print(imageList)
     }
-    
-    @objc func action() {
-          view.endEditing(true)
-    }
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.maximumDate = currentDate
-        createPickerView()
-        dismissPickerView()
         
-        
-        // Do any additional setup after loading the view.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
