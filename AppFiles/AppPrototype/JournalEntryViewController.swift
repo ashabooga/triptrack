@@ -8,11 +8,9 @@
 import UIKit
 import PhotosUI
 
-class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate{
     
     
-    
-    @IBOutlet weak var countryPicker: UITextField!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -64,27 +62,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
 //        print(imageList)
     }
     
-    
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-         return 1
-     }
-
-     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         return countryList.count
-     }
-
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return countryList[row]
-         
-     }
-
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCountry = countryList[row] // selected item
-        countryPicker.text = selectedCountry
-    }
 
     
     
