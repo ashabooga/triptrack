@@ -282,7 +282,6 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
-                                                    <action selector="toJournalButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="66e-KB-2mQ"/>
                                                     <segue destination="Hfj-eH-swq" kind="unwind" unwindAction="unwindToJournal:" id="6fO-Qx-GF0"/>
                                                 </connections>
                                             </button>
@@ -295,6 +294,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Save">
                                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="zVu-E5-KT9"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>

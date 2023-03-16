@@ -11,25 +11,6 @@ import PhotosUI
 class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate{
     
     
-    
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
-    @IBOutlet weak var imageTest: UIImageView!
-    
-    @IBOutlet weak var thoughtTextView: UITextView!
-    
-    @IBOutlet weak var navigationTitle: UINavigationItem!
-    
-    var JournalVC: JournalViewController?
-    
-    
-    @IBAction func toJournalButton(_ sender: Any) {
-        if let mainVC = JournalVC {
-            mainVC.selectedEntry = self.selectedEntry
-        }
-        
-    }
-    
     var selectedEntry = ["ID" : Int(), "country" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
     var isNewEntry = false
     
@@ -39,6 +20,20 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var currentDate = Date()
     var imageList = [UIImage]()
     
+    
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var imageTest: UIImageView!
+    @IBOutlet weak var thoughtTextView: UITextView!
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+    
+    @IBAction func saveButton(_ sender: Any) {
+//
+//        print(self.selectedEntry)
+//            if let mainVC = JournalVC {
+//                mainVC.selectedEntry = self.selectedEntry
+//            }
+    }
     
     
     @IBAction func addPhotoButton(_ sender: Any) {
@@ -51,6 +46,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
+    
+    
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             dismiss(animated: true, completion: nil)
@@ -71,14 +68,24 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let JournalViewController = segue.destination as? JournalViewController {
+            JournalViewController.selectedEntry = self.selectedEntry
+        }
+    }
+    
+    
     func imagesPicked() {
         imageTest.image = imageList[0]
-//        print(imageList)
     }
     
     
     
 
+    
+    
     
     
     override func viewDidLoad() {
@@ -93,15 +100,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         } else {
             navigationTitle.title = "NEW ENTRY"
         }
-
-        
-        selectedEntry["country"] = "hi"
-        
-        print(selectedEntry["country"] as! String)
-        
-        
-        
-        
     }
+    
+    
 
 }

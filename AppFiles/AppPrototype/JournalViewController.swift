@@ -47,7 +47,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "toNewEntry" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.isNewEntry = true
-            JournalEntryViewController.JournalVC = self
+//            JournalEntryViewController.JournalVC = self
         }
     }
     
