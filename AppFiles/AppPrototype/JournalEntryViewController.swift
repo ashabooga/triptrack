@@ -20,7 +20,15 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
+    var JournalVC: JournalViewController?
     
+    
+    @IBAction func toJournalButton(_ sender: Any) {
+        if let mainVC = JournalVC {
+            mainVC.selectedEntry = self.selectedEntry
+        }
+        
+    }
     
     var selectedEntry = ["ID" : Int(), "country" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
     var isNewEntry = false
@@ -68,6 +76,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
 //        print(imageList)
     }
     
+    
+    
 
     
     
@@ -85,7 +95,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         }
 
         
+        selectedEntry["country"] = "hi"
         
+        print(selectedEntry["country"] as! String)
         
         
         

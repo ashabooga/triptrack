@@ -253,6 +253,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="Zrs-aa-qcS"/>
                     <connections>
+                        <outlet property="journalTable" destination="tqL-wx-4bs" id="CLn-4Y-eBN"/>
                         <segue destination="JD6-0L-Jw0" kind="showDetail" identifier="toJournalDetail" id="PYB-d7-Xe9"/>
                         <segue destination="gwN-QZ-Maq" kind="showDetail" identifier="toNewEntry" id="ibw-WI-D2f"/>
                     </connections>
@@ -281,6 +282,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
+                                                    <action selector="toJournalButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="66e-KB-2mQ"/>
                                                     <segue destination="Hfj-eH-swq" kind="unwind" unwindAction="unwindToJournal:" id="6fO-Qx-GF0"/>
                                                 </connections>
                                             </button>

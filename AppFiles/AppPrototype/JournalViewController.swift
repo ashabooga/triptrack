@@ -3,7 +3,10 @@ import UIKit
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var test = ["hi", "hello", "testing"]
+    var selectedEntry = ["ID" : Int(), "country" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
     
+    
+    @IBOutlet weak var journalTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test.count
@@ -44,6 +47,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "toNewEntry" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.isNewEntry = true
+            JournalEntryViewController.JournalVC = self
         }
     }
     
@@ -51,6 +55,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func unwindToJournal(_ unwindSegue: UIStoryboardSegue) {
 
         _ = unwindSegue.source
+        
+        
+        test.append(selectedEntry["country"] as! String)
+        print(test)
+        
+        journalTable.reloadData()
         // Use data from the view controller which initiated the unwind segue
     }
     
