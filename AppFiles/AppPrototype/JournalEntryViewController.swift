@@ -18,6 +18,12 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     @IBOutlet weak var thoughtTextView: UITextView!
     
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+    
+    
+    
+    var selectedEntry = ["ID" : Int(), "country" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
+    var isNewEntry = false
     
     var imagePicker = UIImagePickerController()
     var selectedCountry: String?
@@ -68,6 +74,21 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.maximumDate = currentDate
+        
+        if !isNewEntry {
+            thoughtTextView.text = (selectedEntry["textEntry"] as! String)
+            navigationTitle.title = "EDIT ENTRY"
+            //country.text = (selectedEntry["country"] as! String)
+            datePicker.date = (selectedEntry["date"] as! Date)
+        } else {
+            navigationTitle.title = "NEW ENTRY"
+        }
+
+        
+        
+        
+        
+        
         
     }
 

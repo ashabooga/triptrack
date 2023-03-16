@@ -333,10 +333,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Country" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
                                 <rect key="frame" x="-1" y="102" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="country-name"/>
                                 <connections>
                                     <outlet property="delegate" destination="gwN-QZ-Maq" id="4TD-QQ-6bd"/>
                                 </connections>
@@ -362,13 +362,14 @@
                     <connections>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
                         <outlet property="imageTest" destination="Mpa-6l-RZk" id="yoJ-o5-Thq"/>
+                        <outlet property="navigationTitle" destination="exz-Kf-q79" id="5y0-jY-Ara"/>
                         <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hfj-eH-swq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1453.8461538461538" y="-404.50236966824644"/>
+            <point key="canvasLocation" x="1351" y="-389"/>
         </scene>
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
