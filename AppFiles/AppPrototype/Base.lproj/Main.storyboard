@@ -269,11 +269,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Country" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2B-59-ZJY">
-                                <rect key="frame" x="16" y="125" width="358" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxm-BE-r9n">
                                 <rect key="frame" x="-1" y="47" width="392" height="44"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -338,11 +333,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
+                                <rect key="frame" x="-1" y="102" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwN-QZ-Maq" id="4TD-QQ-6bd"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rmZ-Ph-TZm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="c2B-59-ZJY" secondAttribute="bottom" constant="8" id="GA8-Zh-jWy"/>
                             <constraint firstItem="rmZ-Ph-TZm" firstAttribute="trailing" secondItem="AvM-uT-CWj" secondAttribute="trailing" constant="249" id="LUN-mW-pdr"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="Nd2-gG-2ET"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" id="NoV-b9-9YG"/>
@@ -350,17 +352,14 @@
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" id="SPa-jn-PPA"/>
                             <constraint firstItem="Mpa-6l-RZk" firstAttribute="leading" secondItem="Pb8-Lc-aVh" secondAttribute="leading" constant="72" id="WR5-3a-aS7"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" constant="-17" id="Y4S-Nz-Erh"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="trailing" secondItem="c2B-59-ZJY" secondAttribute="trailing" id="dmi-wW-XOp"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="bottom" secondItem="rmZ-Ph-TZm" secondAttribute="bottom" id="eXl-5D-vxL"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="top" secondItem="Mpa-6l-RZk" secondAttribute="bottom" constant="8" id="gD9-7t-zgK"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="leading" secondItem="c2B-59-ZJY" secondAttribute="leading" id="hVw-My-OEy"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="top" secondItem="rmZ-Ph-TZm" secondAttribute="top" id="mGK-J8-lca"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="trailing" secondItem="OdG-oM-OBe" secondAttribute="trailingMargin" id="phm-x9-ix6"/>
                             <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="OdG-oM-OBe" secondAttribute="top" constant="167" id="vjL-98-od5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="countryPicker" destination="c2B-59-ZJY" id="ek4-Pr-32s"/>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
                         <outlet property="imageTest" destination="Mpa-6l-RZk" id="yoJ-o5-Thq"/>
                         <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
