@@ -18,15 +18,25 @@ class JournalDetailViewController: UIViewController {
     @IBOutlet weak var textEntry: UITextView!
     @IBOutlet weak var photoView: UIImageView!
     
+    let dateFormatter = DateFormatter()
+    var photoList = [UIImage]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateStyle = .long
+        titleLabel.text = selectedEntry["title"] as? String
+        locationLabel.text = selectedEntry["location"] as? String
+        let date = selectedEntry["date"] as? Date
+        let StringDate = dateFormatter.string(from: date!)
+        dateLabel.text = StringDate
+        textEntry.text = selectedEntry["textEntry"] as? String
+        photoList = (selectedEntry["photos"] as? [UIImage])!
+        photoView.image = photoList[0]
         
 
         // Do any additional setup after loading the view.
     }
-    
     /*
     // MARK: - Navigation
 
