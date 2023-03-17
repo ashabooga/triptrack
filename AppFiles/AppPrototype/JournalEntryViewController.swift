@@ -11,7 +11,7 @@ import PhotosUI
 class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate{
     
     
-    var selectedEntry = ["ID" : Int(), "country" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
     var isNewEntry = false
     
     var imagePicker = UIImagePickerController()
@@ -22,17 +22,20 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     
+
+    @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var imageTest: UIImageView!
     @IBOutlet weak var thoughtTextView: UITextView!
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     @IBAction func saveButton(_ sender: Any) {
-//
-//        print(self.selectedEntry)
-//            if let mainVC = JournalVC {
-//                mainVC.selectedEntry = self.selectedEntry
-//            }
+
+        selectedEntry["title"] = titleText.text
+//        selectedEntry["location"] = "LOCATION"
+        selectedEntry["date"] = datePicker.date
+        selectedEntry["textEntry"] = thoughtTextView.text
+        selectedEntry["photos"] = imageList
     }
     
     
