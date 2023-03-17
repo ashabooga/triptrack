@@ -516,10 +516,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-DB-6Ay">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
-                                <standardMapConfiguration key="preferredConfiguration"/>
-                            </mapView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
                                 <rect key="frame" x="-1" y="47" width="393" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -545,20 +541,24 @@
                                 </items>
                                 <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EE-bs-OO3">
+                                <rect key="frame" x="16" y="91" width="358" height="670"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ahx-Bm-JaC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="q4o-vo-405" firstAttribute="trailing" secondItem="6jd-DB-6Ay" secondAttribute="trailing" constant="2" id="3Rg-p8-CO1"/>
-                            <constraint firstItem="6jd-DB-6Ay" firstAttribute="top" secondItem="q4o-vo-405" secondAttribute="bottom" id="HyS-wz-F5x"/>
-                            <constraint firstItem="6jd-DB-6Ay" firstAttribute="centerX" secondItem="eJM-4n-gUb" secondAttribute="centerX" id="JTS-fg-A91"/>
                             <constraint firstItem="q4o-vo-405" firstAttribute="top" secondItem="Ahx-Bm-JaC" secondAttribute="top" id="Sqa-TP-Evy"/>
                             <constraint firstItem="q4o-vo-405" firstAttribute="trailing" secondItem="Ahx-Bm-JaC" secondAttribute="trailing" constant="2" id="T4a-cX-SkQ"/>
-                            <constraint firstItem="Ahx-Bm-JaC" firstAttribute="bottom" secondItem="6jd-DB-6Ay" secondAttribute="bottom" id="TMQ-9o-0l2"/>
                             <constraint firstItem="q4o-vo-405" firstAttribute="leading" secondItem="eJM-4n-gUb" secondAttribute="leadingMargin" constant="-17" id="sES-kT-JbF"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map.fill" catalog="system" id="qeT-x6-SWH"/>
+                    <connections>
+                        <outlet property="mapView" destination="5EE-bs-OO3" id="wia-mU-zh6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRU-XF-6rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
