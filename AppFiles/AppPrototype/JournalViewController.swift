@@ -28,6 +28,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedEntry["ID"] = indexPath.row
+        selectedEntry["title"] = titleList[indexPath.row]
+        selectedEntry["location"] = locationList[indexPath.row]
+        selectedEntry["date"] = dateList[indexPath.row]
+        selectedEntry["textEntry"] = textEntryList[indexPath.row]
+        selectedEntry["photos"] = photosList[indexPath.row]
         performSegue(withIdentifier: "toJournalDetail", sender: nil)
     }
     
@@ -58,6 +64,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.isNewEntry = true
 //            JournalEntryViewController.JournalVC = self
+        }
+        if segue.identifier == "toJournalDetail" {
+            let JournalDetailViewController = segue.destination as! JournalDetailViewController
+            JournalDetailViewController.selectedEntry = selectedEntry
+            
         }
     }
     
