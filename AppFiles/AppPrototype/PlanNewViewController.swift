@@ -46,6 +46,10 @@ class PlanNewViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -56,7 +60,6 @@ class PlanNewViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension PlanNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
