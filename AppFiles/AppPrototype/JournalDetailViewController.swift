@@ -35,8 +35,6 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
         let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
-        
-        
         // Update the current page of the page control
         pageControl.currentPage = currentPage
     }
@@ -54,9 +52,13 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
         photoList = (selectedEntry["photos"] as? [UIImage])!
         //photoView.image = photoList[0]
         
+        
+        
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isPagingEnabled = true
         pageControl.numberOfPages = photoList.count
+        
+        
         for index in 0..<photoList.count {
             frame.origin.x = scrollView.frame.size.width * CGFloat(index)
             frame.size = scrollView.frame.size
