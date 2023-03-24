@@ -452,8 +452,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxm-BE-r9n">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxm-BE-r9n">
                                 <rect key="frame" x="-1" y="47" width="392" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="NEW ENTRY" style="editor" id="exz-Kf-q79">
@@ -485,17 +486,9 @@
                                 </items>
                                 <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="AvM-uT-CWj">
-                                <rect key="frame" x="16" y="207" width="125" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="ljP-5h-d2f"/>
-                                </constraints>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
                                 <rect key="frame" x="16" y="632" width="358" height="178"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="178" id="rac-9C-G2r"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="plus" catalog="system" title="Photos">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
@@ -505,66 +498,40 @@
                                     <action selector="addPhotoButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="Zok-ib-wne"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-6l-RZk">
-                                <rect key="frame" x="88" y="496" width="214" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="f00-fC-aj0"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your Thoughts" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
-                                <rect key="frame" x="16" y="264" width="358" height="224"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Your Thoughts" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
+                                <rect key="frame" x="16" y="264" width="358" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <searchBar contentMode="redraw" placeholder="Location" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Location" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
                                 <rect key="frame" x="0.0" y="149" width="390" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Bcj-Km-ekb"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="country-name"/>
                                 <connections>
                                     <outlet property="delegate" destination="gwN-QZ-Maq" id="4TD-QQ-6bd"/>
                                 </connections>
                             </searchBar>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ym-TX-Q2q">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ym-TX-Q2q">
                                 <rect key="frame" x="16" y="104" width="358" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="AvM-uT-CWj">
+                                <rect key="frame" x="0.0" y="207" width="109" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rmZ-Ph-TZm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="AvM-uT-CWj" firstAttribute="leading" secondItem="Pb8-Lc-aVh" secondAttribute="leading" id="0co-tu-cSm"/>
-                            <constraint firstItem="8ym-TX-Q2q" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" id="IHJ-Vm-h2Q"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="trailing" secondItem="Pb8-Lc-aVh" secondAttribute="trailing" id="Ka7-v9-ghN"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="Nd2-gG-2ET"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="RYL-W2-zyX"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" id="SPa-jn-PPA"/>
-                            <constraint firstItem="rmZ-Ph-TZm" firstAttribute="trailing" secondItem="AvM-uT-CWj" secondAttribute="trailing" constant="249" id="Ste-Tf-G3E"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="leading" secondItem="Pb8-Lc-aVh" secondAttribute="leading" constant="72" id="WR5-3a-aS7"/>
-                            <constraint firstItem="Dxm-BE-r9n" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" constant="-17" id="Y4S-Nz-Erh"/>
-                            <constraint firstItem="8ym-TX-Q2q" firstAttribute="trailing" secondItem="55q-0Y-CYt" secondAttribute="trailing" id="eFr-et-Ls2"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="bottom" secondItem="rmZ-Ph-TZm" secondAttribute="bottom" id="eXl-5D-vxL"/>
-                            <constraint firstItem="xSb-zq-iyx" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="etI-9h-xzu"/>
-                            <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="xSb-zq-iyx" secondAttribute="bottom" constant="14" id="f0d-NI-0mH"/>
-                            <constraint firstItem="xSb-zq-iyx" firstAttribute="leading" secondItem="rmZ-Ph-TZm" secondAttribute="leading" id="fcO-8k-P57"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" id="fmf-Wc-VeF"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="top" secondItem="Mpa-6l-RZk" secondAttribute="bottom" constant="8" id="gD9-7t-zgK"/>
-                            <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="OdG-oM-OBe" secondAttribute="top" constant="207" id="gfQ-Sh-43L"/>
-                            <constraint firstItem="xSb-zq-iyx" firstAttribute="top" secondItem="8ym-TX-Q2q" secondAttribute="bottom" constant="11" id="jmp-md-GF0"/>
-                            <constraint firstItem="Dxm-BE-r9n" firstAttribute="top" secondItem="rmZ-Ph-TZm" secondAttribute="top" id="mGK-J8-lca"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="trailing" secondItem="OdG-oM-OBe" secondAttribute="trailingMargin" id="phm-x9-ix6"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="top" secondItem="AvM-uT-CWj" secondAttribute="bottom" constant="8" id="tRq-Rr-sKg"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="top" secondItem="55q-0Y-CYt" secondAttribute="bottom" constant="8" id="wfo-7Q-2JE"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
-                        <outlet property="imageTest" destination="Mpa-6l-RZk" id="yoJ-o5-Thq"/>
                         <outlet property="navigationTitle" destination="exz-Kf-q79" id="5y0-jY-Ara"/>
+                        <outlet property="photoButton" destination="Pb8-Lc-aVh" id="yWF-A1-rxK"/>
                         <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
                         <outlet property="titleText" destination="8ym-TX-Q2q" id="Qw9-Ss-H1G"/>
                     </connections>
@@ -643,14 +610,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <pageControl opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" highlighted="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="wdu-6L-aLn">
-                                        <rect key="frame" x="100" y="244" width="190" height="26"/>
+                                        <rect key="frame" x="100" y="258" width="190" height="26"/>
                                     </pageControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="wdu-6L-aLn" firstAttribute="top" secondItem="SoC-iV-Tvh" secondAttribute="top" constant="244" id="Aup-o8-Sjc"/>
+                                    <constraint firstItem="wdu-6L-aLn" firstAttribute="top" secondItem="SoC-iV-Tvh" secondAttribute="top" constant="258" id="Aup-o8-Sjc"/>
                                     <constraint firstItem="wdu-6L-aLn" firstAttribute="leading" secondItem="SoC-iV-Tvh" secondAttribute="leading" constant="100" id="NuY-jI-oWO"/>
                                     <constraint firstItem="SoC-iV-Tvh" firstAttribute="trailing" secondItem="wdu-6L-aLn" secondAttribute="trailing" constant="100" id="Pbj-nT-nIe"/>
-                                    <constraint firstItem="SoC-iV-Tvh" firstAttribute="bottom" secondItem="wdu-6L-aLn" secondAttribute="bottom" constant="42" id="dVy-zo-E2U"/>
+                                    <constraint firstItem="SoC-iV-Tvh" firstAttribute="bottom" secondItem="wdu-6L-aLn" secondAttribute="bottom" constant="28" id="dVy-zo-E2U"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="ibs-TS-nkb"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="SoC-iV-Tvh"/>
