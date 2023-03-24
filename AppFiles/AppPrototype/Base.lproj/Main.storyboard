@@ -755,7 +755,7 @@
                                 <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EE-bs-OO3">
-                                <rect key="frame" x="16" y="91" width="358" height="670"/>
+                                <rect key="frame" x="-1" y="91" width="391" height="670"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
