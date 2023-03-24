@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HiX-6e-m9v">
-                                <rect key="frame" x="-3" y="47" width="389" height="44"/>
+                                <rect key="frame" x="-3" y="47" width="388" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="PLAN DETAILS" id="ofo-5B-Kdf">
@@ -114,7 +114,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="g8b-OM-QG7">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Q0Y-Pc-qkE">
-                                                <rect key="frame" x="287" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="286" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Edit"/>
@@ -527,13 +527,7 @@
                                     <action selector="addPhotoButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="Zok-ib-wne"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-6l-RZk">
-                                <rect key="frame" x="88" y="496" width="214" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="f00-fC-aj0"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your Thoughts" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="Your Thoughts" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
                                 <rect key="frame" x="16" y="264" width="358" height="224"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -563,10 +557,8 @@
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" id="IHJ-Vm-h2Q"/>
                             <constraint firstItem="55q-0Y-CYt" firstAttribute="trailing" secondItem="Pb8-Lc-aVh" secondAttribute="trailing" id="Ka7-v9-ghN"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="Nd2-gG-2ET"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="RYL-W2-zyX"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" id="SPa-jn-PPA"/>
                             <constraint firstItem="rmZ-Ph-TZm" firstAttribute="trailing" secondItem="AvM-uT-CWj" secondAttribute="trailing" constant="249" id="Ste-Tf-G3E"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="leading" secondItem="Pb8-Lc-aVh" secondAttribute="leading" constant="72" id="WR5-3a-aS7"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" constant="-17" id="Y4S-Nz-Erh"/>
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="trailing" secondItem="55q-0Y-CYt" secondAttribute="trailing" id="eFr-et-Ls2"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="bottom" secondItem="rmZ-Ph-TZm" secondAttribute="bottom" id="eXl-5D-vxL"/>
@@ -574,19 +566,17 @@
                             <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="xSb-zq-iyx" secondAttribute="bottom" constant="14" id="f0d-NI-0mH"/>
                             <constraint firstItem="xSb-zq-iyx" firstAttribute="leading" secondItem="rmZ-Ph-TZm" secondAttribute="leading" id="fcO-8k-P57"/>
                             <constraint firstItem="55q-0Y-CYt" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" id="fmf-Wc-VeF"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="top" secondItem="Mpa-6l-RZk" secondAttribute="bottom" constant="8" id="gD9-7t-zgK"/>
                             <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="OdG-oM-OBe" secondAttribute="top" constant="207" id="gfQ-Sh-43L"/>
                             <constraint firstItem="xSb-zq-iyx" firstAttribute="top" secondItem="8ym-TX-Q2q" secondAttribute="bottom" constant="11" id="jmp-md-GF0"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="top" secondItem="rmZ-Ph-TZm" secondAttribute="top" id="mGK-J8-lca"/>
                             <constraint firstItem="Pb8-Lc-aVh" firstAttribute="trailing" secondItem="OdG-oM-OBe" secondAttribute="trailingMargin" id="phm-x9-ix6"/>
                             <constraint firstItem="55q-0Y-CYt" firstAttribute="top" secondItem="AvM-uT-CWj" secondAttribute="bottom" constant="8" id="tRq-Rr-sKg"/>
-                            <constraint firstItem="Mpa-6l-RZk" firstAttribute="top" secondItem="55q-0Y-CYt" secondAttribute="bottom" constant="8" id="wfo-7Q-2JE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
-                        <outlet property="imageTest" destination="Mpa-6l-RZk" id="yoJ-o5-Thq"/>
                         <outlet property="navigationTitle" destination="exz-Kf-q79" id="5y0-jY-Ara"/>
+                        <outlet property="photoButton" destination="Pb8-Lc-aVh" id="rjL-YR-Sdl"/>
                         <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
                         <outlet property="titleText" destination="8ym-TX-Q2q" id="Qw9-Ss-H1G"/>
                     </connections>
