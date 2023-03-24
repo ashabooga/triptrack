@@ -7,17 +7,24 @@
 
 import UIKit
 
-//Testing if commit works
-
 class PlanNewViewController: UIViewController {
+    
+    
+    @IBOutlet weak var CitySelect: UIButton!
     
     @IBOutlet weak var StartDatePicker: UIDatePicker!
     
     @IBOutlet weak var EndDatePicker: UIDatePicker!
     
+    @IBOutlet weak var TransportToSelect: UIButton!
+    
     @IBOutlet weak var TransportToDatePicker: UIDatePicker!
     
     @IBOutlet weak var TransportFromDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var TransportFromSelect: UIButton!
+    
+    @IBOutlet weak var AccomodationSelect: UIButton!
     
     @IBOutlet weak var CheckInDatePicker: UIDatePicker!
     

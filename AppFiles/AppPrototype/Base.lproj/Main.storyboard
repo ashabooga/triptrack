@@ -382,7 +382,11 @@
                     </view>
                     <size key="freeformSize" width="390" height="844"/>
                     <connections>
+                        <outlet property="AccomodationSelect" destination="F38-a0-usl" id="bs4-OV-EGu"/>
                         <outlet property="CheckOutDatePicker" destination="Tir-pe-cum" id="wXg-oD-ikz"/>
+                        <outlet property="CitySelect" destination="AAK-CN-A6z" id="Kgg-MS-nkZ"/>
+                        <outlet property="TransportFromSelect" destination="dRM-cg-a2x" id="AGa-fD-fo5"/>
+                        <outlet property="TransportToSelect" destination="h8f-YU-xY2" id="s9Y-hO-k0v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPf-Me-5Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
