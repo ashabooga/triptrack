@@ -4,7 +4,8 @@ import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    
+    var latitudeList = [Float]()
+    var longitudeList = [Float]()
     @IBOutlet weak var mapView: MKMapView!
     
     var userLocation = CLLocation()
@@ -45,6 +46,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(startUserTracking), userInfo: nil, repeats: false)
         }
         
+        
         //set center if user has started being tracked
         if startTrackingTheUser == true {
             mapView.setCenter(location, animated: true)
@@ -75,7 +77,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //configure the map to show the user's location (with a blue dot)
         mapView.showsUserLocation = true
     }
+    func updateTheTable(){
+        //set location of the mural to coordinate
+        let coordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let annotation = MKPointAnnotation()
+        
+        //make coordinate of the annotation the coordinate of the mural
+        annotation.coordinate = coordinate
+        
+        //make the title of the annotation the title of the mural
+        annotation.title = title
+        
+        //add the annotation to the map
+        self.mapView.addAnnotation(annotation)
+  
     
+    }
     
     
     
