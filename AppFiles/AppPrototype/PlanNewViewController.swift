@@ -10,6 +10,20 @@ import UIKit
 //Testing if commit works
 
 class PlanNewViewController: UIViewController {
+    
+    @IBOutlet weak var StartDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var EndDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var TransportToDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var TransportFromDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var CheckInDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var CheckOutDatePicker: UIView!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
