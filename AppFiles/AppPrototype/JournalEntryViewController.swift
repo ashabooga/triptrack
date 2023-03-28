@@ -21,6 +21,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var imageList = [UIImage]()
     var page = UIPageControl()
     var isCreated = false
+    var scroll = UIScrollView()
     
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var titleText: UITextField!
@@ -53,12 +54,26 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     
+    @objc func pageControlDidChange(_ sender: UIPageControl) {
+            // Scroll to the corresponding page
+            let page1 = sender.currentPage
+            let bounds = scroll.bounds
+            let width = bounds.size.width
+            let offset = CGPoint(x: CGFloat(page1) * width, y: 0)
+            scroll.setContentOffset(offset, animated: true)
+        }
+    
+    
+    
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
-        let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
-        
+        //let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
+        let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        //pageControl.currentPage = Int(pageIndex)
         // Update the current page of the page control
-        page.currentPage = currentPage
+        //page.currentPage = currentPage
     }
     
     
@@ -120,7 +135,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             
         pageControl.numberOfPages = imageList.count
         pageControl.currentPage = 0
+        pageControl.addTarget(self, action: #selector(pageControlDidChange), for: .valueChanged)
         page = pageControl
+        scroll = scrollView
         view.addSubview(scrollView)
         view.addSubview(pageControl)
             
@@ -147,7 +164,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
 
     // MARK: UIScrollViewDelegate
-
 
 
     
