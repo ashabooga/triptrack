@@ -576,6 +576,7 @@
                             <constraint firstItem="55q-0Y-CYt" firstAttribute="top" secondItem="AvM-uT-CWj" secondAttribute="bottom" constant="8" id="tRq-Rr-sKg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="J8Y-BH-3xT"/>
                     <connections>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
                         <outlet property="navigationTitle" destination="exz-Kf-q79" id="5y0-jY-Ara"/>
@@ -743,6 +744,9 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                             </button>
+                                            <connections>
+                                                <action selector="addButton:" destination="XmX-zB-tTf" id="31R-qt-DAB"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -765,6 +769,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="map.fill" catalog="system" id="qeT-x6-SWH"/>
                     <connections>
                         <outlet property="mapView" destination="5EE-bs-OO3" id="wia-mU-zh6"/>
+                        <segue destination="gwN-QZ-Maq" kind="showDetail" identifier="toNew" id="rn6-4b-dVD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRU-XF-6rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -797,6 +802,9 @@
             <point key="canvasLocation" x="-832" y="-730"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rn6-4b-dVD"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>

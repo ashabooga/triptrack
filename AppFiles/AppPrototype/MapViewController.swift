@@ -57,6 +57,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     
+    
+    @IBAction func addButton(_ sender: Any) {
+        performSegue(withIdentifier: "toNew", sender: nil)
+    }
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNew" {
+            let JournalEntryViewController = segue.destination as! JournalEntryViewController
+            JournalEntryViewController.isNewEntry = true
+
+
+        }
+    }
+    */
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,4 +91,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //configure the map to show the user's location (with a blue dot)
         mapView.showsUserLocation = true
     }
+    
+    
+
 }
