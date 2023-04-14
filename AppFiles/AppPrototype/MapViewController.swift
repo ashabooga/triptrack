@@ -56,11 +56,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         startTrackingTheUser = true
     }
     
-    
-    
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "toNew", sender: nil)
+
     }
+    
+    
     /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNew" {
