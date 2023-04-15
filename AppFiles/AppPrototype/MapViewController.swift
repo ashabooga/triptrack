@@ -2,7 +2,7 @@ import CoreLocation
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
     
     @IBOutlet weak var mapView: MKMapView!
@@ -61,21 +61,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     }
     
+    func action(gestureRecognizer:UIGestureRecognizer){
+        let touchPoint = gestureRecognizer.location(in: mapView)
+        let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = newCoordinates
+        mapView.addAnnotation(annotation)
+    }
     
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNew" {
-            let JournalEntryViewController = segue.destination as! JournalEntryViewController
-            JournalEntryViewController.isNewEntry = true
-
-
+    @objc func handleLongTapGesture(gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state != UIGestureRecognizer.State.ended {
+            let touchLocation = gestureRecognizer.location(in: mapView)
+            let locationCoordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
+            
+            let myPin = MKPointAnnotation()
+            myPin.coordinate = locationCoordinate
+            
+            myPin.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
+            
+            mapView.addAnnotation(myPin)
+        }
+        
+        if gestureRecognizer.state != UIGestureRecognizer.State.began {
+            return
         }
     }
-    */
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let oLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.handleLongTapGesture(gestureRecognizer:)))
+        self.mapView.addGestureRecognizer(oLongTapGesture)
         
         // Make this view controller a delegate of the Location Manager, so that it is able to call functions provided in this view controller
         locationManager.delegate = self as CLLocationManagerDelegate
