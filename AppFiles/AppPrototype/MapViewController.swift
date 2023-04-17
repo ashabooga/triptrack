@@ -71,15 +71,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @objc func handleLongTapGesture(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state != UIGestureRecognizer.State.ended {
-            let touchLocation = gestureRecognizer.location(in: mapView)
-            let locationCoordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
+            let touchArea = gestureRecognizer.location(in: mapView)
+            let locationCoordinate = mapView.convert(touchArea, toCoordinateFrom: mapView)
             
-            let myPin = MKPointAnnotation()
-            myPin.coordinate = locationCoordinate
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locationCoordinate
             
-            myPin.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
+            annotation.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
             
-            mapView.addAnnotation(myPin)
+            mapView.addAnnotation(annotation)
         }
         
         if gestureRecognizer.state != UIGestureRecognizer.State.began {
