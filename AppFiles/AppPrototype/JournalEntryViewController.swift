@@ -21,6 +21,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var imageList = [UIImage]()
     var page = UIPageControl()
     var isCreated = false
+    var scroll = UIScrollView()
     
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var titleText: UITextField!
@@ -53,10 +54,14 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     
+
+    
+    
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
         let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
-        
         // Update the current page of the page control
         page.currentPage = currentPage
     }
@@ -120,7 +125,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             
         pageControl.numberOfPages = imageList.count
         pageControl.currentPage = 0
+        //pageControl.addTarget(self, action: #selector(pageControlDidChange), for: .valueChanged)
         page = pageControl
+        scroll = scrollView
         view.addSubview(scrollView)
         view.addSubview(pageControl)
             
@@ -139,15 +146,18 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         scrollView.delegate = self
         scrollView.bringSubviewToFront(pageControl)
             
-        photoButton.frame.origin = CGPoint(x: 240, y: 530)
+        photoButton.frame.origin = CGPoint(x: 250, y: 530)
         photoButton.frame.size = CGSize(width: 130, height: 40)
-            //photoButton.titleLabel!.font = UIFont.systemFont(ofSize: 17)
         
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        photoButton.imageView?.contentMode = .scaleAspectFit
+        let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
+        //photoButton.setImage(symbolImage, for: .normal)
+        photoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
     }
 
     // MARK: UIScrollViewDelegate
-
 
 
     

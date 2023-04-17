@@ -2,7 +2,7 @@ import CoreLocation
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
     var latitudeList = [Float]()
     var longitudeList = [Float]()
@@ -58,9 +58,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         startTrackingTheUser = true
     }
     
+    @IBAction func addButton(_ sender: Any) {
+        performSegue(withIdentifier: "toNew", sender: nil)
+
+    }
+    
+    func action(gestureRecognizer:UIGestureRecognizer){
+        let touchPoint = gestureRecognizer.location(in: mapView)
+        let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = newCoordinates
+        mapView.addAnnotation(annotation)
+    }
+    
+    @objc func handleLongTapGesture(gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state != UIGestureRecognizer.State.ended {
+            let touchArea = gestureRecognizer.location(in: mapView)
+            let locationCoordinate = mapView.convert(touchArea, toCoordinateFrom: mapView)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locationCoordinate
+            
+            annotation.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
+            
+            mapView.addAnnotation(annotation)
+        }
+        
+        if gestureRecognizer.state != UIGestureRecognizer.State.began {
+            return
+        }
+    }
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let oLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.handleLongTapGesture(gestureRecognizer:)))
+        self.mapView.addGestureRecognizer(oLongTapGesture)
         
         // Make this view controller a delegate of the Location Manager, so that it is able to call functions provided in this view controller
         locationManager.delegate = self as CLLocationManagerDelegate
@@ -94,33 +129,5 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     }
     
-    
-    
-    //let cManager = CLLocationManager()
-    /*override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        cManager.requestWhenInUseAuthorization()
-    }
-    */
-    //4.51
-     
-    /*
-    let locationManager = CLLocationManager()
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-    if CLLocationManager.locationServicesEnabled() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
-    }
-     // Ask for Authorisation from the User.
-     self.locationManager.requestAlwaysAuthorization()
 
-     // For use in foreground
-     self.locationManager.requestWhenInUseAuthorization()
-     import CoreLocation
-
-    */
 }
