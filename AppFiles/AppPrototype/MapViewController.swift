@@ -82,9 +82,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annotation.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
             
             mapView.addAnnotation(annotation)
+
         }
+
         
         if gestureRecognizer.state != UIGestureRecognizer.State.began {
+            performSegue(withIdentifier: "toNew", sender: nil)
+
             return
         }
     }
