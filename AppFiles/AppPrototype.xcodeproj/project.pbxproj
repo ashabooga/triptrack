@@ -21,6 +21,7 @@
 		B95606A529B0F06800F95F78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95606A429B0F06800F95F78 /* Assets.xcassets */; };
 		B95606A829B0F06800F95F78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95606A629B0F06800F95F78 /* LaunchScreen.storyboard */; };
 		B95AA13029BF6A4100C894DA /* JournalEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95AA12F29BF6A4100C894DA /* JournalEntryViewController.swift */; };
+		E77BF54729EDB9E90073DB30 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77BF54629EDB9E90073DB30 /* InitialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B95606A729B0F06800F95F78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B95606A929B0F06800F95F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95AA12F29BF6A4100C894DA /* JournalEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewController.swift; sourceTree = "<group>"; };
+		E77BF54629EDB9E90073DB30 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				B5071F0C29B8F96600F6DFEA /* CustomTabBarController.swift */,
 				B956069829B0F06800F95F78 /* AppDelegate.swift */,
 				B956069A29B0F06800F95F78 /* SceneDelegate.swift */,
+				E77BF54629EDB9E90073DB30 /* InitialViewController.swift */,
 				B956069E29B0F06800F95F78 /* Main.storyboard */,
 				B95606A429B0F06800F95F78 /* Assets.xcassets */,
 				B95606A629B0F06800F95F78 /* LaunchScreen.storyboard */,
@@ -165,6 +168,7 @@
 				B95606A329B0F06800F95F78 /* AppPrototype.xcdatamodeld in Sources */,
 				B95AA13029BF6A4100C894DA /* JournalEntryViewController.swift in Sources */,
 				B5071F0D29B8F96600F6DFEA /* CustomTabBarController.swift in Sources */,
+				E77BF54729EDB9E90073DB30 /* InitialViewController.swift in Sources */,
 				B5071F0B29B8F94A00F6DFEA /* PlanViewController.swift in Sources */,
 				B919D10229BB57D800AF862B /* JournalDetailViewController.swift in Sources */,
 				04F10DC329BB764A000F9B88 /* PlanNewViewController.swift in Sources */,
