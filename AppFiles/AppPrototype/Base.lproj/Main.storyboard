@@ -507,11 +507,9 @@
                                 </items>
                                 <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
                                 <rect key="frame" x="16" y="632" width="358" height="178"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="178" id="bjw-xT-4Lp"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="plus" catalog="system" title="Photos">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
@@ -547,7 +545,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="AvM-uT-CWj">
-                                <rect key="frame" x="-13" y="207" width="125" height="49"/>
+                                <rect key="frame" x="0.0" y="207" width="125" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="ljP-5h-d2f"/>
                                 </constraints>
@@ -558,21 +556,18 @@
                         <constraints>
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="trailing" secondItem="OdG-oM-OBe" secondAttribute="trailingMargin" id="20H-tZ-kIe"/>
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" id="20S-xZ-1Oo"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="trailing" secondItem="Pb8-Lc-aVh" secondAttribute="trailing" id="Al9-Tz-ndI"/>
-                            <constraint firstItem="8ym-TX-Q2q" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" constant="29" id="IHJ-Vm-h2Q"/>
-                            <constraint firstItem="rmZ-Ph-TZm" firstAttribute="trailing" secondItem="AvM-uT-CWj" secondAttribute="trailing" constant="278" id="Ste-Tf-G3E"/>
+                            <constraint firstItem="8ym-TX-Q2q" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" constant="16" id="IHJ-Vm-h2Q"/>
+                            <constraint firstItem="rmZ-Ph-TZm" firstAttribute="trailing" secondItem="AvM-uT-CWj" secondAttribute="trailing" constant="265" id="Ste-Tf-G3E"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="leading" secondItem="OdG-oM-OBe" secondAttribute="leadingMargin" constant="-17" id="Y4S-Nz-Erh"/>
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="centerX" secondItem="xSb-zq-iyx" secondAttribute="centerX" id="ZV6-47-2J8"/>
                             <constraint firstItem="8ym-TX-Q2q" firstAttribute="trailing" secondItem="55q-0Y-CYt" secondAttribute="trailing" id="eFr-et-Ls2"/>
                             <constraint firstItem="xSb-zq-iyx" firstAttribute="centerX" secondItem="Dxm-BE-r9n" secondAttribute="centerX" id="etI-9h-xzu"/>
                             <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="xSb-zq-iyx" secondAttribute="bottom" constant="14" id="f0d-NI-0mH"/>
                             <constraint firstItem="xSb-zq-iyx" firstAttribute="leading" secondItem="rmZ-Ph-TZm" secondAttribute="leading" id="fcO-8k-P57"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" constant="29" id="fmf-Wc-VeF"/>
+                            <constraint firstItem="55q-0Y-CYt" firstAttribute="leading" secondItem="AvM-uT-CWj" secondAttribute="leading" constant="16" id="fmf-Wc-VeF"/>
                             <constraint firstItem="AvM-uT-CWj" firstAttribute="top" secondItem="OdG-oM-OBe" secondAttribute="top" constant="207" id="gfQ-Sh-43L"/>
                             <constraint firstItem="xSb-zq-iyx" firstAttribute="top" secondItem="8ym-TX-Q2q" secondAttribute="bottom" constant="11" id="jmp-md-GF0"/>
                             <constraint firstItem="Dxm-BE-r9n" firstAttribute="top" secondItem="rmZ-Ph-TZm" secondAttribute="top" id="mGK-J8-lca"/>
-                            <constraint firstItem="Pb8-Lc-aVh" firstAttribute="bottom" secondItem="rmZ-Ph-TZm" secondAttribute="bottom" id="mRk-tL-ChU"/>
-                            <constraint firstItem="55q-0Y-CYt" firstAttribute="leading" secondItem="Pb8-Lc-aVh" secondAttribute="leading" id="oJS-A6-ukV"/>
                             <constraint firstItem="55q-0Y-CYt" firstAttribute="top" secondItem="AvM-uT-CWj" secondAttribute="bottom" constant="8" id="tRq-Rr-sKg"/>
                         </constraints>
                     </view>
@@ -644,10 +639,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ajf-Qi-7E7">
-                                <rect key="frame" x="14" y="299" width="354" height="202"/>
+                                <rect key="frame" x="14" y="299" width="354" height="277"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="202" id="n9o-nW-9Mg"/>
+                                    <constraint firstAttribute="height" constant="277" id="n9o-nW-9Mg"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -655,18 +650,18 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-z7-oZy">
-                                <rect key="frame" x="0.0" y="532" width="390" height="312"/>
+                                <rect key="frame" x="0.0" y="584" width="390" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <pageControl opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" highlighted="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="wdu-6L-aLn">
-                                        <rect key="frame" x="100" y="244" width="190" height="26"/>
+                                        <rect key="frame" x="100" y="206" width="190" height="38"/>
                                     </pageControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="wdu-6L-aLn" firstAttribute="top" secondItem="SoC-iV-Tvh" secondAttribute="top" constant="244" id="Aup-o8-Sjc"/>
+                                    <constraint firstItem="wdu-6L-aLn" firstAttribute="top" secondItem="SoC-iV-Tvh" secondAttribute="top" constant="206" id="Aup-o8-Sjc"/>
                                     <constraint firstItem="wdu-6L-aLn" firstAttribute="leading" secondItem="SoC-iV-Tvh" secondAttribute="leading" constant="100" id="NuY-jI-oWO"/>
                                     <constraint firstItem="SoC-iV-Tvh" firstAttribute="trailing" secondItem="wdu-6L-aLn" secondAttribute="trailing" constant="100" id="Pbj-nT-nIe"/>
-                                    <constraint firstItem="SoC-iV-Tvh" firstAttribute="bottom" secondItem="wdu-6L-aLn" secondAttribute="bottom" constant="42" id="dVy-zo-E2U"/>
+                                    <constraint firstItem="SoC-iV-Tvh" firstAttribute="bottom" secondItem="wdu-6L-aLn" secondAttribute="bottom" constant="16" id="dVy-zo-E2U"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="ibs-TS-nkb"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="SoC-iV-Tvh"/>
@@ -747,10 +742,10 @@
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzD-SC-c31">
-                                <rect key="frame" x="331" y="47" width="35" height="35"/>
+                                <rect key="frame" x="326" y="48" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="+"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="addButton:" destination="XmX-zB-tTf" eventType="touchUpInside" id="dcL-C7-VLX"/>
                                 </connections>

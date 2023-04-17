@@ -54,26 +54,16 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     
-    @objc func pageControlDidChange(_ sender: UIPageControl) {
-            // Scroll to the corresponding page
-            let page1 = sender.currentPage
-            let bounds = scroll.bounds
-            let width = bounds.size.width
-            let offset = CGPoint(x: CGFloat(page1) * width, y: 0)
-            scroll.setContentOffset(offset, animated: true)
-        }
-    
+
     
     
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
-        //let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
-        let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-        //pageControl.currentPage = Int(pageIndex)
+        let currentPage = Int((scrollView.contentOffset.x / pageWidth).rounded())
         // Update the current page of the page control
-        //page.currentPage = currentPage
+        page.currentPage = currentPage
     }
     
     
@@ -135,7 +125,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             
         pageControl.numberOfPages = imageList.count
         pageControl.currentPage = 0
-        pageControl.addTarget(self, action: #selector(pageControlDidChange), for: .valueChanged)
+        //pageControl.addTarget(self, action: #selector(pageControlDidChange), for: .valueChanged)
         page = pageControl
         scroll = scrollView
         view.addSubview(scrollView)
@@ -156,10 +146,14 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         scrollView.delegate = self
         scrollView.bringSubviewToFront(pageControl)
             
-        photoButton.frame.origin = CGPoint(x: 240, y: 530)
+        photoButton.frame.origin = CGPoint(x: 250, y: 530)
         photoButton.frame.size = CGSize(width: 130, height: 40)
-            //photoButton.titleLabel!.font = UIFont.systemFont(ofSize: 17)
         
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        photoButton.imageView?.contentMode = .scaleAspectFit
+        let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
+        //photoButton.setImage(symbolImage, for: .normal)
+        photoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
     }
 
