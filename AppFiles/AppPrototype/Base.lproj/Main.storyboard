@@ -614,6 +614,9 @@
                                                 <rect key="frame" x="324.66666666666669" y="5" width="53.333333333333314" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Edit"/>
+                                                <connections>
+                                                    <action selector="editButton:" destination="JD6-0L-Jw0" eventType="touchUpInside" id="kyp-Ts-xyf"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -704,6 +707,7 @@
                         <outlet property="scrollView" destination="jHa-z7-oZy" id="SVq-oC-y11"/>
                         <outlet property="textEntry" destination="Ajf-Qi-7E7" id="Tl0-Qd-Nkr"/>
                         <outlet property="titleLabel" destination="4I6-WX-2Gq" id="hY7-4B-iew"/>
+                        <segue destination="gwN-QZ-Maq" kind="showDetail" identifier="toEdit" id="7Wl-7A-B6Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -796,7 +800,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rn6-4b-dVD"/>
+        <segue reference="7Wl-7A-B6Z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>

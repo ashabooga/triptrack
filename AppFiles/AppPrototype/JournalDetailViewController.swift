@@ -17,14 +17,25 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textEntry: UITextView!
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var pageControl: UIPageControl!
     
     let dateFormatter = DateFormatter()
     var photoList = [UIImage]()
+    
+    
+    
+    @IBAction func editButton(_ sender: Any) {
+        performSegue(withIdentifier: "toEdit", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEdit" {
+            let JournalEntryViewController = segue.destination as! JournalEntryViewController
+            JournalEntryViewController.isNewEntry = true
+        }
+    }
+    
+    
     
     
     //func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

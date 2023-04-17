@@ -149,11 +149,11 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         photoButton.frame.origin = CGPoint(x: 250, y: 530)
         photoButton.frame.size = CGSize(width: 130, height: 40)
         
-        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        //let configuration = UIImage.SymbolConfiguration(pointSize: 15)
         photoButton.imageView?.contentMode = .scaleAspectFit
-        let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
+        //let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
         //photoButton.setImage(symbolImage, for: .normal)
-        photoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        //photoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
     }
 
