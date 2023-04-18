@@ -8,8 +8,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
     var photoIDsList = [[String]]()
+    var latitudeList = [Float]()
+    var longitudeList = [Float]()
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     var hasBeenOpened = false
     
@@ -38,7 +40,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         selectedEntry["location"] = locationList[indexPath.row]
         selectedEntry["date"] = dateList[indexPath.row]
         selectedEntry["textEntry"] = textEntryList[indexPath.row]
-        selectedEntry["photos"] = photosList[indexPath.row]
+//        selectedEntry["photos"] = photosList[indexPath.row]
         performSegue(withIdentifier: "toJournalDetail", sender: nil)
     }
     
@@ -88,6 +90,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
             dateList.append(selectedEntry["date"] as? Date ?? Date())
             textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
+            latitudeList.append(selectedEntry["latitude"] as? Float ?? 0.0)
+            longitudeList.append(selectedEntry["longitude"] as? Float ?? 0.0)
             
             //        photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
@@ -130,6 +134,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 locationList.append(entry.locationNames!)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
+                photosList.append([UIImage(named: "noImage")!])
+                latitudeList.append(0.0)
+                longitudeList.append(0.0)
                 
 //                photosList.append(entry.photoLists!)
                 
@@ -140,16 +147,54 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func saveCoreData() {
+        do {
+            try self.context.save()
+        } catch {
+            print("couldn't save core data")
+        }
+    }
     
-//    @objc private func terminate
+    
+    @objc func onTerminate() {
+        print("terminating")
+        
+        let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
+        
+        if titleList.count > 0 {
+            
+            for i in 0...titleList.count-1 {
+                let newEntry = Journal(context: self.context)
+                
+                newEntry.titles = titleList[i]
+                newEntry.locationNames = locationList[i]
+                newEntry.latitudes = latitudeList[i]
+                newEntry.longitudes = longitudeList[i]
+                newEntry.dates = dateList[i]
+                newEntry.textEntries = textEntryList[i]
+                
+                //            newEntry.photoLists = photosList[i]
+                //            newEntry.photoIDLists = photoIDsList[i]
+                saveCoreData()
+                
+            }
+        
+            for coreDataResult in coreDataResults {
+                self.context.delete(coreDataResult)
+                saveCoreData()
+            }
+        
+        }
+    }
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter .default .addObserver(self, selector: Selector(("willTerminate")), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
         
         if !hasBeenOpened {
-            
+            fetchCoreData()
             hasBeenOpened = true
         }
     }
