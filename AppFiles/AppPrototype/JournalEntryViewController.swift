@@ -11,7 +11,11 @@ import PhotosUI
 class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UIScrollViewDelegate{
     
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
+
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var isNewEntry = false
+    
+
     var imagePicker = UIImagePickerController()
     var selectedCountry: String?
     var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
