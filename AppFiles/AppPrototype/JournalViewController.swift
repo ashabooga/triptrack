@@ -67,6 +67,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        print("segueing")
+        
         if segue.identifier == "toNewEntry" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.segueFromController = "JournalViewController"
@@ -197,6 +200,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             fetchCoreData()
             hasBeenOpened = true
         }
+        
+//        self.locationList = MapViewController.locationList
+        
     }
     
     
