@@ -31,12 +31,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var startTrackingTheUser = false
 
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNew" {
-            let JournalEntryViewController = segue.destination as! JournalEntryViewController
-            JournalEntryViewController.segueFromController = "MapViewController"
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toNew" {
+//            let JournalEntryViewController = segue.destination as! JournalEntryViewController
+//            JournalEntryViewController.segueFromController = "MapViewController"
+//        }
+//    }
     
     
     
@@ -134,6 +134,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotation) {
         //initalise index
         var index = 0
+        print("test1")
         
         //loop over annotations and check if view matches specific annotation to perform the segue when an annotaion is pressed
         for _ in annotationList {
@@ -143,15 +144,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 indexPat = index
                 performSegue(withIdentifier: "mapToDetailJournal", sender: nil)
+                print("test")
             }
             else {
                 index += 1
             }
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapToDetailJournal" {
+            
             let JournalDetailViewController = segue.destination as! JournalDetailViewController
+            
             selectedEntry["ID"] = indexPat
             selectedEntry["title"] = titleList
             selectedEntry["location"] = locationList
@@ -163,6 +168,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             selectedEntry["photoIDs"] = photoIDsList
             
             JournalDetailViewController.selectedEntry = self.selectedEntry
+        }
+        else {
+            let JournalEntryViewController = segue.destination as! JournalEntryViewController
+            JournalEntryViewController.segueFromController = "MapViewController"
         }
 
     }

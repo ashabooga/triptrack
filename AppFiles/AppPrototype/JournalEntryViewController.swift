@@ -126,6 +126,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let JournalViewController = segue.destination as? JournalViewController {
             JournalViewController.selectedEntry = self.selectedEntry
+            
         }
     }
     
