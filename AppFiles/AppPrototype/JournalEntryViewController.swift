@@ -12,8 +12,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
-    var isNewEntry = false
-    
     var imagePicker = UIImagePickerController()
     var selectedCountry: String?
     var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
@@ -22,6 +20,10 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var page = UIPageControl()
     var isCreated = false
     var scroll = UIScrollView()
+    var segueFromController : String!
+    
+    
+    @IBOutlet weak var backOutlet: UIButton!
     
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var titleText: UITextField!
@@ -29,14 +31,23 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var thoughtTextView: UITextView!
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
-    @IBAction func saveButton(_ sender: Any) {
-
+    @IBAction func backAndSave(_ sender: Any) {
         selectedEntry["title"] = titleText.text
 //        selectedEntry["location"] = "LOCATION"
         selectedEntry["date"] = datePicker.date
         selectedEntry["textEntry"] = thoughtTextView.text
         selectedEntry["photos"] = imageList
+        if segueFromController == "JournalViewController"{
+            self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
+        }
+        else if segueFromController == "MapViewController"{
+            self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+         }
+        else if segueFromController == "JournalDetailViewController"{
+            self.performSegue(withIdentifier: "unwindToDetail", sender: nil)
+        }
     }
+
     
     
     @IBAction func addPhotoButton(_ sender: Any) {
@@ -165,13 +176,19 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         super.viewDidLoad()
         datePicker.maximumDate = currentDate
         
-        if !isNewEntry {
+        if segueFromController == "JournalDetailViewController" {
+            backOutlet.setTitle(" Entry", for: .normal)
             thoughtTextView.text = (selectedEntry["textEntry"] as! String)
             navigationTitle.title = "EDIT ENTRY"
             //country.text = (selectedEntry["country"] as! String)
             datePicker.date = (selectedEntry["date"] as! Date)
-        } else {
+            
+        }
+        else {
             navigationTitle.title = "NEW ENTRY"
+            if segueFromController == "MapViewController" {
+                backOutlet.setTitle(" Map", for: .normal)
+            }
         }
 
         

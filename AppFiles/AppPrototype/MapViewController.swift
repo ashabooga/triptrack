@@ -31,6 +31,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var startTrackingTheUser = false
 
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNew" {
+            let JournalEntryViewController = segue.destination as! JournalEntryViewController
+            JournalEntryViewController.segueFromController = "MapViewController"
+        }
+    }
+    
+    
+    
+    //Unwind segue called when back button pressed in second view controller
+    @IBAction func unwindToMap(_ unwindSegue: UIStoryboardSegue) {
+        
+        }
+    
+    
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //this method returns an array of locations
         let locationOfUser = locations[0]

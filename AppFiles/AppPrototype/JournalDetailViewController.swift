@@ -31,10 +31,18 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEdit" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
-            JournalEntryViewController.isNewEntry = true
+            JournalEntryViewController.selectedEntry = selectedEntry
+            JournalEntryViewController.segueFromController = "JournalDetailViewController"
         }
     }
     
+    //Unwind segue called when back button pressed in second view controller
+    @IBAction func unwindToDetail(_ unwindSegue: UIStoryboardSegue) {
+        
+            
+        
+        
+    }
     
     
     

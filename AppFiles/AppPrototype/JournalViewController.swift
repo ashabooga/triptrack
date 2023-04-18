@@ -67,7 +67,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewEntry" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
-            JournalEntryViewController.isNewEntry = true
+            JournalEntryViewController.segueFromController = "JournalViewController"
 //            JournalEntryViewController.JournalVC = self
         }
         if segue.identifier == "toJournalDetail" {
@@ -76,6 +76,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         }
     }
+    
+    
     
     //Unwind segue called when back button pressed in second view controller
     @IBAction func unwindToJournal(_ unwindSegue: UIStoryboardSegue) {
