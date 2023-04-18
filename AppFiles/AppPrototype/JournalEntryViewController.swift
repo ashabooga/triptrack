@@ -27,6 +27,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var segueFromController : String!
     
     
+    
     @IBOutlet weak var backOutlet: UIButton!
     
     @IBOutlet weak var photoButton: UIButton!
@@ -34,6 +35,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var thoughtTextView: UITextView!
     @IBOutlet weak var navigationTitle: UINavigationItem!
+    
+    
+    
     
     @IBAction func backAndSave(_ sender: Any) {
         selectedEntry["title"] = titleText.text

@@ -521,7 +521,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
-                                                    <segue destination="Hfj-eH-swq" kind="unwind" unwindAction="unwindToJournal:" id="6fO-Qx-GF0"/>
+                                                    <action selector="backAndSave:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="hIc-GM-loV"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -585,11 +585,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="J8Y-BH-3xT"/>
                     <connections>
+                        <outlet property="backOutlet" destination="XI2-Qt-n7H" id="Vj5-Nn-zf4"/>
                         <outlet property="datePicker" destination="AvM-uT-CWj" id="uB0-U6-Aqx"/>
                         <outlet property="navigationTitle" destination="exz-Kf-q79" id="5y0-jY-Ara"/>
                         <outlet property="photoButton" destination="Pb8-Lc-aVh" id="rjL-YR-Sdl"/>
                         <outlet property="thoughtTextView" destination="55q-0Y-CYt" id="zFk-o5-Bfy"/>
                         <outlet property="titleText" destination="8ym-TX-Q2q" id="Qw9-Ss-H1G"/>
+                        <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToDetail" unwindAction="unwindToDetail:" id="kfr-Pt-Gg2"/>
+                        <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToJournal" unwindAction="unwindToJournal:" id="Ofr-GT-ee6"/>
+                        <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="KHT-up-7MN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -815,7 +819,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="i8X-wi-8dM"/>
-        <segue reference="rn6-4b-dVD"/>
+        <segue reference="7Wl-7A-B6Z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
