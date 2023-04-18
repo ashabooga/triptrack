@@ -59,8 +59,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     @IBAction func addPhotoButton(_ sender: Any) {
-        print(currentDate)
-        
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
         configuration.selectionLimit = 5
@@ -72,9 +70,13 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         
     }
     
-    
-
-    
+//
+//    func testLocation() {
+//        // calculate closest country
+//        selectedEntry["latitude"] = currentLoc
+//
+//    }
+//
     
     
     
@@ -128,6 +130,10 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             JournalViewController.selectedEntry = self.selectedEntry
             
         }
+        if let JournalDetailViewController = segue.destination as? JournalDetailViewController {
+            JournalDetailViewController.selectedEntry = self.selectedEntry
+            
+        }
     }
     
     
@@ -179,7 +185,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
 
     // MARK: UIScrollViewDelegate
 
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,10 +192,16 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         
         if segueFromController == "JournalDetailViewController" {
             backOutlet.setTitle(" Entry", for: .normal)
-            thoughtTextView.text = (selectedEntry["textEntry"] as! String)
             navigationTitle.title = "EDIT ENTRY"
+            thoughtTextView.text = (selectedEntry["textEntry"] as! String)
+            titleText.text = (selectedEntry["title"] as! String)
             //country.text = (selectedEntry["country"] as! String)
             datePicker.date = (selectedEntry["date"] as! Date)
+            if selectedEntry["photos"] != nil {
+                imageList = (selectedEntry["photos"] as! [UIImage])
+                buttonFinished()
+            }
+            
             
         }
         else {

@@ -39,9 +39,6 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     //Unwind segue called when back button pressed in second view controller
     @IBAction func unwindToDetail(_ unwindSegue: UIStoryboardSegue) {
         
-            
-        
-        
     }
     
     
@@ -57,6 +54,43 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
         // Update the current page of the page control
         pageControl.currentPage = currentPage
     }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dateFormatter.dateStyle = .long
+        titleLabel.text = selectedEntry["title"] as? String
+        locationLabel.text = selectedEntry["location"] as? String
+        let date = selectedEntry["date"] as? Date
+        let StringDate = dateFormatter.string(from: date!)
+        dateLabel.text = StringDate
+        textEntry.text = selectedEntry["textEntry"] as? String
+        photoList = (selectedEntry["photos"] as? [UIImage])!
+        //photoView.image = photoList[0]
+        
+        
+        
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        pageControl.numberOfPages = photoList.count
+        
+        
+        for index in 0..<photoList.count {
+            frame.origin.x = scrollView.frame.size.width * CGFloat(index)
+            frame.size = scrollView.frame.size
+            let imageView = UIImageView(frame: frame)
+            imageView.image = photoList[index]
+            self.scrollView.addSubview(imageView)
+        }
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(photoList.count), height: scrollView.frame.size.height)
+        scrollView.delegate = self
+        scrollView.bringSubviewToFront(pageControl)
+        
+
+    }
+    
+    
     
     
     override func viewDidLoad() {

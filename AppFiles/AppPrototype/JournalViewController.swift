@@ -103,7 +103,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             
         } else if unwindSegue.source is JournalDetailViewController {
-            
             let id = selectedEntry["ID"] as! Int
             
             titleList[id] = selectedEntry["title"] as? String ?? "No Title"
@@ -118,6 +117,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 photosList[id] = [noImage]
             }
         }
+            
         
         journalTable.reloadData()
         // Use data from the view controller which initiated the unwind segue

@@ -475,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
-                                <rect key="frame" x="16" y="632" width="358" height="178"/>
+                                <rect key="frame" x="16" y="632" width="343" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="plus" catalog="system" title="Photos">
@@ -522,19 +522,6 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
                                                     <action selector="backAndSave:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="hIc-GM-loV"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Wq0-6A-eXj">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="7Pe-xu-cSA">
-                                                <rect key="frame" x="258.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Save">
-                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="saveButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="zVu-E5-KT9"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -599,7 +586,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hfj-eH-swq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="814" y="-318"/>
+            <point key="canvasLocation" x="813.60000000000002" y="-318.4729064039409"/>
         </scene>
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
