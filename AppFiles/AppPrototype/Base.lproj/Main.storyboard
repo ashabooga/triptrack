@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66H-kc-LNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66H-kc-LNV">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
-                                <rect key="frame" x="-3" y="47" width="378" height="44"/>
+                                <rect key="frame" x="-3" y="50" width="378" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="PLAN" style="editor" id="nK6-6i-z7d">
@@ -48,7 +49,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-vQ-r4w">
-                                <rect key="frame" x="0.0" y="91" width="375" height="638"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="Spb-jq-ZAM">
@@ -86,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aET-MG-qGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="476"/>
+            <point key="canvasLocation" x="-583" y="553"/>
         </scene>
         <!--Plan Detail View Controller-->
         <scene sceneID="sRX-Db-oPq">
@@ -131,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbC-1u-Lw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="h4c-rf-8tk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="465" y="869"/>
+            <point key="canvasLocation" x="815" y="1306"/>
         </scene>
         <!--Plan New View Controller-->
         <scene sceneID="0UJ-17-V0E">
@@ -142,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6Y-4J-LKo">
-                                <rect key="frame" x="-4" y="47" width="377" height="44"/>
+                                <rect key="frame" x="-4" y="0.0" width="377" height="44"/>
                                 <items>
                                     <navigationItem title="NEW PLAN" id="a5T-a1-OD2">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="T9b-rL-Qjh">
@@ -160,7 +161,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO9-sG-wmy">
-                                <rect key="frame" x="0.0" y="91" width="377" height="753"/>
+                                <rect key="frame" x="0.0" y="44" width="377" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tir-pe-cum">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1475.3333333333333"/>
@@ -185,7 +186,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpi-UT-Kfn">
-                                                <rect key="frame" x="23" y="251" width="157" height="40"/>
+                                                <rect key="frame" x="23" y="252.66666666666669" width="157" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="7BZ-2t-KVa"/>
                                                     <constraint firstAttribute="width" constant="157" id="pr0-ic-XSU"/>
@@ -195,7 +196,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1b-3F-Zv5">
-                                                <rect key="frame" x="23" y="364" width="157" height="40"/>
+                                                <rect key="frame" x="23" y="367.33333333333331" width="157" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="402-Mt-ADa"/>
                                                     <constraint firstAttribute="width" constant="157" id="uxw-hI-ZBQ"/>
@@ -225,13 +226,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jr8-AO-Kaj">
-                                                <rect key="frame" x="28" y="309" width="334" height="34.333333333333314"/>
+                                                <rect key="frame" x="28" y="310.66666666666669" width="334" height="36"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-tI-5Sp">
-                                                <rect key="frame" x="23" y="193" width="334" height="34.333333333333343"/>
+                                                <rect key="frame" x="23" y="193" width="334" height="36"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-ee-mv0">
-                                                <rect key="frame" x="28" y="469" width="334" height="34.333333333333314"/>
+                                                <rect key="frame" x="28" y="472.33333333333337" width="334" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="334" id="KK0-Wb-xx0"/>
                                                 </constraints>
@@ -252,7 +253,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bOp-70-feP">
-                                                <rect key="frame" x="28" y="979" width="334" height="34.333333333333371"/>
+                                                <rect key="frame" x="28" y="979" width="334" height="36"/>
                                             </datePicker>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Af2-0r-dJk">
                                                 <rect key="frame" x="23" y="81" width="339" height="44"/>
@@ -262,7 +263,7 @@
                                                 </connections>
                                             </searchBar>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HDa-9C-NMO">
-                                                <rect key="frame" x="23" y="412" width="339" height="44"/>
+                                                <rect key="frame" x="23" y="415.33333333333331" width="339" height="44"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="2d8-rd-KIl" id="52m-ri-oxf"/>
@@ -385,7 +386,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPf-Me-5Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="hyb-pC-5Rt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1306.9230769230769" y="475.59241706161134"/>
+            <point key="canvasLocation" x="815" y="553"/>
         </scene>
         <!--Journal-->
         <scene sceneID="Sn3-N0-6h5">
@@ -464,7 +465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB6-wp-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256.92307692307691" y="-255.21327014218008"/>
+            <point key="canvasLocation" x="-583" y="-1067"/>
         </scene>
         <!--Journal Entry View Controller-->
         <scene sceneID="yZU-oB-LCb">
@@ -595,7 +596,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hfj-eH-swq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1349.5999999999999" y="-390.14778325123154"/>
+            <point key="canvasLocation" x="814" y="-318"/>
         </scene>
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
@@ -606,7 +607,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkL-cD-nnc">
-                                <rect key="frame" x="-6" y="47" width="379" height="44"/>
+                                <rect key="frame" x="-6" y="0.0" width="379" height="44"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL ENTRY" style="editor" id="Mhr-zt-c0C">
@@ -725,7 +726,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ruz-Hn-8qH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1350.7692307692307" y="-1176.5402843601896"/>
+            <point key="canvasLocation" x="814" y="-1068"/>
         </scene>
         <!--Map-->
         <scene sceneID="ezD-To-fos">
@@ -736,7 +737,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
-                                <rect key="frame" x="-1" y="47" width="378" height="44"/>
+                                <rect key="frame" x="-1" y="50" width="378" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="MAP" style="editor" id="d48-Hr-NFH">
@@ -783,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRU-XF-6rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193.84615384615384" y="-960.42654028436016"/>
+            <point key="canvasLocation" x="-583" y="-188"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="PZ7-Q3-Xsb">
@@ -809,11 +810,11 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P8D-tj-QgB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-832" y="-730"/>
+            <point key="canvasLocation" x="-1916" y="-188"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rn6-4b-dVD"/>
+        <segue reference="ibw-WI-D2f"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>

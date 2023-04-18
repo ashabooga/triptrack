@@ -7,8 +7,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var dateList = [Date]()
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
+    var photoIDsList = [[String]]()
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     @IBOutlet weak var journalTable: UITableView!
@@ -112,10 +115,34 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Use data from the view controller which initiated the unwind segue
     }
     
+    func fetchCoreData() {
+        
+        do {
+            let managedJournal = try context.fetch(Journal.fetchRequest())
+            
+            for entry in managedJournal {
+                
+                titleList.append(entry.titles!)
+                locationList.append(entry.locationNames!)
+                dateList.append(entry.dates!)
+                textEntryList.append(entry.textEntries!)
+                
+//                photosList.append(entry.photoLists!)
+                
+            }
+            
+        } catch {
+            print("Couldn't fetch core data")
+        }
+    }
+    
+    
+//    @objc private func terminate
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter .default .addObserver(self, selector: Selector(("willTerminate")), name: UIApplication.willTerminateNotification, object: nil)
     }
     
     

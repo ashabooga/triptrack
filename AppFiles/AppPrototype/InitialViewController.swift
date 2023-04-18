@@ -8,6 +8,11 @@
 import UIKit
 
 class InitialViewController: UIViewController {
+    
+    
+    // Check for core data
+    // App logo symbol for a second (instagram, twitter, etc)
+    // Show slideshow of UIIMages(?) OR segue to map based on core data
 
     override func viewDidLoad() {
         super.viewDidLoad()
