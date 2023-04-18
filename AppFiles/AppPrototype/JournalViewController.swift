@@ -11,6 +11,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
+    var hasBeenOpened = false
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
@@ -143,6 +145,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter .default .addObserver(self, selector: Selector(("willTerminate")), name: UIApplication.willTerminateNotification, object: nil)
+        
+        if !hasBeenOpened {
+            
+            hasBeenOpened = true
+        }
     }
     
     

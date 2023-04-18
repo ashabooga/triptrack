@@ -4,9 +4,21 @@ import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
+    var titleList = [String]()
+    var locationList = [String]()
+    var dateList = [Date]()
+    var textEntryList = [String]()
+    var photosList = [[UIImage]]()
+    var photoIDsList = [[String]]()
     var latitudeList = [Float]()
     var longitudeList = [Float]()
+    
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+//    selectedEntry["ID"] = 6
+//    selectedEntry["latidute"] = latitudeList[6]
     
     var userLocation = CLLocation()
     var locationManager = CLLocationManager()
