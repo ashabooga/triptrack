@@ -12,7 +12,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
 
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     var isNewEntry = false
     
 

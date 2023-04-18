@@ -8,10 +8,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
     var photoIDsList = [[String]]()
-    var latitudeList = [Float]()
-    var longitudeList = [Float]()
+    var latitudeList = [Double]()
+    var longitudeList = [Double]()
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     var hasBeenOpened = false
     
@@ -93,8 +93,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
             dateList.append(selectedEntry["date"] as? Date ?? Date())
             textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
-            latitudeList.append(selectedEntry["latitude"] as? Float ?? 0.0)
-            longitudeList.append(selectedEntry["longitude"] as? Float ?? 0.0)
+            latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
+            longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
             
             //        photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
@@ -158,10 +158,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
-    @objc func onTerminate() {
-        print("terminating")
-        
+    func insertToCoreData() {
         let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
         
         if titleList.count > 0 {
@@ -189,6 +186,17 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         }
     }
+    
+    
+    @objc func onTerminate() {
+        print("terminating")
+        insertToCoreData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("disapperaing journal")
+        insertToCoreData()
+    }
 
     
     
@@ -196,10 +204,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
         
-        if !hasBeenOpened {
-            fetchCoreData()
-            hasBeenOpened = true
-        }
+        fetchCoreData()
         
 //        self.locationList = MapViewController.locationList
         

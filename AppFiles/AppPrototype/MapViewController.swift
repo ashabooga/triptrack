@@ -17,8 +17,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var annotationList = [MKPointAnnotation]()
     var indexPat = Int()
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -178,9 +180,79 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
     }
     
+    func fetchCoreData() {
+        
+        do {
+            let managedJournal = try context.fetch(Journal.fetchRequest())
+            
+            for entry in managedJournal {
+                
+                titleList.append(entry.titles!)
+                locationList.append(entry.locationNames!)
+                dateList.append(entry.dates!)
+                textEntryList.append(entry.textEntries!)
+                photosList.append([UIImage(named: "noImage")!])
+                latitudeList.append(0.0)
+                longitudeList.append(0.0)
+                
+//                photosList.append(entry.photoLists!)
+                
+            }
+            
+        } catch {
+            print("Couldn't fetch core data")
+        }
+    }
+    
+    func saveCoreData() {
+        do {
+            try self.context.save()
+        } catch {
+            print("couldn't save core data")
+        }
+    }
+    
+    func insertToCoreData() {
+        let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
+        
+        if titleList.count > 0 {
+            
+            for i in 0...titleList.count-1 {
+                let newEntry = Journal(context: self.context)
+                
+                newEntry.titles = titleList[i]
+                newEntry.locationNames = locationList[i]
+                newEntry.latitudes = latitudeList[i]
+                newEntry.longitudes = longitudeList[i]
+                newEntry.dates = dateList[i]
+                newEntry.textEntries = textEntryList[i]
+                
+                //            newEntry.photoLists = photosList[i]
+                //            newEntry.photoIDLists = photoIDsList[i]
+                saveCoreData()
+                
+            }
+        
+            for coreDataResult in coreDataResults {
+                self.context.delete(coreDataResult)
+                saveCoreData()
+            }
+        
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("disapperaing map")
+        insertToCoreData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("map loaded")
+        
+        fetchCoreData()
         
         let oLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.handleLongTapGesture(gestureRecognizer:)))
         self.mapView.addGestureRecognizer(oLongTapGesture)
