@@ -10,8 +10,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
     var photoIDsList = [[String]]()
-    var latitudeList = [Float]()
-    var longitudeList = [Float]()
+    //var latitudeList = [Float]()
+    //var longitudeList = [Float]()
+    var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
+    var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
+    var annotationList = [MKPointAnnotation]()
+    var indexPat = Int()
+
     
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Float(), "longitude" : Float(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
@@ -71,7 +76,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func addButton(_ sender: Any) {
-        performSegue(withIdentifier: "toNew", sender: nil)
+        performSegue(withIdentifier: "mapToNewJournal", sender: nil)
+        
 
     }
     
@@ -81,6 +87,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotation = MKPointAnnotation()
         annotation.coordinate = newCoordinates
         mapView.addAnnotation(annotation)
+    
     }
     
     @objc func handleLongTapGesture(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -94,18 +101,54 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annotation.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
             
             mapView.addAnnotation(annotation)
+            print(locationCoordinate.latitude)
+            print(locationCoordinate.longitude)
 
         }
 
         
         if gestureRecognizer.state != UIGestureRecognizer.State.began {
-            performSegue(withIdentifier: "toNew", sender: nil)
+            performSegue(withIdentifier: "mapToNewJournal", sender: nil)
 
             return
         }
     }
 
-    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotation) {
+        //initalise index
+        var index = 0
+        
+        //loop over annotations and check if view matches specific annotation to perform the segue when an annotaion is pressed
+        for _ in annotationList {
+            if (view.coordinate.latitude == latitudeList[index]) {
+                if (view.coordinate.longitude == longitudeList[index]) {
+                    
+                }
+                indexPat = index
+                performSegue(withIdentifier: "mapToDetailJournal", sender: nil)
+            }
+            else {
+                index += 1
+            }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapToDetailJournal" {
+            let JournalDetailViewController = segue.destination as! JournalDetailViewController
+            selectedEntry["ID"] = indexPat
+            selectedEntry["title"] = titleList
+            selectedEntry["location"] = locationList
+            selectedEntry["latitude"] = latitudeList
+            selectedEntry["longitude"] = longitudeList
+            selectedEntry["date"] = dateList
+            selectedEntry["textEntry"] = textEntryList
+            selectedEntry["photos"] = photosList
+            selectedEntry["photoIDs"] = photoIDsList
+            
+            JournalDetailViewController.selectedEntry = self.selectedEntry
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,7 +170,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                  
         //configure the map to show the user's location (with a blue dot)
         mapView.showsUserLocation = true
+    /*
+        let coordinate = CLLocationCoordinate2D(latitude: 51.509742561831395, longitude: -0.1335390878740101)
+        let annotatione = MKPointAnnotation()
+        annotatione.coordinate = coordinate
+
+        mapView.addAnnotation(annotatione)
+     */
+        for i in 0..<latitudeList.count {
+            let coordinate = CLLocationCoordinate2D(latitude: latitudeList[i], longitude: longitudeList[i])
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            mapView.addAnnotation(annotation)
+        }
+
+
     }
+ /*
     func updateTheTable(){
         //set location of the mural to coordinate
         let coordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
@@ -141,9 +200,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         //add the annotation to the map
         self.mapView.addAnnotation(annotation)
-  
-    
     }
-    
+   */
 
 }
