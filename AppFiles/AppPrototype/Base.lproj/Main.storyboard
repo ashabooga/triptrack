@@ -403,6 +403,18 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="375" height="812"/>
+                    <connections>
+                        <outlet property="ActivitiesTextField" destination="xVR-Er-7TX" id="PFL-Lv-mRO"/>
+                        <outlet property="CityLabel" destination="GTm-vW-Ume" id="bgv-gv-d8J"/>
+                        <outlet property="EndDateLabel" destination="WJB-8O-NsF" id="Uik-yq-uWb"/>
+                        <outlet property="StartDateLabel" destination="65R-Ys-AyD" id="t2M-8l-vlg"/>
+                        <outlet property="TransportFromDateLabel" destination="VrV-pg-uKt" id="CuB-qE-SpG"/>
+                        <outlet property="TransportFromTimeLabel" destination="t0a-Cn-Qsv" id="6ZD-RI-BOG"/>
+                        <outlet property="TransportFromTypeLabel" destination="EG3-X0-xx3" id="OIR-u8-fFx"/>
+                        <outlet property="TransportToDateLabel" destination="1k6-e9-88S" id="8og-kZ-flu"/>
+                        <outlet property="TransportToTimeLabel" destination="JTY-C9-ehO" id="Xrt-eH-BzQ"/>
+                        <outlet property="TransportToTypeLabel" destination="CeX-7k-Q0m" id="7ta-cH-VKa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbC-1u-Lw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="h4c-rf-8tk" userLabel="Exit" sceneMemberID="exit"/>
@@ -573,7 +585,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Gf-sg6">
                                                 <rect key="frame" x="28" y="1100" width="334" height="343"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -666,6 +678,7 @@
                     </view>
                     <size key="freeformSize" width="377" height="844"/>
                     <connections>
+                        <outlet property="ActivityTextField" destination="IkW-Gf-sg6" id="ZGv-OO-BD2"/>
                         <outlet property="CheckInDatePicker" destination="WSD-lQ-svM" id="iWV-tZ-Dyl"/>
                         <outlet property="CheckOutDatePicker" destination="bOp-70-feP" id="t3p-h4-oCQ"/>
                         <outlet property="CitySearchBar" destination="Af2-0r-dJk" id="lHX-AO-gvw"/>
@@ -1138,9 +1151,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
