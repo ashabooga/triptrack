@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="77" width="375" height="735"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayW-Zk-Pkf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Liverpool, UK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTm-vW-Ume">
                                                 <rect key="frame" x="139" y="16" width="195" height="40"/>
@@ -307,12 +307,14 @@
                                         <constraints>
                                             <constraint firstItem="gnk-1s-eja" firstAttribute="trailing" secondItem="wDq-fH-oso" secondAttribute="trailing" id="16Q-DF-QdP"/>
                                             <constraint firstItem="1k6-e9-88S" firstAttribute="trailing" secondItem="JTY-C9-ehO" secondAttribute="trailing" id="1gv-xd-DoO"/>
+                                            <constraint firstAttribute="height" constant="1200" id="2JZ-rC-VOc"/>
                                             <constraint firstItem="EG3-X0-xx3" firstAttribute="trailing" secondItem="VrV-pg-uKt" secondAttribute="trailing" id="2vv-n9-RXj"/>
                                             <constraint firstItem="C2r-4j-LMl" firstAttribute="top" secondItem="2o1-6M-FeX" secondAttribute="bottom" constant="45" id="3FO-Jk-Gfi"/>
                                             <constraint firstItem="xVR-Er-7TX" firstAttribute="top" secondItem="OJR-ll-PTd" secondAttribute="bottom" constant="8" symbolic="YES" id="3G8-kd-sgp"/>
                                             <constraint firstItem="Ipz-je-OkP" firstAttribute="leading" secondItem="ayW-Zk-Pkf" secondAttribute="leading" constant="12" id="3dj-zF-RfA"/>
                                             <constraint firstItem="wDq-fH-oso" firstAttribute="firstBaseline" secondItem="65R-Ys-AyD" secondAttribute="firstBaseline" id="3uv-ui-BKe"/>
                                             <constraint firstItem="GTm-vW-Ume" firstAttribute="firstBaseline" secondItem="Ipz-je-OkP" secondAttribute="firstBaseline" id="4b9-lf-fYO"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="800" id="60e-Ie-qAy"/>
                                             <constraint firstItem="2o1-6M-FeX" firstAttribute="leading" secondItem="It9-R5-spP" secondAttribute="leading" id="67C-Q1-Vb1"/>
                                             <constraint firstItem="Dos-BK-66G" firstAttribute="trailing" secondItem="C2r-4j-LMl" secondAttribute="trailing" id="6JG-Pe-xUL"/>
                                             <constraint firstItem="wDq-fH-oso" firstAttribute="trailing" secondItem="Ipz-je-OkP" secondAttribute="trailing" id="9T3-0I-d2u"/>
@@ -398,7 +400,6 @@
                             <constraint firstItem="HiX-6e-m9v" firstAttribute="leading" secondItem="m2T-Be-stf" secondAttribute="leadingMargin" constant="-14" id="VH1-1Z-kHi"/>
                             <constraint firstItem="bn1-0J-LpS" firstAttribute="bottom" secondItem="6ei-Ze-LrL" secondAttribute="bottom" id="tCd-xW-01Z"/>
                             <constraint firstItem="bn1-0J-LpS" firstAttribute="top" secondItem="HiX-6e-m9v" secondAttribute="bottom" constant="33" id="w7g-Ci-1dt"/>
-                            <constraint firstItem="ayW-Zk-Pkf" firstAttribute="height" secondItem="m2T-Be-stf" secondAttribute="height" multiplier="1.84729" id="wpu-Zo-Zxc"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="375" height="812"/>
@@ -559,6 +560,24 @@
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzC-xp-MYY">
                                                 <rect key="frame" x="23" y="744" width="339" height="106"/>
                                             </pickerView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxh-b5-a6E">
+                                                <rect key="frame" x="28" y="1041" width="203" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="203" id="DHd-SR-hPa"/>
+                                                    <constraint firstAttribute="height" constant="40" id="qyG-K0-9Vk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-Gf-sg6">
+                                                <rect key="frame" x="28" y="1100" width="334" height="343"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -574,6 +593,7 @@
                                             <constraint firstItem="aYW-ee-mv0" firstAttribute="top" secondItem="HDa-9C-NMO" secondAttribute="bottom" constant="13" id="92b-sx-wmt"/>
                                             <constraint firstItem="A9z-Ul-Qj6" firstAttribute="leading" secondItem="IUd-66-wly" secondAttribute="leading" id="9La-T7-rlB"/>
                                             <constraint firstItem="jr8-AO-Kaj" firstAttribute="top" secondItem="wpi-UT-Kfn" secondAttribute="bottom" constant="18" id="9yO-By-iMT"/>
+                                            <constraint firstItem="Zxh-b5-a6E" firstAttribute="top" secondItem="bOp-70-feP" secondAttribute="bottom" constant="26" id="C3I-B6-U52"/>
                                             <constraint firstItem="P0n-nH-oK5" firstAttribute="leading" secondItem="sBa-6a-Scb" secondAttribute="leading" id="COr-Pw-WRz"/>
                                             <constraint firstItem="WSD-lQ-svM" firstAttribute="leading" secondItem="lFi-Li-TdA" secondAttribute="leading" id="Cou-Eh-cyx"/>
                                             <constraint firstItem="sHO-aQ-nYa" firstAttribute="leading" secondItem="WSD-lQ-svM" secondAttribute="leading" id="Eb9-k8-dny"/>
@@ -583,6 +603,7 @@
                                             <constraint firstItem="aYW-ee-mv0" firstAttribute="leading" secondItem="Tir-pe-cum" secondAttribute="leading" constant="28" id="K94-r5-anE"/>
                                             <constraint firstItem="P0n-nH-oK5" firstAttribute="centerY" secondItem="Tir-pe-cum" secondAttribute="centerY" id="KvJ-fR-1hh"/>
                                             <constraint firstItem="x1b-3F-Zv5" firstAttribute="top" secondItem="jr8-AO-Kaj" secondAttribute="bottom" constant="20.666666666666686" id="LBe-hd-JFC"/>
+                                            <constraint firstItem="Zxh-b5-a6E" firstAttribute="leading" secondItem="bOp-70-feP" secondAttribute="leading" id="LIB-MF-XqC"/>
                                             <constraint firstItem="aYW-ee-mv0" firstAttribute="centerX" secondItem="Tir-pe-cum" secondAttribute="centerX" id="LJz-tw-aeJ"/>
                                             <constraint firstItem="6uE-tI-5Sp" firstAttribute="leading" secondItem="IUd-66-wly" secondAttribute="leading" id="OQD-cT-ZYj"/>
                                             <constraint firstItem="NTl-q3-DF5" firstAttribute="top" secondItem="P0n-nH-oK5" secondAttribute="bottom" constant="100.33333333333337" id="OZr-ed-nIG"/>
@@ -660,7 +681,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPf-Me-5Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="hyb-pC-5Rt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="815" y="553"/>
+            <point key="canvasLocation" x="813.60000000000002" y="552.70935960591135"/>
         </scene>
         <!--Journal-->
         <scene sceneID="Sn3-N0-6h5">
@@ -1099,7 +1120,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="i8X-wi-8dM"/>
-        <segue reference="rn6-4b-dVD"/>
+        <segue reference="7Wl-7A-B6Z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
@@ -1117,6 +1138,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
