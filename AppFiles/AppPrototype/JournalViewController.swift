@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 import MapKit
 
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -153,6 +154,23 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    func deleteCoreData() {
+        // create the delete request for the specified entity
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Journal.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        // get reference to the persistent container
+        let persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+
+        // perform the delete
+        do {
+            try persistentContainer.viewContext.execute(deleteRequest)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func saveCoreData() {
         do {
             try self.context.save()
@@ -162,7 +180,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func insertToCoreData() {
-        let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
+        deleteCoreData()
         
         if titleList.count > 0 {
             
@@ -179,14 +197,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //            newEntry.photoLists = photosList[i]
                 //            newEntry.photoIDLists = photoIDsList[i]
                 saveCoreData()
-                
             }
-        
-            for coreDataResult in coreDataResults {
-                self.context.delete(coreDataResult)
-                saveCoreData()
-            }
-        
         }
     }
     
@@ -202,6 +213,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        deleteCoreData()
         fetchCoreData()
         
 
