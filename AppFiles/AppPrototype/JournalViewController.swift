@@ -1,4 +1,5 @@
 import UIKit
+import MapKit
 
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var locManager = CLLocationManager()
+    var currentLocation: CLLocation!
     
     @IBOutlet weak var journalTable: UITableView!
     
@@ -197,14 +200,23 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("disapperaing journal")
         insertToCoreData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchCoreData()
+        
+
+        currentLocation = locManager.location
+        print(currentLocation.coordinate.latitude)
+        print(currentLocation.coordinate.longitude)
+        
+        print(titleList.count)
+    }
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
-        
-        fetchCoreData()
         
 //        self.locationList = MapViewController.locationList
         
