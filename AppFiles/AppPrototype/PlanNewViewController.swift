@@ -10,6 +10,8 @@ import UIKit
 class PlanNewViewController: UIViewController {
     
     //Variables
+    var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
+    var isNewPlan = false
     var accomodationList = ["Accom1", "Accom2", "Accom3"]
     
     //IBOutlets
@@ -49,7 +51,15 @@ class PlanNewViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        selectedPlan["city"] = "city"
+        selectedPlan["startDate"] = StartDatePicker.date
+        selectedPlan["endDate"] = EndDatePicker.date
+        selectedPlan["transportToType"] = "transport to type"
+        selectedPlan["transportToDateTime"] = TransportToDatePicker.date
+        // Add time functionality
+        selectedPlan["transportFromType"] = "transport from type"
+        selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
+        // Add time functionality
     }
     
 

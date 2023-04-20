@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66H-kc-LNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66H-kc-LNV">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,17 +14,17 @@
             <objects>
                 <viewController id="BcE-8j-vTG" customClass="PlanViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WTe-lE-q9Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
-                                <rect key="frame" x="-3" y="50" width="378" height="44"/>
+                                <rect key="frame" x="-3" y="0.0" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="PLAN" style="editor" id="nK6-6i-z7d">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="TMI-7m-US3">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="KVY-bN-xDn">
-                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -33,7 +32,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" style="plain" id="wTS-Zr-zN1">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="alF-tw-el2">
-                                                <rect key="frame" x="276" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="276" y="11" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -49,7 +48,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-vQ-r4w">
-                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="Spb-jq-ZAM">
@@ -81,6 +80,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Plan" image="paperplane.fill" catalog="system" id="JNe-Zf-shO"/>
                     <connections>
+                        <outlet property="planTable" destination="e6A-vQ-r4w" id="Fky-MU-Q7r"/>
                         <segue destination="RzU-e1-eDh" kind="showDetail" identifier="toPlanDetail" id="Qex-9m-6Kc"/>
                         <segue destination="2d8-rd-KIl" kind="showDetail" identifier="toNewPlan" id="NOV-a3-U9b"/>
                     </connections>
@@ -98,7 +98,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiX-6e-m9v">
-                                <rect key="frame" x="2" y="0.0" width="372" height="44"/>
+                                <rect key="frame" x="2" y="47" width="372" height="44"/>
                                 <items>
                                     <navigationItem title="PLAN DETAILS" id="ofo-5B-Kdf">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="bb6-sa-fVL">
@@ -124,7 +124,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bn1-0J-LpS">
-                                <rect key="frame" x="0.0" y="77" width="375" height="735"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="654"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayW-Zk-Pkf">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -419,7 +419,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbC-1u-Lw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="h4c-rf-8tk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="813.60000000000002" y="1305.6650246305419"/>
+            <point key="canvasLocation" x="812" y="553"/>
         </scene>
         <!--Plan New View Controller-->
         <scene sceneID="0UJ-17-V0E">
@@ -430,7 +430,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6Y-4J-LKo">
-                                <rect key="frame" x="-4" y="0.0" width="377" height="44"/>
+                                <rect key="frame" x="-4" y="47" width="377" height="44"/>
                                 <items>
                                     <navigationItem title="NEW PLAN" id="a5T-a1-OD2">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="T9b-rL-Qjh">
@@ -448,7 +448,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO9-sG-wmy">
-                                <rect key="frame" x="0.0" y="44" width="377" height="800"/>
+                                <rect key="frame" x="0.0" y="91" width="377" height="753"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tir-pe-cum">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1475.3333333333333"/>
@@ -473,7 +473,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpi-UT-Kfn">
-                                                <rect key="frame" x="23" y="252.66666666666669" width="157" height="40"/>
+                                                <rect key="frame" x="23" y="251" width="157" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="7BZ-2t-KVa"/>
                                                     <constraint firstAttribute="width" constant="157" id="pr0-ic-XSU"/>
@@ -483,7 +483,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1b-3F-Zv5">
-                                                <rect key="frame" x="23" y="367.33333333333331" width="157" height="40"/>
+                                                <rect key="frame" x="23" y="364" width="157" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="402-Mt-ADa"/>
                                                     <constraint firstAttribute="width" constant="157" id="uxw-hI-ZBQ"/>
@@ -513,13 +513,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jr8-AO-Kaj">
-                                                <rect key="frame" x="28" y="310.66666666666669" width="334" height="36"/>
+                                                <rect key="frame" x="28" y="309" width="334" height="34.333333333333314"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-tI-5Sp">
-                                                <rect key="frame" x="23" y="193" width="334" height="36"/>
+                                                <rect key="frame" x="23" y="193" width="334" height="34.333333333333343"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-ee-mv0">
-                                                <rect key="frame" x="28" y="472.33333333333337" width="334" height="36"/>
+                                                <rect key="frame" x="28" y="469" width="334" height="34.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="334" id="KK0-Wb-xx0"/>
                                                 </constraints>
@@ -540,7 +540,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bOp-70-feP">
-                                                <rect key="frame" x="28" y="979" width="334" height="36"/>
+                                                <rect key="frame" x="28" y="979" width="334" height="34.333333333333371"/>
                                             </datePicker>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Af2-0r-dJk">
                                                 <rect key="frame" x="23" y="81" width="339" height="44"/>
@@ -550,7 +550,7 @@
                                                 </connections>
                                             </searchBar>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HDa-9C-NMO">
-                                                <rect key="frame" x="23" y="415.33333333333331" width="339" height="44"/>
+                                                <rect key="frame" x="23" y="412" width="339" height="44"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="2d8-rd-KIl" id="52m-ri-oxf"/>
@@ -573,7 +573,7 @@
                                                 <rect key="frame" x="23" y="744" width="339" height="106"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxh-b5-a6E">
-                                                <rect key="frame" x="28" y="1041" width="203" height="40"/>
+                                                <rect key="frame" x="28" y="1039.3333333333333" width="203" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="203" id="DHd-SR-hPa"/>
                                                     <constraint firstAttribute="height" constant="40" id="qyG-K0-9Vk"/>
@@ -694,18 +694,18 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPf-Me-5Dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="hyb-pC-5Rt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="813.60000000000002" y="552.70935960591135"/>
+            <point key="canvasLocation" x="814" y="1314"/>
         </scene>
         <!--Journal-->
         <scene sceneID="Sn3-N0-6h5">
             <objects>
                 <viewController id="8Bf-HS-3Fo" customClass="JournalViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vnN-1i-tAn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tqL-wx-4bs">
-                                <rect key="frame" x="0.0" y="59" width="375" height="670"/>
+                                <rect key="frame" x="0.0" y="36" width="375" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="670" id="pXn-tg-c7w"/>
@@ -726,13 +726,13 @@
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Dl-v2g">
-                                <rect key="frame" x="-3" y="15" width="378" height="44"/>
+                                <rect key="frame" x="-3" y="-20" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL" style="editor" id="YNr-i6-lWL">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Tj5-8N-XEw">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Zvv-6Z-Tta">
-                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -740,7 +740,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="d3S-Sc-8ek">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SpL-fn-Hh2">
-                                                <rect key="frame" x="261.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
+                                                <rect key="frame" x="261.33333333333331" y="11" width="100.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                                 <connections>
@@ -906,7 +906,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkL-cD-nnc">
-                                <rect key="frame" x="-6" y="0.0" width="379" height="44"/>
+                                <rect key="frame" x="-6" y="47" width="379" height="44"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL ENTRY" style="editor" id="Mhr-zt-c0C">
@@ -1032,17 +1032,17 @@
             <objects>
                 <viewController id="XmX-zB-tTf" customClass="MapViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJM-4n-gUb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
-                                <rect key="frame" x="-1" y="50" width="378" height="44"/>
+                                <rect key="frame" x="-1" y="0.0" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="MAP" style="editor" id="d48-Hr-NFH">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Z94-QB-X4l">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6V0-a3-I1F">
-                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -1099,6 +1099,10 @@
                         <viewLayoutGuide key="safeArea" id="Msv-Ci-Ybb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AgT-TD-mFV"/>
+                    <connections>
+                        <segue destination="66H-kc-LNV" kind="show" id="Yrd-Gx-1eA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPb-v8-d1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

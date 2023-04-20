@@ -9,6 +9,8 @@ import UIKit
 
 class PlanDetailViewController: UIViewController {
     
+    var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
+    
     
     @IBOutlet weak var CityLabel: UILabel!
     

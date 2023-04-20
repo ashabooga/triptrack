@@ -91,7 +91,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     //Unwind segue called when back button pressed in second view controller
     @IBAction func unwindToJournal(_ unwindSegue: UIStoryboardSegue) {
 
-        if unwindSegue.source is JournalEntryViewController {
+        if unwindSegue.source is JournalEntryViewController { // This is all bad
             
             titleList.append(selectedEntry["title"] as? String ?? "No Title")
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
@@ -109,7 +109,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             
-        } else if unwindSegue.source is JournalDetailViewController {
+        } else if unwindSegue.source is JournalDetailViewController { // Might be redundant?
             let id = selectedEntry["ID"] as! Int
             
             titleList[id] = selectedEntry["title"] as? String ?? "No Title"
