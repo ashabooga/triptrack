@@ -8,7 +8,30 @@
 import UIKit
 
 class PlanDetailViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var CityLabel: UILabel!
+    
+    @IBOutlet weak var StartDateLabel: UILabel!
+    
+    @IBOutlet weak var EndDateLabel: UILabel!
+    
+    @IBOutlet weak var TransportToTypeLabel: UILabel!
+    
+    @IBOutlet weak var TransportToDateLabel: UILabel!
+    
+    @IBOutlet weak var TransportToTimeLabel: UILabel!
+    
+    
+    @IBOutlet weak var TransportFromTypeLabel: UILabel!
+    
+    
+    @IBOutlet weak var TransportFromDateLabel: UILabel!
+    
+    @IBOutlet weak var TransportFromTimeLabel: UILabel!
+    
+    @IBOutlet weak var ActivitiesTextField: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

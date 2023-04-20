@@ -35,6 +35,8 @@ class PlanNewViewController: UIViewController {
     
     @IBOutlet weak var CheckOutDatePicker: UIDatePicker!
     
+    @IBOutlet weak var ActivityTextField: UITextView!
+    
     
     
     

@@ -210,18 +210,20 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillDisappear(_ animated: Bool) {
         print("disapperaing journal")
         insertToCoreData()
+        print(titleList.count)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        deleteCoreData()
+    override func viewDidAppear(_ animated: Bool) {
+        print("appearing journal")
         fetchCoreData()
         
 
         currentLocation = locManager.location
-        print(currentLocation.coordinate.latitude)
-        print(currentLocation.coordinate.longitude)
+//        print(currentLocation.coordinate.latitude)
+//        print(currentLocation.coordinate.longitude)
         
         print(titleList.count)
+        journalTable.reloadData()
     }
 
     
