@@ -141,7 +141,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     func buttonFinished() {
         // Create a UIScrollView
 
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 579, width: 390, height: 265))
+        let scrollView = UIScrollView(frame: CGRect(x: 50, y: 600, width: 300, height: 205))
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: scrollView.frame.maxY - 50, width: view.frame.width, height: 50))
             
         scrollView.backgroundColor = .white
@@ -172,14 +172,14 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         scrollView.delegate = self
         scrollView.bringSubviewToFront(pageControl)
             
-        photoButton.frame.origin = CGPoint(x: 250, y: 530)
-        photoButton.frame.size = CGSize(width: 130, height: 40)
+        photoButton.frame.origin = CGPoint(x: 250, y: 550)
+        photoButton.frame.size = CGSize(width: 90, height: 20)
         
-        //let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        //let configuration = UIImage.SymbolConfiguration(pointSize: 13)
         photoButton.imageView?.contentMode = .scaleAspectFit
         //let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
         //photoButton.setImage(symbolImage, for: .normal)
-        //photoButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        photoButton.setTitle("", for: UIControl.State())
         
     }
 
