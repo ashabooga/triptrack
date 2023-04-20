@@ -46,11 +46,11 @@ class PlanDetailViewController: UIViewController {
         TransportToTypeLabel.text = selectedPlan["transportToType"] as? String
         let TransportToDate = selectedPlan["transportToDateTime"] as? Date ?? Date()
         let StringToDate = dateFormatter.string(from: TransportToDate)
-        TransportToDateLabel.text = StringStartDate
+        TransportToDateLabel.text = StringToDate
         TransportFromTypeLabel.text = selectedPlan["transportFromType"] as? String
         let TransportFromDate = selectedPlan["transportFromDateTime"] as? Date ?? Date()
         let StringFromDate = dateFormatter.string(from: TransportFromDate)
-        TransportFromDateLabel.text = StringEndDate
+        TransportFromDateLabel.text = StringFromDate
         ActivitiesTextField.text = selectedPlan["activitiesTextEntry"] as? String
         
         

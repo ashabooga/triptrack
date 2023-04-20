@@ -224,6 +224,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             JournalDetailViewController.selectedEntry = self.selectedEntry
             print(self.selectedEntry)
+            JournalDetailViewController.segueFromController = "MapViewController"
         }
         else {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController

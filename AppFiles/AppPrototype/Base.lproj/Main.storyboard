@@ -891,7 +891,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Journal"/>
                                                 <connections>
-                                                    <segue destination="ruz-Hn-8qH" kind="unwind" unwindAction="unwindToJournal:" id="ete-6k-Q98"/>
+                                                    <action selector="backAndSave:" destination="JD6-0L-Jw0" eventType="touchUpInside" id="xOK-8C-mYS"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -987,6 +987,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fJi-Es-5MJ"/>
                     <connections>
+                        <outlet property="backButton" destination="zw7-18-ovZ" id="oSv-nq-AGi"/>
                         <outlet property="dateLabel" destination="QH3-36-FJG" id="TQA-75-Qwz"/>
                         <outlet property="locationLabel" destination="BcY-gt-Orw" id="yPo-iI-Kkp"/>
                         <outlet property="pageControl" destination="wdu-6L-aLn" id="Mlu-XV-2LL"/>
@@ -994,10 +995,12 @@
                         <outlet property="textEntry" destination="Ajf-Qi-7E7" id="Tl0-Qd-Nkr"/>
                         <outlet property="titleLabel" destination="4I6-WX-2Gq" id="hY7-4B-iew"/>
                         <segue destination="gwN-QZ-Maq" kind="showDetail" identifier="toEdit" id="7Wl-7A-B6Z"/>
+                        <segue destination="qGZ-wA-5r0" kind="unwind" identifier="unwindToJournal" unwindAction="unwindToJournal:" id="ecS-dW-Fm8"/>
+                        <segue destination="qGZ-wA-5r0" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="nry-k4-9ox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N29-di-GEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="ruz-Hn-8qH" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="qGZ-wA-5r0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="814" y="-1068"/>
         </scene>

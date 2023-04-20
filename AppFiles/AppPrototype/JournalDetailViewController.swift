@@ -13,6 +13,9 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -22,7 +25,7 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     
     let dateFormatter = DateFormatter()
     var photoList = [UIImage]()
-    
+    var segueFromController : String!
     
     
     @IBAction func editButton(_ sender: Any) {
@@ -40,6 +43,22 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     @IBAction func unwindToDetail(_ unwindSegue: UIStoryboardSegue) {
         
     }
+    
+    
+    @IBAction func backAndSave(_ sender: Any) {
+        selectedEntry["title"] = titleLabel.text
+//        selectedEntry["location"] = "LOCATION"
+        //selectedEntry["date"] = dateLabel.date
+        selectedEntry["textEntry"] = textEntry.text
+        if segueFromController == "JournalViewController"{
+            self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
+        }
+        else if segueFromController == "MapViewController"{
+            
+            self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+         }
+    }
+    
     
     
     
@@ -95,6 +114,10 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if segueFromController == "MapViewController" {
+            backButton.setTitle(" Map", for: .normal)
+        }
         dateFormatter.dateStyle = .long
         titleLabel.text = selectedEntry["title"] as? String
         locationLabel.text = selectedEntry["location"] as? String
