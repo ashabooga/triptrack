@@ -107,7 +107,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotation = MKPointAnnotation()
         annotation.coordinate = newCoordinates
         mapView.addAnnotation(annotation)
-        
+        print("yo")
+
     }
     
     @objc func handleLongTapGesture(gestureRecognizer: UILongPressGestureRecognizer) {
