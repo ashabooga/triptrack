@@ -178,14 +178,14 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         scrollView.delegate = self
         scrollView.bringSubviewToFront(pageControl)
             
-        photoButton.frame.origin = CGPoint(x: 250, y: 550)
-        photoButton.frame.size = CGSize(width: 90, height: 20)
+        photoButton.frame.origin = CGPoint(x: 230, y: 570)
+        photoButton.frame.size = CGSize(width: 120, height: 20)
+        photoButton.titleLabel?.font = UIFont.init(name: "System", size: 10)
         
         //let configuration = UIImage.SymbolConfiguration(pointSize: 13)
-        photoButton.imageView?.contentMode = .scaleAspectFit
+        //photoButton.imageView?.contentMode = .scaleAspectFit
         //let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
         //photoButton.setImage(symbolImage, for: .normal)
-        photoButton.setTitle("", for: UIControl.State())
         
     }
 

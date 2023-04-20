@@ -758,11 +758,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Lc-aVh">
-                                <rect key="frame" x="19" y="616" width="343" height="157"/>
+                                <rect key="frame" x="19" y="600" width="340" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" image="plus" catalog="system" title="Photos">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                <buttonConfiguration key="configuration" style="tinted" title=" Add Photos">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -770,7 +769,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55q-0Y-CYt">
-                                <rect key="frame" x="19" y="346" width="343" height="241"/>
+                                <rect key="frame" x="19" y="346" width="340" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="tintColor" systemColor="labelColor"/>
@@ -1165,8 +1164,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PYB-d7-Xe9"/>
-        <segue reference="7Wl-7A-B6Z"/>
+        <segue reference="i8X-wi-8dM"/>
+        <segue reference="rn6-4b-dVD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="a" width="1254" height="1246"/>
