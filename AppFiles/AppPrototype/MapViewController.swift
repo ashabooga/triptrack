@@ -215,6 +215,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func insertToCoreData() {
         let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
         
+        for coreDataResult in coreDataResults {
+            self.context.delete(coreDataResult)
+            saveCoreData()
+        }
+        
         if titleList.count > 0 {
             
             for i in 0...titleList.count-1 {
@@ -233,21 +238,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
             }
         
-            for coreDataResult in coreDataResults {
-                self.context.delete(coreDataResult)
-                saveCoreData()
-            }
+            
         
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         print("disapperaing map")
+        
         insertToCoreData()
+        print(titleList.count)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        print("appearing map")
+        
         fetchCoreData()
+        print(titleList.count)
+        
+        for i in 0..<latitudeList.count {
+            let coordinate = CLLocationCoordinate2D(latitude: latitudeList[i], longitude: longitudeList[i])
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            mapView.addAnnotation(annotation)
+        }
     }
     
     
@@ -279,12 +293,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
          
          mapView.addAnnotation(annotatione)
          */
-        for i in 0..<latitudeList.count {
-            let coordinate = CLLocationCoordinate2D(latitude: latitudeList[i], longitude: longitudeList[i])
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            mapView.addAnnotation(annotation)
-        }
+        
         /*
          for place in places {
          //if (place["enabled"] == "1") { wiruirubtgiurtgiurtgniu;trguirtnguirtgiunrgtbnirutgniurtgbrwpuibguitrwbiurtbiutbruiwbtuiptrbuiwiutuiwgtbuibuiwgptbgrtpuiwgbuipw
