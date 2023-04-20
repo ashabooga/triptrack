@@ -88,6 +88,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         if segue.identifier == "toJournalDetail" {
             let JournalDetailViewController = segue.destination as! JournalDetailViewController
+            JournalDetailViewController.segueFromController = "JournalViewController"
             JournalDetailViewController.selectedEntry = selectedEntry
             
         }
