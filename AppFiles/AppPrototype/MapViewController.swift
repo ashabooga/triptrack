@@ -10,10 +10,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
     var photoIDsList = [[String]]()
-    var latitudeList = [Double]()
-    var longitudeList = [Double]()
-//    var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
-//    var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
+    //var latitudeList = [Double]()
+    // var longitudeList = [Double]()
+    var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
+    var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
     var annotationList = [MKPointAnnotation]()
     var indexPat = Int()
     

@@ -63,7 +63,7 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
         titleLabel.text = selectedEntry["title"] as? String
         locationLabel.text = selectedEntry["location"] as? String
         let date = selectedEntry["date"] as? Date
-        let StringDate = dateFormatter.string(from: date!)
+        let StringDate = dateFormatter.string(from: date ?? Date())
         dateLabel.text = StringDate
         textEntry.text = selectedEntry["textEntry"] as? String
         photoList = (selectedEntry["photos"] as? [UIImage])!
