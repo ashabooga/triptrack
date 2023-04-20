@@ -110,6 +110,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             
         } else if unwindSegue.source is JournalDetailViewController { // Might be redundant?
+            let JournalDetailViewController = unwindSegue.source as! JournalDetailViewController
+            self.selectedEntry = JournalDetailViewController.selectedEntry
             let id = selectedEntry["ID"] as! Int
             
             titleList[id] = selectedEntry["title"] as? String ?? "No Title"
