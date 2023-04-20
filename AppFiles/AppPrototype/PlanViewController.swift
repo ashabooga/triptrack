@@ -74,8 +74,11 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "toNewPlan" {
             let PlanNewViewController = segue.destination as! PlanNewViewController
             
+            self.selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()]
+            
             PlanNewViewController.selectedPlan = selectedPlan
             PlanNewViewController.isNewPlan = true
+            PlanNewViewController.segueFromController = "PlanViewController"
         }
         if segue.identifier == "toPlanDetail" {
             let PlanDetailViewController = segue.destination as! PlanDetailViewController
@@ -96,7 +99,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             //if !(plans.count == 1 && plans[0]["city"] as? String == "")  {
               //  plans.remove(at: 0)
             //}
-            if plans[0]["city"] as! String == ""{
+            if plans.count == 1 && plans[0]["city"] as! String == ""{
                 plans.remove(at:0)
                 plans.append(selectedPlan)
             }
@@ -106,6 +109,13 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             PlanNewViewController.isNewPlan = false
             
             
+        } else if unwindSegue.source is PlanDetailViewController {
+            let PlanDetailViewController = unwindSegue.source as! PlanDetailViewController
+//            print(PlanDetailViewController.selectedPlan)
+            self.selectedPlan = PlanDetailViewController.selectedPlan
+            let ID = selectedPlan["ID"] as! Int
+            
+            plans[ID] = selectedPlan
         }
         
         planTable.reloadData()
@@ -142,6 +152,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         var i = 0
         
         for _ in plans {
+            print(plans[i]["city"])
             let newPlan = Plan(context: self.context)
             newPlan.city = plans[i]["city"] as? String
             newPlan.startDate = plans[i]["startDate"] as? Date
@@ -162,8 +173,24 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("fetching core data plan ")
         do {
             let myPlan = try context.fetch(Plan.fetchRequest())
+//            var hasRun = false
+            plans = [[:]]
+            plans.remove(at: 0)
             var i = 0
             for entry in myPlan {
+                
+//                if entry.city == "" {
+//                    continue
+//                }
+//
+//                if !hasRun {
+//                    plans.append([:])
+//                } else {
+//                    hasRun = true
+//                }
+                plans.append([:])
+//                print(plans.count)
+                
                 plans[i]["city"] = entry.city
                 plans[i]["startDate"] = entry.startDate
                 plans[i]["endDate"] = entry.endDate

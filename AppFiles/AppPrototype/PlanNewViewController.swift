@@ -13,6 +13,7 @@ class PlanNewViewController: UIViewController {
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
     var isNewPlan = false
     var accomodationList = ["Accom1", "Accom2", "Accom3"]
+    var segueFromController = String()
     
     //IBOutlets
     
@@ -40,6 +41,14 @@ class PlanNewViewController: UIViewController {
     @IBOutlet weak var ActivityTextField: UITextView!
     
     
+    @IBAction func backAndSave(_ sender: Any) {
+        
+        if segueFromController == "PlanViewController" {
+            performSegue(withIdentifier: "unwindToPlan", sender: nil)
+        } else if segueFromController == "PlanDetailViewController" {
+            performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
+        }
+    }
     
     
 
@@ -47,6 +56,19 @@ class PlanNewViewController: UIViewController {
         super.viewDidLoad()
         accomPicker.delegate = self
         accomPicker.dataSource = self
+        
+        CitySearchBar.text = selectedPlan["city"] as? String
+        TransportToSearchBar.text = selectedPlan["transportToType"] as? String
+        TransportFromSearchBar.text = selectedPlan["transportFromType"] as? String
+        // Set accom picker
+        StartDatePicker.date = selectedPlan["startDate"] as! Date
+        EndDatePicker.date = selectedPlan["endDate"] as! Date
+        TransportToDatePicker.date = selectedPlan["transportToDateTime"] as! Date
+        TransportFromDatePicker.date = selectedPlan["transportFromDateTime"] as! Date
+//        CheckInDatePicker.date
+//        CheckOutDatePicker.date
+        ActivityTextField.text = selectedPlan["activityTextEntry"] as? String
+        
         // Do any additional setup after loading the view.
     }
     

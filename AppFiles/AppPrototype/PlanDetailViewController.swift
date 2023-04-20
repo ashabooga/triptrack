@@ -33,6 +33,21 @@ class PlanDetailViewController: UIViewController {
     @IBOutlet weak var ActivitiesTextField: UITextView!
     
     
+    @IBAction func editButton(_ sender: Any) {
+        performSegue(withIdentifier: "planDetailToEdit", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "planDetailToEdit" {
+            let PlanNewViewController = segue.destination as! PlanNewViewController
+            
+            PlanNewViewController.selectedPlan = self.selectedPlan
+            PlanNewViewController.isNewPlan = false
+            PlanNewViewController.segueFromController = "PlanDetailViewController"
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateStyle = .long
@@ -65,6 +80,36 @@ class PlanDetailViewController: UIViewController {
 //        performSegue(withIdentifier: "toPlan", sender: nil)
 //        // Use data from the view controller which initiated the unwind segue
 //    }
+    
+    @IBAction func unwindToPlanDetail(_ unwindSegue: UIStoryboardSegue) {
+        
+        if unwindSegue.source is PlanNewViewController {
+            let PlanNewViewController = unwindSegue.source as! PlanNewViewController
+            print("unwinding from new")
+            
+            self.selectedPlan = PlanNewViewController.selectedPlan
+            
+            
+            CityLabel.text = selectedPlan["city"] as? String
+            let startdate = selectedPlan["startDate"] as? Date ?? Date()
+            let StringStartDate = dateFormatter.string(from: startdate)
+            StartDateLabel.text = StringStartDate
+            let enddate = selectedPlan["endDate"] as? Date ?? Date()
+            let StringEndDate = dateFormatter.string(from: enddate)
+            EndDateLabel.text = StringEndDate
+            TransportToTypeLabel.text = selectedPlan["transportToType"] as? String
+            let TransportToDate = selectedPlan["transportToDateTime"] as? Date ?? Date()
+            let StringToDate = dateFormatter.string(from: TransportToDate)
+            TransportToDateLabel.text = StringToDate
+            TransportFromTypeLabel.text = selectedPlan["transportFromType"] as? String
+            let TransportFromDate = selectedPlan["transportFromDateTime"] as? Date ?? Date()
+            let StringFromDate = dateFormatter.string(from: TransportFromDate)
+            TransportFromDateLabel.text = StringFromDate
+            ActivitiesTextField.text = selectedPlan["activitiesTextEntry"] as? String
+        }
+        
+        
+    }
     
 
     /*
