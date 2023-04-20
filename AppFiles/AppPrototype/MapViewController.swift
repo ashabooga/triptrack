@@ -99,6 +99,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         print("gg")
         //testing
         print("test")
+        print("hello")
 
     }
     
