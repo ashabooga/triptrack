@@ -31,7 +31,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             return 0
         }
         else {
-            print(plans)
+//            print(plans)
             return plans.count
         }
     }
@@ -137,10 +137,12 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func insertIntoCoreData() {
+        print("inserting to core data LOOK HERE")
         deleteCoreData()
         var i = 0
-        let newPlan = Plan(context: self.context)
+        
         for _ in plans {
+            let newPlan = Plan(context: self.context)
             newPlan.city = plans[i]["city"] as? String
             newPlan.startDate = plans[i]["startDate"] as? Date
             newPlan.endDate = plans[i]["endDate"] as? Date
@@ -157,6 +159,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
         
     func fetchCoreData() {
+        print("fetching core data plan ")
         do {
             let myPlan = try context.fetch(Plan.fetchRequest())
             var i = 0
@@ -178,22 +181,27 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
         
-        override func viewDidDisappear(_ animated: Bool) {
-            if !isSegueing {
-                print("dissapearing plan, inserting to core data")
-                insertIntoCoreData()
-            }
-        }
-        
-        override func viewDidAppear(_ animated: Bool) {
-            print("appearing plan")
-            
-            fetchCoreData()
-            planTable.reloadData()
-            print(plans)
-        }
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidDisappear(_ animated: Bool) {
+        if !isSegueing {
+            print("dissapearing plan, inserting to core data")
+            insertIntoCoreData()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("appearing plan")
+        
+        if !isSegueing {
+            fetchCoreData()
+        } else {
+            isSegueing = false
+        }
+        
+        planTable.reloadData()
+//            print(plans)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}

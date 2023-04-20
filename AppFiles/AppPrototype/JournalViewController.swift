@@ -230,13 +230,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("disapperaing journal")
+//        print("disapperaing journal")
         insertToCoreData()
         print(titleList.count)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("appearing journal")
+//        print("appearing journal")
         if !isSegueing {
             fetchCoreData()
         } else {
@@ -246,10 +246,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         currentLocation = locManager.location
         
-        print(currentLocation.coordinate.latitude)
-        print(currentLocation.coordinate.longitude)
+//        print(currentLocation.coordinate.latitude)
+//        print(currentLocation.coordinate.longitude)
         
-        print(titleList.count)
+//        print(titleList.count)
         journalTable.reloadData()
     }
 
