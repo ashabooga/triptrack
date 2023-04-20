@@ -97,7 +97,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "mapToNewJournal", sender: nil)
         
-        
+        print("yo")
+
     }
     
     func action(gestureRecognizer:UIGestureRecognizer){
