@@ -24,9 +24,7 @@ class PlanDetailViewController: UIViewController {
     
     @IBOutlet weak var TransportToTimeLabel: UILabel!
     
-    
     @IBOutlet weak var TransportFromTypeLabel: UILabel!
-    
     
     @IBOutlet weak var TransportFromDateLabel: UILabel!
     
