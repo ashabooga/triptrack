@@ -98,7 +98,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         performSegue(withIdentifier: "mapToNewJournal", sender: nil)
         print("gg")
         //testing
-        print("test")
         print("hello")
 
     }
