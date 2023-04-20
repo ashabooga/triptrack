@@ -7,6 +7,9 @@
 
 import UIKit
 import PhotosUI
+import MapKit
+
+class MyPlacemark: CLPlacemark {}
 
 class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UIScrollViewDelegate{
     
@@ -25,6 +28,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var isCreated = false
     var scroll = UIScrollView()
     var segueFromController : String!
+    
+    var locManager = CLLocationManager()
+    var currentLocation: CLLocation!
     
     
     
@@ -184,11 +190,26 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     }
 
     // MARK: UIScrollViewDelegate
+    
+    func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { completion($0?.first, $1) }
+    }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.maximumDate = currentDate
+        currentLocation = locManager.location
+        
+        selectedEntry["latitude"] = currentLocation.coordinate.latitude
+        selectedEntry["longitude"] = currentLocation.coordinate.longitude
+        geocode(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude) { placemark, error in
+            guard let placemark = placemark, error == nil else { return }
+            // you should always update your UI in the main thread
+            DispatchQueue.main.async {
+                self.selectedEntry["location"] = placemark.locality ?? "N/A"
+            }
+        }
         
         if segueFromController == "JournalDetailViewController" {
             backOutlet.setTitle(" Entry", for: .normal)

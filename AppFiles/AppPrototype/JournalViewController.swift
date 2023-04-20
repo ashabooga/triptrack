@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 import MapKit
 
+
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var titleList = [String]()
@@ -16,11 +17,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     var hasBeenOpened = false
+    var isSegueing = false
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
+
     
     @IBOutlet weak var journalTable: UITableView!
     
@@ -73,6 +76,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         print("segueing")
+        isSegueing = true
         
         if segue.identifier == "toNewEntry" {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
@@ -92,6 +96,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func unwindToJournal(_ unwindSegue: UIStoryboardSegue) {
 
         if unwindSegue.source is JournalEntryViewController { // This is all bad
+            let JournalEntryViewController = unwindSegue.source as! JournalEntryViewController
+            self.selectedEntry = JournalEntryViewController.selectedEntry
+            
+            fetchCoreData()
             
             titleList.append(selectedEntry["title"] as? String ?? "No Title")
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
@@ -136,6 +144,15 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         do {
             let managedJournal = try context.fetch(Journal.fetchRequest())
+            
+            titleList = []
+            locationList = []
+            dateList = []
+            textEntryList = []
+            photosList = []
+            latitudeList = []
+            longitudeList = []
+            photosList = [[]]
             
             for entry in managedJournal {
                 
@@ -217,12 +234,17 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         print("appearing journal")
-        fetchCoreData()
+        if !isSegueing {
+            fetchCoreData()
+        } else {
+            isSegueing = false
+        }
         
-
+        
         currentLocation = locManager.location
-//        print(currentLocation.coordinate.latitude)
-//        print(currentLocation.coordinate.longitude)
+        
+        print(currentLocation.coordinate.latitude)
+        print(currentLocation.coordinate.longitude)
         
         print(titleList.count)
         journalTable.reloadData()

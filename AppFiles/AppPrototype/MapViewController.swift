@@ -17,6 +17,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var annotationList = [MKPointAnnotation]()
     var indexPat = Int()
     
+    var isSegueing = false
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
@@ -44,6 +46,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     //Unwind segue called when back button pressed in second view controller
     @IBAction func unwindToMap(_ unwindSegue: UIStoryboardSegue) {
+        
+        if unwindSegue.source is JournalEntryViewController { // This is all bad
+            let JournalEntryViewController = unwindSegue.source as! JournalEntryViewController
+            self.selectedEntry = JournalEntryViewController.selectedEntry
+            
+            fetchCoreData()
+            
+            titleList.append(selectedEntry["title"] as? String ?? "No Title")
+            locationList.append(selectedEntry["location"] as? String ?? "No Location")
+            dateList.append(selectedEntry["date"] as? Date ?? Date())
+            textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
+            latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
+            longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
+            
+            //        photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
+            if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
+                photosList.append(selectedPhotos)
+            } else {
+                let noImage = UIImage(named: "noImage") ?? UIImage()
+                photosList.append([noImage])
+            }
+            
+            
+        }
         
     }
     
@@ -158,7 +184,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        isSegueing = true
+        
         if segue.identifier == "mapToDetailJournal" {
+        
             
             let JournalDetailViewController = segue.destination as! JournalDetailViewController
             
@@ -186,6 +216,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         do {
             let managedJournal = try context.fetch(Journal.fetchRequest())
+            
+            titleList = []
+            locationList = []
+            dateList = []
+            textEntryList = []
+            photosList = [[]]
+            latitudeList = []
+            longitudeList = []
             
             for entry in managedJournal {
                 
@@ -255,7 +293,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidAppear(_ animated: Bool) {
         print("appearing map")
         
-        fetchCoreData()
+        
+        if !isSegueing{
+            fetchCoreData()
+        } else {
+            isSegueing = false
+        }
         print(titleList.count)
         
         for i in 0..<latitudeList.count {
