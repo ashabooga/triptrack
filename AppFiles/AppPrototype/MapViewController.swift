@@ -10,10 +10,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
     var photoIDsList = [[String]]()
-    //var latitudeList = [Double]()
-    // var longitudeList = [Double]()
-    var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
-    var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
+    var latitudeList = [Double]()
+    var longitudeList = [Double]()
+    //var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
+    //var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
     var annotationList = [MKPointAnnotation]()
     var indexPat = Int()
     
@@ -69,6 +69,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
             
             
+        } else if unwindSegue.source is JournalDetailViewController {
+            let JournalDetailViewController = unwindSegue.source as! JournalDetailViewController
+            self.selectedEntry = JournalDetailViewController.selectedEntry
+            let id = selectedEntry["ID"] as! Int
+            
+            titleList[id] = selectedEntry["title"] as? String ?? "No Title"
+            locationList[id] = selectedEntry["location"] as? String ?? "No Location"
+            dateList[id] = selectedEntry["date"] as? Date ?? Date()
+            textEntryList[id] = selectedEntry["textEntry"] as? String ?? "No Text Entry"
+            latitudeList[id] = selectedEntry["latitude"] as? Double ?? userLocation.coordinate.latitude
+            longitudeList[id] = selectedEntry["longitude"] as? Double ?? userLocation.coordinate.longitude
+            
+            if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
+                photosList[id] = selectedPhotos
+            } else {
+                let noImage = UIImage(named: "noImage") ?? UIImage()
+                photosList[id] = [noImage]
+            }
         }
         
     }
@@ -187,22 +205,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         isSegueing = true
         
+        selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+        
         if segue.identifier == "mapToDetailJournal" {
         
             
             let JournalDetailViewController = segue.destination as! JournalDetailViewController
             
             selectedEntry["ID"] = indexPat
-            selectedEntry["title"] = titleList
-            selectedEntry["location"] = locationList
-            selectedEntry["latitude"] = latitudeList
-            selectedEntry["longitude"] = longitudeList
-            selectedEntry["date"] = dateList
-            selectedEntry["textEntry"] = textEntryList
-            selectedEntry["photos"] = photosList
-            selectedEntry["photoIDs"] = photoIDsList
+            selectedEntry["title"] = titleList[indexPat]
+            selectedEntry["location"] = locationList[indexPat]
+            selectedEntry["latitude"] = latitudeList[indexPat]
+            selectedEntry["longitude"] = longitudeList[indexPat]
+            selectedEntry["date"] = dateList[indexPat]
+            selectedEntry["textEntry"] = textEntryList[indexPat]
+            selectedEntry["photos"] = photosList[indexPat]
+//            selectedEntry["photoIDs"] = photoIDsList[indexPat]
             
             JournalDetailViewController.selectedEntry = self.selectedEntry
+            print(self.selectedEntry)
         }
         else {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
@@ -238,6 +259,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //                photosList.append(entry.photoLists!)
                 
             }
+            print(titleList)
             
         } catch {
             print("Couldn't fetch core data")
@@ -305,6 +327,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let coordinate = CLLocationCoordinate2D(latitude: latitudeList[i], longitude: longitudeList[i])
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
+            annotation.title = titleList[i]
             mapView.addAnnotation(annotation)
         }
     }

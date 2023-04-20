@@ -48,6 +48,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         selectedEntry["date"] = dateList[indexPath.row]
         selectedEntry["textEntry"] = textEntryList[indexPath.row]
 //        selectedEntry["photos"] = photosList[indexPath.row]
+        
+        
+        
         performSegue(withIdentifier: "toJournalDetail", sender: nil)
     }
     
