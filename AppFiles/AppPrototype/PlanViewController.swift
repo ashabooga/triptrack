@@ -15,8 +15,13 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var planTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plans.count
-        
+        if plans.count == 1 && plans[0]["city"] as! String == "" {
+            return 0
+        }
+        else {
+            print(plans)
+            return plans.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,31 +62,41 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "toNewPlan" {
             let PlanNewViewController = segue.destination as! PlanNewViewController
             
-            PlanNewViewController.selectedPlan = self.selectedPlan
+            PlanNewViewController.selectedPlan = selectedPlan
             PlanNewViewController.isNewPlan = true
+        }
+        if segue.identifier == "toPlanDetail" {
+            let PlanDetailViewController = segue.destination as! PlanDetailViewController
+            
+            PlanDetailViewController.selectedPlan = selectedPlan
         }
     }
     
     @IBAction func unwindToPlan(_ unwindSegue: UIStoryboardSegue) {
-        _ = unwindSegue.source
+        //_ = unwindSegue.source
         
         
         if unwindSegue.source is PlanNewViewController {
             let PlanNewViewController = unwindSegue.source as! PlanNewViewController
-            let id = selectedPlan["ID"] as! Int
+            print(PlanNewViewController.selectedPlan)
+            self.selectedPlan = PlanNewViewController.selectedPlan
             
-            if !(plans.count == 1 && plans[0]["city"] as? String == "")  {
-                plans.remove(at: 0)
+            //if !(plans.count == 1 && plans[0]["city"] as? String == "")  {
+              //  plans.remove(at: 0)
+            //}
+            if plans[0]["city"] as! String == ""{
+                plans.remove(at:0)
+                plans.append(selectedPlan)
             }
-            
-            plans.append(PlanNewViewController.selectedPlan)
-            
+            else {
+                plans.append(selectedPlan)
+            }
             PlanNewViewController.isNewPlan = false
             
             
         }
         
-        
+        planTable.reloadData()
         // Use data from the view controller which initiated the unwind segue
     }
     

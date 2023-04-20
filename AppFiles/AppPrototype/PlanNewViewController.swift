@@ -50,15 +50,18 @@ class PlanNewViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        selectedPlan["city"] = "city"
+        selectedPlan["city"] = CitySearchBar.text
         selectedPlan["startDate"] = StartDatePicker.date
         selectedPlan["endDate"] = EndDatePicker.date
-        selectedPlan["transportToType"] = "transport to type"
+        selectedPlan["transportToType"] = TransportToSearchBar.text
         selectedPlan["transportToDateTime"] = TransportToDatePicker.date
         // Add time functionality
-        selectedPlan["transportFromType"] = "transport from type"
+        selectedPlan["transportFromType"] = TransportFromSearchBar.text
         selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
+        selectedPlan["activitiesTextEntry"] = ActivityTextField.text
         // Add time functionality
     }
     

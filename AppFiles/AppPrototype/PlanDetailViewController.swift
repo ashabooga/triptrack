@@ -11,7 +11,7 @@ class PlanDetailViewController: UIViewController {
     
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
     
-    
+    let dateFormatter = DateFormatter()
     @IBOutlet weak var CityLabel: UILabel!
     
     @IBOutlet weak var StartDateLabel: UILabel!
@@ -34,9 +34,30 @@ class PlanDetailViewController: UIViewController {
     
     @IBOutlet weak var ActivitiesTextField: UITextView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dateFormatter.dateStyle = .long
+        CityLabel.text = selectedPlan["city"] as? String
+        let startdate = selectedPlan["startDate"] as? Date ?? Date()
+        let StringStartDate = dateFormatter.string(from: startdate)
+        StartDateLabel.text = StringStartDate
+        let enddate = selectedPlan["endDate"] as? Date ?? Date()
+        let StringEndDate = dateFormatter.string(from: enddate)
+        EndDateLabel.text = StringEndDate
+        TransportToTypeLabel.text = selectedPlan["transportToType"] as? String
+        let TransportToDate = selectedPlan["transportToDateTime"] as? Date ?? Date()
+        let StringToDate = dateFormatter.string(from: TransportToDate)
+        TransportToDateLabel.text = StringStartDate
+        TransportFromTypeLabel.text = selectedPlan["transportFromType"] as? String
+        let TransportFromDate = selectedPlan["transportFromDateTime"] as? Date ?? Date()
+        let StringFromDate = dateFormatter.string(from: TransportFromDate)
+        TransportFromDateLabel.text = StringEndDate
+        ActivitiesTextField.text = selectedPlan["activitiesTextEntry"] as? String
+        
+        
+        
+        
         // Do any additional setup after loading the view.
     }
 //    
