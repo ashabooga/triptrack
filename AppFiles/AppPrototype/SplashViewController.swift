@@ -1,18 +1,13 @@
 //
-//  InitialViewController.swift
+//  SplashViewController.swift
 //  AppPrototype
 //
-//  Created by Lika, Jason on 17/04/2023.
+//  Created by Cuello-Wolffe, Benjamin on 27/04/2023.
 //
 
 import UIKit
 
-class InitialViewController: UIViewController {
-    
-    
-    // Check for core data
-    // App logo symbol for a second (instagram, twitter, etc)
-    // Show slideshow of UIIMages(?) OR segue to map based on core data
+class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
