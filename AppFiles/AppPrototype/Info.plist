@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>So we can find your location to plot on the map</string>
+	<string>Please allow to plot locations on the map.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>So we can find your location to plot on the map</string>
+	<string>Please allow to plot locations on the map.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Please allow to continue with Face ID.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
