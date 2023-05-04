@@ -47,7 +47,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         selectedEntry["location"] = locationList[indexPath.row]
         selectedEntry["date"] = dateList[indexPath.row]
         selectedEntry["textEntry"] = textEntryList[indexPath.row]
-//        selectedEntry["photos"] = photosList[indexPath.row]
+        selectedEntry["photos"] = photosList[indexPath.row]
         
         
         
@@ -112,7 +112,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
             longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
             
-            //        photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
+            //photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
                 photosList.append(selectedPhotos)
             } else {
@@ -158,13 +158,18 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             longitudeList = []
             photosList = [[]]
             
+            var dataPhoto = [[Data]()]
+            
             for entry in managedJournal {
                 
                 titleList.append(entry.titles!)
                 locationList.append(entry.locationNames!)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
-                photosList.append([UIImage(named: "noImage")!])
+                dataPhoto.append([entry.photoLists ?? Data()])
+                photosList.append(convertDataToImages(imageDataArray: dataPhoto[0]))
+                print(photosList)
+                
                 latitudeList.append(0.0)
                 longitudeList.append(0.0)
                 
@@ -217,12 +222,42 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 newEntry.dates = dateList[i]
                 newEntry.textEntries = textEntryList[i]
                 
+
+                //to store array of images using encoding
+                let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
+                var images: Data?
+                do {
+                    images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: true)
+                } catch {
+                    print("error")
+                }
+                newEntry.photoLists = images
+                print("binary")
+                print(images!)
+                
                 //            newEntry.photoLists = photosList[i]
                 //            newEntry.photoIDLists = photoIDsList[i]
                 saveCoreData()
             }
         }
     }
+    
+    
+    func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
+      var myImagesDataArray = [Data]()
+        myImagesArray.forEach({ (image) in myImagesDataArray.append(image.pngData()!)
+      })
+      return myImagesDataArray
+    }
+    
+    
+    func convertDataToImages(imageDataArray: [Data]) -> [UIImage] {
+      var myImagesArray = [UIImage]()
+        imageDataArray.forEach { imageData in myImagesArray.append(UIImage(data: imageData)!)
+      }
+      return myImagesArray
+    }
+    
     
     
     @objc func onTerminate() {
