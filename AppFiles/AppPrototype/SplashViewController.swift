@@ -16,6 +16,9 @@ class SplashViewController: UIViewController {
     }
     
 
+    @IBAction func test(_ sender: Any) {
+        performSegue(withIdentifier: "splashToLogin", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

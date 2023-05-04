@@ -14,17 +14,17 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BcE-8j-vTG" customClass="PlanViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WTe-lE-q9Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
-                                <rect key="frame" x="-3" y="0.0" width="378" height="56"/>
+                                <rect key="frame" x="-3" y="47" width="378" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="PLAN" style="editor" id="nK6-6i-z7d">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="TMI-7m-US3">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="KVY-bN-xDn">
-                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -32,7 +32,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" style="plain" id="wTS-Zr-zN1">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="alF-tw-el2">
-                                                <rect key="frame" x="276" y="11" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="276" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -48,7 +48,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-vQ-r4w">
-                                <rect key="frame" x="0.0" y="56" width="375" height="650"/>
+                                <rect key="frame" x="0.0" y="91" width="375" height="638"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="Spb-jq-ZAM">
@@ -682,11 +682,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="8Bf-HS-3Fo" customClass="JournalViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vnN-1i-tAn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tqL-wx-4bs">
-                                <rect key="frame" x="0.0" y="36" width="375" height="670"/>
+                                <rect key="frame" x="0.0" y="59" width="375" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="670" id="pXn-tg-c7w"/>
@@ -707,13 +707,13 @@
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Dl-v2g">
-                                <rect key="frame" x="-3" y="-20" width="378" height="56"/>
+                                <rect key="frame" x="-3" y="15" width="378" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL" style="editor" id="YNr-i6-lWL">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Tj5-8N-XEw">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Zvv-6Z-Tta">
-                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -721,7 +721,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="d3S-Sc-8ek">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SpL-fn-Hh2">
-                                                <rect key="frame" x="261.33333333333331" y="11" width="100.66666666666669" height="34.333333333333336"/>
+                                                <rect key="frame" x="261.33333333333331" y="5" width="100.66666666666669" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                                 <connections>
@@ -1022,17 +1022,17 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="XmX-zB-tTf" customClass="MapViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJM-4n-gUb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
-                                <rect key="frame" x="-1" y="0.0" width="378" height="56"/>
+                                <rect key="frame" x="-1" y="47" width="378" height="44"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="MAP" style="editor" id="d48-Hr-NFH">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Z94-QB-X4l">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6V0-a3-I1F">
-                                                <rect key="frame" x="16" y="11" width="86" height="34.333333333333336"/>
+                                                <rect key="frame" x="16" y="5" width="86" height="34.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
@@ -1040,7 +1040,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="DV1-ma-jXL">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="kzD-SC-c31">
-                                                <rect key="frame" x="315" y="10.666666666666664" width="47" height="35"/>
+                                                <rect key="frame" x="315" y="4.6666666666666679" width="47" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -1084,9 +1084,9 @@
         <!--WelcomeViewController-->
         <scene sceneID="2j1-xK-eHp">
             <objects>
-                <viewController title="WelcomeViewController" id="xuE-9O-g0h" customClass="InitialViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WelcomeViewController" modalPresentationStyle="fullScreen" id="xuE-9O-g0h" customClass="InitialViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jp0-rl-NrX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WELCOME TO TRIP TRACK!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ltm-cy-KkT">
@@ -1153,9 +1153,9 @@
         <!--LoginViewController-->
         <scene sceneID="aoF-7Y-fyp">
             <objects>
-                <viewController title="LoginViewController" id="Fvm-cw-SH2" customClass="LoginViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LoginViewController" modalPresentationStyle="fullScreen" id="Fvm-cw-SH2" customClass="LoginViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ehF-Tm-0IK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Jx-NF-TXc">
@@ -1217,6 +1217,17 @@
                     <view key="view" contentMode="scaleToFill" id="H8u-RI-2gD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="He4-lQ-DkK">
+                                <rect key="frame" x="150" y="327" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="FnD-Fw-uTJ" eventType="touchUpInside" id="3ob-jF-hCq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="EFE-MF-rQ1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -1230,7 +1241,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bLc-NV-Yta"/>
+        <segue reference="85F-py-CPk"/>
         <segue reference="i8X-wi-8dM"/>
         <segue reference="7Wl-7A-B6Z"/>
         <segue reference="DEm-si-Bhg"/>
