@@ -784,14 +784,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Location" translatesAutoresizingMaskIntoConstraints="NO" id="xSb-zq-iyx">
-                                <rect key="frame" x="16" y="151" width="343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="country-name"/>
-                                <connections>
-                                    <outlet property="delegate" destination="gwN-QZ-Maq" id="4TD-QQ-6bd"/>
-                                </connections>
-                            </searchBar>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ym-TX-Q2q">
                                 <rect key="frame" x="19" y="113" width="336" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -850,6 +842,15 @@
                                 <rect key="frame" x="16" y="251" width="125" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyy-ZM-cVG">
+                                <rect key="frame" x="18" y="163" width="339" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass" catalog="system" title=" Location Search"/>
+                                <connections>
+                                    <action selector="LocationSearchButton:" destination="gwN-QZ-Maq" eventType="touchUpInside" id="xJq-Rv-DSK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rmZ-Ph-TZm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -870,12 +871,29 @@
                         <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToDetail" unwindAction="unwindToDetail:" id="kfr-Pt-Gg2"/>
                         <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToJournal" unwindAction="unwindToJournal:" id="Ofr-GT-ee6"/>
                         <segue destination="Hfj-eH-swq" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="KHT-up-7MN"/>
+                        <segue destination="qX1-Wc-rYk" kind="show" id="c3V-8e-9w4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AJ-Y9-uIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hfj-eH-swq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="813.60000000000002" y="-318.4729064039409"/>
+        </scene>
+        <!--SearchViewController-->
+        <scene sceneID="ayR-BB-zQc">
+            <objects>
+                <viewController title="SearchViewController" modalPresentationStyle="fullScreen" id="qX1-Wc-rYk" customClass="SearchViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CzP-yL-QHv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="EXm-LZ-6hZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eeY-6z-4g7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1kb-ka-YDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2449" y="-318"/>
         </scene>
         <!--Journal Detail View Controller-->
         <scene sceneID="mLx-J3-HFs">
@@ -1158,15 +1176,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Jx-NF-TXc">
-                                <rect key="frame" x="126" y="360" width="122" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="go" textContentType="password"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99g-h4-G5V">
-                                <rect key="frame" x="126" y="262" width="122" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHi-5Y-oiY">
+                                <rect key="frame" x="122" y="377" width="130" height="58"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="lock.iphone" catalog="system" title=" Passcode"/>
+                                <connections>
+                                    <action selector="PasscodeButton:" destination="Fvm-cw-SH2" eventType="touchUpInside" id="5qT-m6-Wwc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99g-h4-G5V">
+                                <rect key="frame" x="122" y="258" width="130" height="58"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="faceid" catalog="system" title=" Face ID"/>
                                 <connections>
@@ -1176,9 +1195,21 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="go8-S3-6GA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="99g-h4-G5V" firstAttribute="leading" secondItem="xHi-5Y-oiY" secondAttribute="leading" id="3UR-sq-CmT"/>
+                            <constraint firstItem="xHi-5Y-oiY" firstAttribute="centerY" secondItem="ehF-Tm-0IK" secondAttribute="centerY" id="4ik-pj-G2M"/>
+                            <constraint firstItem="99g-h4-G5V" firstAttribute="trailing" secondItem="xHi-5Y-oiY" secondAttribute="trailing" id="H0I-w5-Epm"/>
+                            <constraint firstItem="xHi-5Y-oiY" firstAttribute="top" secondItem="99g-h4-G5V" secondAttribute="bottom" constant="61" id="K7v-vq-cWl"/>
+                            <constraint firstItem="go8-S3-6GA" firstAttribute="bottom" secondItem="xHi-5Y-oiY" secondAttribute="bottom" constant="343" id="Lch-mc-mJt"/>
+                            <constraint firstItem="99g-h4-G5V" firstAttribute="centerX" secondItem="ehF-Tm-0IK" secondAttribute="centerX" id="nmp-Yg-odJ"/>
+                            <constraint firstItem="99g-h4-G5V" firstAttribute="top" secondItem="go8-S3-6GA" secondAttribute="top" constant="211" id="qI3-W8-feB"/>
+                            <constraint firstItem="99g-h4-G5V" firstAttribute="leading" secondItem="go8-S3-6GA" secondAttribute="leading" constant="122" id="tD5-76-CZb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zO7-gR-4ed"/>
                     <connections>
+                        <outlet property="FaceIDButton" destination="99g-h4-G5V" id="m2r-EF-deC"/>
+                        <outlet property="PasscodeButton" destination="xHi-5Y-oiY" id="P9i-ZW-hR7"/>
                         <segue destination="66H-kc-LNV" kind="presentation" identifier="loginToMain" id="bLc-NV-Yta"/>
                         <segue destination="xuE-9O-g0h" kind="showDetail" identifier="loginToWelcome" id="ygo-cf-Fq3"/>
                     </connections>
@@ -1257,6 +1288,8 @@
         <image name="faceid" catalog="system" width="128" height="115"/>
         <image name="globe asset" width="348" height="348"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="lock.iphone" catalog="system" width="112" height="128"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="plan+icon-1320184414125515410" width="512" height="512"/>

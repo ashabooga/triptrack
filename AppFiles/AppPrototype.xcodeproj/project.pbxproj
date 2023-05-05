@@ -12,6 +12,7 @@
 		04428E5129F04238004AD42B /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04428E4F29F04238004AD42B /* Journal+CoreDataProperties.swift */; };
 		0456F24829FAC62E00B25C4B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456F24729FAC62E00B25C4B /* SplashViewController.swift */; };
 		0456F24A29FAC64700B25C4B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456F24929FAC64700B25C4B /* LoginViewController.swift */; };
+		046B531C2A05457E00E4DA11 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B531B2A05457E00E4DA11 /* SearchViewController.swift */; };
 		04F10DC329BB764A000F9B88 /* PlanNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F10DC229BB764A000F9B88 /* PlanNewViewController.swift */; };
 		B5071F0729B8F91100F6DFEA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5071F0629B8F91100F6DFEA /* MapViewController.swift */; };
 		B5071F0929B8F92E00F6DFEA /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5071F0829B8F92E00F6DFEA /* JournalViewController.swift */; };
@@ -34,6 +35,7 @@
 		04428E4F29F04238004AD42B /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0456F24729FAC62E00B25C4B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		0456F24929FAC64700B25C4B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		046B531B2A05457E00E4DA11 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04F10DC229BB764A000F9B88 /* PlanNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanNewViewController.swift; sourceTree = "<group>"; };
 		B5071F0629B8F91100F6DFEA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5071F0829B8F92E00F6DFEA /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				B5071F0829B8F92E00F6DFEA /* JournalViewController.swift */,
 				B919D10129BB57D800AF862B /* JournalDetailViewController.swift */,
 				B95AA12F29BF6A4100C894DA /* JournalEntryViewController.swift */,
+				046B531B2A05457E00E4DA11 /* SearchViewController.swift */,
 				B5071F0A29B8F94A00F6DFEA /* PlanViewController.swift */,
 				042109A029BB66EE00DC58FF /* PlanDetailViewController.swift */,
 				04F10DC229BB764A000F9B88 /* PlanNewViewController.swift */,
@@ -180,6 +183,7 @@
 				B95606A329B0F06800F95F78 /* AppPrototype.xcdatamodeld in Sources */,
 				B95AA13029BF6A4100C894DA /* JournalEntryViewController.swift in Sources */,
 				B5071F0D29B8F96600F6DFEA /* CustomTabBarController.swift in Sources */,
+				046B531C2A05457E00E4DA11 /* SearchViewController.swift in Sources */,
 				E77BF54729EDB9E90073DB30 /* WelcomeViewController.swift in Sources */,
 				B5071F0B29B8F94A00F6DFEA /* PlanViewController.swift in Sources */,
 				04428E5029F04238004AD42B /* Journal+CoreDataClass.swift in Sources */,

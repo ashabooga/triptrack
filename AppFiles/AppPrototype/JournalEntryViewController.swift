@@ -43,6 +43,10 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     
+    @IBAction func LocationSearchButton(_ sender: Any) {
+        performSegue(withIdentifier: "entryToSearch", sender: nil)
+    }
+    
     
     
     @IBAction func backAndSave(_ sender: Any) {
@@ -76,13 +80,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         
     }
     
-//
-//    func testLocation() {
-//        // calculate closest country
-//        selectedEntry["latitude"] = currentLoc
-//
-//    }
-//
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.present(UINavigationController(rootViewController: SearchViewController()), animated: false, completion: nil)
+    }
     
     
     
