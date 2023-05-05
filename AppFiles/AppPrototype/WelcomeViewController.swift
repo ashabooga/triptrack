@@ -10,6 +10,7 @@ import UIKit
 class WelcomeViewController: UIViewController {
     
     var segueFromController = "MainViewController"
+    var buttonContent = "Get Started"
     
     // Check for core data
     // App logo symbol for a second (instagram, twitter, etc)
@@ -28,6 +29,12 @@ class WelcomeViewController: UIViewController {
         } else if segueFromController == "PlanViewController" {
             self.performSegue(withIdentifier: "unwindToPlan", sender: nil)
         }
+        
+        getStartedButton.titleLabel?.text = buttonContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        getStartedButton.titleLabel?.text = buttonContent
     }
     
     
@@ -36,14 +43,16 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         if segueFromController == "MainViewController" {
-            getStartedButton.titleLabel?.text = "Get Started"
+            buttonContent = "Get Started"
         } else if segueFromController == "MapViewController" {
-            getStartedButton.titleLabel?.text = "Back to Map"
+            buttonContent = "Back to Map"
         } else if segueFromController == "JournalViewController" {
-            getStartedButton.titleLabel?.text = "Back to Journal"
+            buttonContent = "Back to Journal"
         } else if segueFromController == "PlanViewController" {
-            getStartedButton.titleLabel?.text = "Back to Plan"
+            buttonContent = "Back to Plan"
         }
+        
+        getStartedButton.titleLabel?.text = buttonContent
 
         // Do any additional setup after loading the view.
     }
