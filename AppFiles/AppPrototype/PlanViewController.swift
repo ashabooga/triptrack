@@ -26,6 +26,12 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
+    @IBAction func welcomeInfoButton(_ sender: Any) {
+        performSegue(withIdentifier: "planToWelcome", sender: nil)
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if plans.count == 1 && plans[0]["city"] as! String == "" {
             return 0
@@ -84,6 +90,10 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             let PlanDetailViewController = segue.destination as! PlanDetailViewController
             
             PlanDetailViewController.selectedPlan = selectedPlan
+        }
+        if segue.identifier == "planToWelcome" {
+            let WelcomeViewController = segue.destination as! WelcomeViewController
+            WelcomeViewController.segueFromController = "PlanViewController"
         }
     }
     
@@ -152,7 +162,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         var i = 0
         
         for _ in plans {
-            print(plans[i]["city"])
+            print(plans[i]["city"]!)
             let newPlan = Plan(context: self.context)
             newPlan.city = plans[i]["city"] as? String
             newPlan.startDate = plans[i]["startDate"] as? Date

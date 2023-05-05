@@ -27,6 +27,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var journalTable: UITableView!
     
+    
+    @IBAction func welcomeInfoButton(_ sender: Any) {
+        performSegue(withIdentifier: "journalToWelcome", sender: nil)
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleList.count
     }
@@ -91,6 +97,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             JournalDetailViewController.segueFromController = "JournalViewController"
             JournalDetailViewController.selectedEntry = selectedEntry
             
+        }
+        if segue.identifier == "journalToWelcome" {
+            let WelcomeViewController = segue.destination as! WelcomeViewController
+            WelcomeViewController.segueFromController = "JournalViewController"
         }
     }
     

@@ -42,6 +42,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //        }
     //    }
     
+    @IBAction func welcomeInfoButton(_ sender: Any) {
+        performSegue(withIdentifier: "mapToWelcome", sender: nil)
+    }
+    
+    
     
     
     //Unwind segue called when back button pressed in second view controller
@@ -225,8 +230,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             JournalDetailViewController.selectedEntry = self.selectedEntry
             print(self.selectedEntry)
             JournalDetailViewController.segueFromController = "MapViewController"
-        }
-        else {
+        } else if segue.identifier == "mapToWelcome" {
+            let WelcomeViewController = segue.destination as! WelcomeViewController
+            WelcomeViewController.segueFromController = "MapViewController"
+        } else {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.segueFromController = "MapViewController"
             
