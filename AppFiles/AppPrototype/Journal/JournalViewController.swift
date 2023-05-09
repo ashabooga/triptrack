@@ -125,18 +125,15 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
             longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
             
-            GeocodeAddress(requests: ["city", "country"], latitude: selectedEntry["latitude"] as! Double, longitude: selectedEntry["longitude"] as! Double) { result in
-                
-                self.subTitleList.append(result)
-            }
-            
-            //photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
+            //photosList.append(selectedEntry["photos"] as? [UIImage] ?? UIImage(named: "noImage"))
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
                 photosList.append(selectedPhotos)
             } else {
                 let noImage = UIImage(named: "noImage") ?? UIImage()
                 photosList.append([noImage])
             }
+            print("UNWIND SHOULD BE FULL")
+            print(selectedEntry["photos"]!)
             
             
         } else if unwindSegue.source is JournalDetailViewController { // Might be redundant?
@@ -176,7 +173,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             longitudeList = []
             photosList = [[]]
             
-            var dataPhoto = [[Data]()]
+            var dataPhoto = [Data]()
             
             for entry in managedJournal {
                 
@@ -184,12 +181,40 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 locationList.append(entry.locationNames!)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
-                dataPhoto.append([entry.photoLists ?? Data()])
-                photosList.append(convertDataToImages(imageDataArray: dataPhoto[0]))
-//                print(photosList)
+                dataPhoto.append(entry.photoLists ?? Data())
+                print("fetching")
+                print(dataPhoto)
+                //var images: Data?
+//                for i in 0...dataPhoto.count-1{
+//                    if (i >= 1){
+//                        photosList.append(convertDataToImages(imageDataArray: dataPhoto[i]))
+//                    }
+//                }
+                dataPhoto.forEach { (imageData) in
+                    do {
+                        let dataArray = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(imageData) as? [Data] ?? []
+                        var imageArray: [UIImage] = []
+                        for data in dataArray {
+                            if let image = UIImage(data: data) {
+                                imageArray.append(image)
+                            }
+                        }
+                        if photosList[0].isEmpty {
+                            photosList = [imageArray]
+                        }
+                        else{
+                            photosList.append(imageArray)
+                            
+                        }
+                    } catch {
+                        print("could not unarchive array: \(error)")
+                    }
+                }
+                print("unarchived")
+                print(photosList)
                 
-                latitudeList.append(entry.latitudes)
-                longitudeList.append(entry.longitudes)
+                latitudeList.append(0.0)
+                longitudeList.append(0.0)
                 
 //                photosList.append(entry.photoLists!)
                 
@@ -242,17 +267,26 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
 
                 //to store array of images using encoding
-                let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
-                var images: Data?
-                do {
-                    images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: true)
-                } catch {
-                    print("error")
+                if photosList.count > 1{
+                    print("insert")
+                    print(photosList)
+                    let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
+                    print("first convert")
+                    print(photosList)
+                    print(myImagesDataArray)
+                    
+                    
+                    var images: Data?
+                    do {
+                        images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: false)
+                        // save the encoded data to Core Data
+                    } catch {
+                        print("Error encoding images array: \(error.localizedDescription)")
+                    }
+                    newEntry.photoLists = images
+                    print("binary")
+                    print(images!)
                 }
-                newEntry.photoLists = images
-                print("binary")
-                print(images!)
-                
                 //            newEntry.photoLists = photosList[i]
                 //            newEntry.photoIDLists = photoIDsList[i]
                 saveCoreData()
@@ -262,20 +296,21 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
-      var myImagesDataArray = [Data]()
-        myImagesArray.forEach({ (image) in myImagesDataArray.append(image.pngData()!)
-      })
-      return myImagesDataArray
+        var dataArray = [Data]()
+        for image in myImagesArray {
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                dataArray.append(imageData)
+            }
+        }
+      return dataArray
     }
     
     
     func convertDataToImages(imageDataArray: [Data]) -> [UIImage] {
       var myImagesArray = [UIImage]()
-        imageDataArray.forEach { imageData in myImagesArray.append(UIImage(data: imageData)!)
-      }
+        imageDataArray.forEach({ (dataImage) in myImagesArray.append(UIImage(data: dataImage) ?? UIImage(named: "noImage")!)})
       return myImagesArray
     }
-    
     
     
     @objc func onTerminate() {
