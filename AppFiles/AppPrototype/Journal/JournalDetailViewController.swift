@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
+class JournalDetailViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate, UIBarPositioningDelegate  {
     
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -15,6 +15,7 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
     
     @IBOutlet weak var backButton: UIButton!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -109,11 +110,15 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate  {
 
     }
     
-    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationBar.delegate = self
         
         if segueFromController == "MapViewController" {
             backButton.setTitle(" Map", for: .normal)

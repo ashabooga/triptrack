@@ -33,7 +33,15 @@ class WelcomeViewController: UIViewController {
         getStartedButton.titleLabel?.text = buttonContent
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        getStartedButton.titleLabel?.text = buttonContent
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        getStartedButton.titleLabel?.text = buttonContent
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
         getStartedButton.titleLabel?.text = buttonContent
     }
     

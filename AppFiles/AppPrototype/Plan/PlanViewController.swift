@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-class PlanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate, UIBarPositioningDelegate {
     
     var cityList = [String]()
     var startDateList = [Date]()
@@ -31,6 +31,7 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: "planToWelcome", sender: nil)
     }
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if plans.count == 1 && plans[0]["city"] as! String == "" {
@@ -240,5 +241,10 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.delegate = self
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

@@ -2,7 +2,7 @@ import CoreLocation
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UINavigationBarDelegate, UIBarPositioningDelegate {
     
     var titleList = [String]()
     var locationList = [String]()
@@ -12,12 +12,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var photoIDsList = [[String]]()
     var latitudeList = [Double]()
     var longitudeList = [Double]()
-    //var latitudeList = [51.509742561831395, 51.51039252938496, 51.510793117046255]
-    //var longitudeList = [-0.1335390878740101, -0.1339823955994906, -0.13284215692778817]
     var annotationList = [MKPointAnnotation]()
     var indexPat = Int()
     
     var isSegueing = false
+    
+    var tempLatitude = Double()
+    var tempLongitude = Double()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -34,6 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var firstRun = true
     var startTrackingTheUser = false
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //        if segue.identifier == "toNew" {
@@ -144,11 +146,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func addButton(_ sender: Any) {
+        tempLatitude = locationManager.location?.coordinate.latitude ?? 0.0
+        tempLongitude = locationManager.location?.coordinate.longitude ?? 0.0
         performSegue(withIdentifier: "mapToNewJournal", sender: nil)
-        print("gg")
-        //testing
-        print("hello")
-
     }
     
     func action(gestureRecognizer:UIGestureRecognizer){
@@ -164,15 +164,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if gestureRecognizer.state != UIGestureRecognizer.State.ended {
             let touchArea = gestureRecognizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchArea, toCoordinateFrom: mapView)
-            
             let annotation = MKPointAnnotation()
+            
             annotation.coordinate = locationCoordinate
             
-            annotation.title = "Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)"
-            
+            tempLatitude = locationCoordinate.latitude
+            tempLongitude = locationCoordinate.longitude
+        
             mapView.addAnnotation(annotation)
-            print(locationCoordinate.latitude)
-            print(locationCoordinate.longitude)
             
         }
         
@@ -236,6 +235,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         } else {
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.segueFromController = "MapViewController"
+            
+            if tempLatitude != 0.0 {
+                selectedEntry["latitude"] = tempLatitude
+                selectedEntry["longitude"] = tempLongitude
+                JournalEntryViewController.selectedEntry = self.selectedEntry
+            }
+            
             
         }
         
@@ -340,10 +346,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        navigationBar.delegate = self
         
         let oLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.handleLongTapGesture(gestureRecognizer:)))
         self.mapView.addGestureRecognizer(oLongTapGesture)
@@ -362,55 +372,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         //configure the map to show the user's location (with a blue dot)
         mapView.showsUserLocation = true
-        /*
-         let coordinate = CLLocationCoordinate2D(latitude: 51.509742561831395, longitude: -0.1335390878740101)
-         let annotatione = MKPointAnnotation()
-         annotatione.coordinate = coordinate
-         
-         mapView.addAnnotation(annotatione)
-         */
-        
-        /*
-         for place in places {
-         //if (place["enabled"] == "1") { wiruirubtgiurtgiurtgniu;trguirtnguirtgiunrgtbnirutgniurtgbrwpuibguitrwbiurtbiutbruiwbtuiptrbuiwiutuiwgtbuibuiwgptbgrtpuiwgbuipw
-         guard let placeLat = place["lat"] else {continue}
-         guard let placeLon = place["lon"] else {continue}
-         guard let latitude = Double(placeLat) else {continue}
-         guard let longitude = Double(placeLon) else {continue}
-         guard let title = place["title"] else {continue}
-         
-         //set location of the mural to coordinate
-         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-         let annotation = MKPointAnnotation()
-         
-         //make coordinate of the annotation the coordinate of the mural
-         annotation.coordinate = coordinate
-         
-         //make the title of the annotation the title of the mural
-         annotation.title = title
-         
-         //add the annotation to the map
-         self.myMap.addAnnotation(annotation)
-         
-         
-         }
-         */
-        /*
-         func updateTheTable(){
-         //set location of the mural to coordinate
-         let coordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-         let annotation = MKPointAnnotation()
-         
-         //make coordinate of the annotation the coordinate of the mural
-         annotation.coordinate = coordinate
-         
-         //make the title of the annotation the title of the mural
-         annotation.title = title
-         
-         //add the annotation to the map
-         self.mapView.addAnnotation(annotation)
-         }
-         */
         
     }
 }

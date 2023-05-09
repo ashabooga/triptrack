@@ -7,10 +7,11 @@
 
 import UIKit
 
-class PlanDetailViewController: UIViewController {
+class PlanDetailViewController: UIViewController, UIBarPositioningDelegate, UINavigationBarDelegate {
     
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     let dateFormatter = DateFormatter()
     @IBOutlet weak var CityLabel: UILabel!
     
@@ -50,6 +51,7 @@ class PlanDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.delegate = self
         dateFormatter.dateStyle = .long
         CityLabel.text = selectedPlan["city"] as? String
         let startdate = selectedPlan["startDate"] as? Date ?? Date()
@@ -109,6 +111,11 @@ class PlanDetailViewController: UIViewController {
         }
         
         
+        
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
     
 

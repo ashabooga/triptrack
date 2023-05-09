@@ -11,7 +11,7 @@ import MapKit
 
 class MyPlacemark: CLPlacemark {}
 
-class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UIScrollViewDelegate{
+class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate, UIScrollViewDelegate, UINavigationBarDelegate, UIBarPositioningDelegate {
     
     
 
@@ -28,12 +28,15 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var isCreated = false
     var scroll = UIScrollView()
     var segueFromController : String!
+    var selectedPlace = Place(name: "", id: "")
+    var selectedLocation = CLLocationCoordinate2D()
     
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
     
     
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backOutlet: UIButton!
     
     @IBOutlet weak var photoButton: UIButton!
@@ -43,6 +46,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     
+    @IBOutlet weak var LocationSearchButton: UIButton!
     @IBAction func LocationSearchButton(_ sender: Any) {
         performSegue(withIdentifier: "entryToSearch", sender: nil)
     }
@@ -55,6 +59,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         selectedEntry["date"] = datePicker.date
         selectedEntry["textEntry"] = thoughtTextView.text
         selectedEntry["photos"] = imageList
+        selectedEntry["location"] = selectedPlace.name
+        selectedEntry["latitude"] = selectedLocation.latitude
+        selectedEntry["longitude"] = selectedLocation.longitude
         if segueFromController == "JournalViewController"{
             self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
         }
@@ -140,6 +147,14 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             JournalDetailViewController.selectedEntry = self.selectedEntry
             
         }
+        
+        if segue.identifier == "entryToSearch" {
+            let NavigationController = segue.destination as! UINavigationController
+            let SearchViewController = NavigationController.topViewController as! SearchViewController
+            
+            SearchViewController.selectedPlace = self.selectedPlace
+            SearchViewController.selectedLocation = self.selectedLocation
+        }
     }
     
     
@@ -182,39 +197,39 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
         photoButton.frame.size = CGSize(width: 120, height: 20)
         photoButton.titleLabel?.font = UIFont.init(name: "System", size: 10)
         
-        //let configuration = UIImage.SymbolConfiguration(pointSize: 13)
-        //photoButton.imageView?.contentMode = .scaleAspectFit
-        //let symbolImage = UIImage(systemName: "plus", withConfiguration: configuration)
-        //photoButton.setImage(symbolImage, for: .normal)
+    }
+
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+    
+    @IBAction func unwindToJournalEntry(_ unwindSegue: UIStoryboardSegue) {
+        if unwindSegue.source is SearchViewController {
+            let SearchViewController = unwindSegue.source as! SearchViewController
+            
+            self.selectedPlace = SearchViewController.selectedPlace
+            self.selectedLocation = SearchViewController.selectedLocation
+            
+            LocationSearchButton.setTitle(" " + selectedPlace.name, for: UIControl.State.normal)
+        }
         
     }
-
-    // MARK: UIScrollViewDelegate
-    
-    func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
-        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { completion($0?.first, $1) }
-    }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationBar.delegate = self
         datePicker.maximumDate = currentDate
         currentLocation = locManager.location
         
-        selectedEntry["latitude"] = currentLocation.coordinate.latitude
-        selectedEntry["longitude"] = currentLocation.coordinate.longitude
-        geocode(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude) { placemark, error in
-            guard let placemark = placemark, error == nil else { return }
-            // you should always update your UI in the main thread
-            DispatchQueue.main.async {
-                self.selectedEntry["location"] = placemark.locality ?? "N/A"
-            }
-        }
+//        selectedEntry["latitude"] = currentLocation.coordinate.latitude
+//        selectedEntry["longitude"] = currentLocation.coordinate.longitude
         
         if segueFromController == "JournalDetailViewController" {
             backOutlet.setTitle(" Entry", for: .normal)
             navigationTitle.title = "EDIT ENTRY"
             thoughtTextView.text = (selectedEntry["textEntry"] as! String)
+            LocationSearchButton.setTitle((selectedEntry["location"] as! String), for: UIControl.State.normal)
             titleText.text = (selectedEntry["title"] as! String)
             //country.text = (selectedEntry["country"] as! String)
             datePicker.date = (selectedEntry["date"] as! Date)
@@ -231,12 +246,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
                 backOutlet.setTitle(" Map", for: .normal)
             }
         }
-
-        
-    
         
     }
-    
-    
-
 }

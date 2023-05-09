@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlanNewViewController: UIViewController {
+class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPositioningDelegate {
     
     //Variables
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
@@ -17,6 +17,7 @@ class PlanNewViewController: UIViewController {
     
     //IBOutlets
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var CitySearchBar: UISearchBar!
     
@@ -50,12 +51,17 @@ class PlanNewViewController: UIViewController {
         }
     }
     
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         accomPicker.delegate = self
         accomPicker.dataSource = self
+        navigationBar.delegate = self
         
         CitySearchBar.text = selectedPlan["city"] as? String
         TransportToSearchBar.text = selectedPlan["transportToType"] as? String

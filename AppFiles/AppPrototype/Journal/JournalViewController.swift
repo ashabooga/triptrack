@@ -3,7 +3,7 @@ import CoreData
 import MapKit
 
 
-class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIBarPositioningDelegate, UINavigationBarDelegate {
     
     var titleList = [String]()
     var locationList = [String]()
@@ -14,7 +14,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var latitudeList = [Double]()
     var longitudeList = [Double]()
     
+    var subTitleList = [String]()
+    
     var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    
+    var tempLocationString = String()
     
     var hasBeenOpened = false
     var isSegueing = false
@@ -32,6 +36,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "journalToWelcome", sender: nil)
     }
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleList.count
@@ -41,7 +46,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "journalCell", for: indexPath)
         var content = UIListContentConfiguration.cell()
         content.text = titleList[indexPath.row]
-        content.secondaryText = locationList[indexPath.row]
+//        content.secondaryText = self.subTitleList[indexPath.row]
         cell.contentConfiguration = content
         return cell
     }
@@ -83,8 +88,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        print("segueing")
         isSegueing = true
         
         if segue.identifier == "toNewEntry" {
@@ -121,6 +124,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
             latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
             longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
+            
+            GeocodeAddress(requests: ["city", "country"], latitude: selectedEntry["latitude"] as! Double, longitude: selectedEntry["longitude"] as! Double) { result in
+                
+                self.subTitleList.append(result)
+            }
             
             //photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
@@ -178,10 +186,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 textEntryList.append(entry.textEntries!)
                 dataPhoto.append([entry.photoLists ?? Data()])
                 photosList.append(convertDataToImages(imageDataArray: dataPhoto[0]))
-                print(photosList)
+//                print(photosList)
                 
-                latitudeList.append(0.0)
-                longitudeList.append(0.0)
+                latitudeList.append(entry.latitudes)
+                longitudeList.append(entry.longitudes)
                 
 //                photosList.append(entry.photoLists!)
                 
@@ -271,18 +279,17 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @objc func onTerminate() {
-        print("terminating")
+//        print("terminating")
         insertToCoreData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
 //        print("disapperaing journal")
         insertToCoreData()
-        print(titleList.count)
+//        print(titleList.count)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        print("appearing journal")
         if !isSegueing {
             fetchCoreData()
         } else {
@@ -291,11 +298,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         currentLocation = locManager.location
-        
-//        print(currentLocation.coordinate.latitude)
-//        print(currentLocation.coordinate.longitude)
-        
-//        print(titleList.count)
         journalTable.reloadData()
     }
 
@@ -304,11 +306,83 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
+        navigationBar.delegate = self
         
-//        self.locationList = MapViewController.locationList
+        if titleList.count > 1 {
+            for i in Range(0...titleList.count-1) {
+                GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[i], longitude: longitudeList[i]) { result in
+                    
+                    DispatchQueue.main.sync {
+                        self.subTitleList[i] = result
+                    }
+                }
+            }
+        } else if titleList.count == 1 {
+            GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[0], longitude: longitudeList[0]) { result in
+                
+                DispatchQueue.main.sync {
+                    self.subTitleList[0] = result
+                }
+            }
+        }
+        
+        
         
     }
     
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+    
+    func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { completion($0?.first, $1) }
+    }
+    
+    func GeocodeAddress(requests: [String], latitude: Double, longitude: Double, completion: @escaping (String) -> Void) {
+        geocode(latitude: latitude, longitude: longitude) { placemark, error in
+            guard let placemark = placemark, error == nil else {
+                completion("") // Call completion with empty string if there was an error
+                return
+            }
+            
+            let country = placemark.country ?? "N/A"
+            let addressName = placemark.thoroughfare ?? "N/A"
+            let city = placemark.locality ?? "N/A"
+            
+            var output = ""
+            
+            if requests.count == 0 {
+                completion("No input to call GeocodeAddress")
+            } else if requests.count == 1 {
+                if requests[0] == "city" {
+                    completion(city)
+                } else if requests[0] == "country" {
+                    completion(country)
+                } else if requests[0] == "addressName" {
+                    completion(addressName)
+                } else {
+                    completion("Incorrect input to call GeocodeAddress")
+                }
+            } else {
+                for request in requests {
+                    if request == "city" {
+                        output += city
+                    } else if request == "country" {
+                        output += country
+                    } else if request == "addressName" {
+                        output += addressName
+                    }
+                    
+                    if request != requests.last {
+                        output += ", "
+                    }
+                }
+            }
+            
+            completion(output)
+            
+        }
+    }
     
     
     
