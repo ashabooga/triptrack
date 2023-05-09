@@ -132,6 +132,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let noImage = UIImage(named: "noImage") ?? UIImage()
                 photosList.append([noImage])
             }
+            
+            if photosList.count == 2 && photosList[0].isEmpty {
+                photosList.remove(at: 0)
+            }
+            
             print("UNWIND SHOULD BE FULL")
             print(selectedEntry["photos"]!)
             
@@ -156,7 +161,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         
         journalTable.reloadData()
-        // Use data from the view controller which initiated the unwind segue
     }
     
     func fetchCoreData() {
@@ -184,12 +188,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 dataPhoto.append(entry.photoLists ?? Data())
                 print("fetching")
                 print(dataPhoto)
-                //var images: Data?
-//                for i in 0...dataPhoto.count-1{
-//                    if (i >= 1){
-//                        photosList.append(convertDataToImages(imageDataArray: dataPhoto[i]))
-//                    }
-//                }
+
                 dataPhoto.forEach { (imageData) in
                     do {
                         let dataArray = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(imageData) as? [Data] ?? []
@@ -199,13 +198,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 imageArray.append(image)
                             }
                         }
-                        if photosList[0].isEmpty {
-                            photosList = [imageArray]
+                        
+                        photosList.append(imageArray)
+                        
+                        if photosList.count == 2 && photosList[0].isEmpty {
+                            photosList.remove(at: 0)
                         }
-                        else{
-                            photosList.append(imageArray)
-                            
-                        }
+                        
                     } catch {
                         print("could not unarchive array: \(error)")
                     }
@@ -267,26 +266,26 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
 
                 //to store array of images using encoding
-                if photosList.count > 1{
-                    print("insert")
-                    print(photosList)
-                    let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
-                    print("first convert")
-                    print(photosList)
-                    print(myImagesDataArray)
-                    
-                    
-                    var images: Data?
-                    do {
-                        images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: false)
-                        // save the encoded data to Core Data
-                    } catch {
-                        print("Error encoding images array: \(error.localizedDescription)")
-                    }
-                    newEntry.photoLists = images
-                    print("binary")
-                    print(images!)
+                
+                print("insert")
+                print(photosList)
+                let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
+                print("first convert")
+                print(photosList)
+                print(myImagesDataArray)
+                
+                
+                var images: Data?
+                do {
+                    images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: false)
+                    // save the encoded data to Core Data
+                } catch {
+                    print("Error encoding images array: \(error.localizedDescription)")
                 }
+                newEntry.photoLists = images
+                print("binary")
+                print(images!)
+                
                 //            newEntry.photoLists = photosList[i]
                 //            newEntry.photoIDLists = photoIDsList[i]
                 saveCoreData()
