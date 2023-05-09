@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     let reason = "Please authenticate to proceed."
     var passcode = String()
     var appHasBeenOpened = false
-    
+    var hasLaunched = false
     
 
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
     
     
     func LoggedIn() {
-        performSegue(withIdentifier: "loginToWelcome", sender: nil)
+        performSegue(withIdentifier: "loginToMain", sender: nil)
     }
     
     

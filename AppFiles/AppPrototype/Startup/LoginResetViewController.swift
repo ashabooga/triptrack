@@ -28,11 +28,8 @@ class LoginResetViewController: UIViewController {
     }
     
     func SegueForwards() {
-        if appHasBeenOpened {
-            performSegue(withIdentifier: "loginResetToMain", sender: nil)
-        } else {
-            performSegue(withIdentifier: "loginResetToWelcome", sender: nil)
-        }
+        performSegue(withIdentifier: "loginResetToMain", sender: nil)
+
     }
     
     

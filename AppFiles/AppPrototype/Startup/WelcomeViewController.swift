@@ -21,7 +21,7 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func getStartedButton(_ sender: Any) {
         if segueFromController == "MainViewController" {
-            self.performSegue(withIdentifier: "welcomeToMain", sender: nil)
+            self.performSegue(withIdentifier: "welcomeToPassword", sender: nil)
         } else if segueFromController == "MapViewController" {
             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
         } else if segueFromController == "JournalViewController" {
