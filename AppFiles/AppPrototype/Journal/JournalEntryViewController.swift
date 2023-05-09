@@ -31,6 +31,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     var selectedPlace = Place(name: "", id: "")
     var selectedLocation = CLLocationCoordinate2D()
     
+    var wasDeleted = false
+    
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
     
@@ -54,21 +56,54 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     @IBAction func backAndSave(_ sender: Any) {
+        
+        var errorMessage = ""
+        
+        if (titleText.text == "") {
+            errorMessage = "Please fill title field OR delete entry."
+        }
+        if (LocationSearchButton.titleLabel?.text == " Location Search") {
+            if errorMessage != "" {
+                errorMessage = "Please fill title and location fields OR delete entry."
+            } else {
+                errorMessage = "Please fill location field OR delete entry."
+            }
+        }
+        
+        let alert = UIAlertController(title: "Fields Left Empty", message: errorMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete Entry", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.wasDeleted = true
+            if self.segueFromController == "JournalViewController" {
+                self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
+            }
+            else if self.segueFromController == "MapViewController" {
+                self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+             }
+            else if self.segueFromController == "JournalDetailViewController" {
+                self.performSegue(withIdentifier: "unwindToDetail", sender: nil)
+            }
+        }))
+
+        present(alert, animated: true)
+        
+//        if alert.
+        
+        
         selectedEntry["title"] = titleText.text
-//        selectedEntry["location"] = "LOCATION"
         selectedEntry["date"] = datePicker.date
         selectedEntry["textEntry"] = thoughtTextView.text
         selectedEntry["photos"] = imageList
         selectedEntry["location"] = selectedPlace.name
         selectedEntry["latitude"] = selectedLocation.latitude
         selectedEntry["longitude"] = selectedLocation.longitude
-        if segueFromController == "JournalViewController"{
+        if segueFromController == "JournalViewController" {
             self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
         }
-        else if segueFromController == "MapViewController"{
+        else if segueFromController == "MapViewController" {
             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
          }
-        else if segueFromController == "JournalDetailViewController"{
+        else if segueFromController == "JournalDetailViewController" {
             self.performSegue(withIdentifier: "unwindToDetail", sender: nil)
         }
     }
@@ -116,14 +151,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
                     return
                 }
                 
-                
-                //for i in 0..<self.imageList.count {
-                    //for j in i+1..<self.imageList.count {
-                        //if self.imageList[i] != self.imageList[j] {
-                            self.imageList.append(image)
-                        //}
-                    //}
-                //}
+                self.imageList.append(image)
                 
                 
                 dispatchGroup.leave()  // Notify the group that the task is done
