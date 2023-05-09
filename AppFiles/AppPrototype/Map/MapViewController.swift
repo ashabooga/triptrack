@@ -20,7 +20,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var tempLatitude = Double()
     var tempLongitude = Double()
-    
+    let defaults = UserDefaults.standard
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
@@ -436,6 +436,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if defaults.bool(forKey: "hasLaunchedBefore") {
+
+        } else {
+            // App is running for the first time
+            defaults.set(true, forKey: "hasLaunchedBefore")
+            //performSegue(withIdentifier: "welcome", sender: nil) change this to whatever the id is for the segue
+        }
         navigationBar.delegate = self
         
         let oLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.handleLongTapGesture(gestureRecognizer:)))

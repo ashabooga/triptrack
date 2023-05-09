@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
-                                <rect key="frame" x="-3" y="56" width="378" height="56"/>
+                                <rect key="frame" x="-3" y="0.0" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="PLAN" style="editor" id="nK6-6i-z7d">
@@ -54,7 +54,7 @@
                                 </connections>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-vQ-r4w">
-                                <rect key="frame" x="0.0" y="112" width="375" height="594"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="Spb-jq-ZAM">
@@ -1081,7 +1081,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
-                                <rect key="frame" x="-1" y="56" width="378" height="56"/>
+                                <rect key="frame" x="-1" y="0.0" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="MAP" style="editor" id="d48-Hr-NFH">
@@ -1181,6 +1181,7 @@
                     <connections>
                         <outlet property="PasscodeFieldOne" destination="F9L-ig-d8E" id="qYu-cp-nv5"/>
                         <outlet property="PasscodeFieldTwo" destination="QhD-xn-lXa" id="lGm-wt-tND"/>
+                        <outlet property="resetButton" destination="Fmo-Qt-c1h" id="UwT-zS-DNa"/>
                         <segue destination="ZfQ-Za-EPO" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="PWE-cu-If7"/>
                         <segue destination="66H-kc-LNV" kind="show" identifier="loginResetToMain" id="2cM-U7-6c1"/>
                     </connections>
@@ -1188,7 +1189,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUQ-G9-LgS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ZfQ-Za-EPO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3609" y="1354"/>
+            <point key="canvasLocation" x="-3610.4000000000001" y="1353.6945812807883"/>
         </scene>
         <!--WelcomeViewController-->
         <scene sceneID="2j1-xK-eHp">
@@ -1398,7 +1399,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SbM-3n-AkB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pl1-QB-0bk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1432,10 +1433,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2cM-U7-6c1"/>
-        <segue reference="bAe-9t-sel"/>
-        <segue reference="wh6-Jk-Tl8"/>
-        <segue reference="PYB-d7-Xe9"/>
-        <segue reference="7Wl-7A-B6Z"/>
+        <segue reference="4aQ-Sg-qp6"/>
+        <segue reference="upQ-Qe-19b"/>
+        <segue reference="i8X-wi-8dM"/>
+        <segue reference="rn6-4b-dVD"/>
         <segue reference="DEm-si-Bhg"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -22,6 +22,7 @@ class WelcomeViewController: UIViewController {
     @IBAction func getStartedButton(_ sender: Any) {
         if segueFromController == "MainViewController" {
             self.performSegue(withIdentifier: "welcomeToPassword", sender: nil)
+            
         } else if segueFromController == "MapViewController" {
             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
         } else if segueFromController == "JournalViewController" {
@@ -35,6 +36,11 @@ class WelcomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         getStartedButton.titleLabel?.text = buttonContent
+        if segue.identifier == "welcomeToPassword" {
+            let LoginResetViewController = segue.destination as! LoginResetViewController
+            LoginResetViewController.segueFromController = "WelcomeViewController"
+
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

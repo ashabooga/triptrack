@@ -14,13 +14,24 @@ class LoginResetViewController: UIViewController {
     var error: NSError? = nil
     let reason = "Please authenticate to proceed."
     var appHasBeenOpened = false
+    var segueFromController : String!
     
     @IBOutlet weak var PasscodeFieldOne: UITextField!
     @IBOutlet weak var PasscodeFieldTwo: UITextField!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         navigationItem.setLeftBarButton(UIBarButtonItem (barButtonSystemItem: .cancel, target: self, action: #selector (UnwindReset)), animated: false)
+        
+        
+        if segueFromController == "WelcomeViewController" {
+            resetButton.setTitle(" Create Password", for: .normal)
+        }
     }
     
     @objc func UnwindReset() {
@@ -33,6 +44,7 @@ class LoginResetViewController: UIViewController {
     }
     
     
+    @IBOutlet weak var resetButton: UIButton!
     
     @IBAction func ResetPasscodeButton(_ sender: Any) {
         

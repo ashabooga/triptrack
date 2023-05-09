@@ -26,7 +26,7 @@ class SplashViewController: UIViewController {
             //performSegue(withIdentifier: "splashToLogin", sender: nil)
         } else {
             // App is running for the first time
-            defaults.set(true, forKey: "hasLaunchedBefore")
+            //defaults.set(true, forKey: "hasLaunchedBefore")
             segueCont = "splashToWelcome"
             //performSegue(withIdentifier: "welcome", sender: nil) change this to whatever the id is for the segue
         }
