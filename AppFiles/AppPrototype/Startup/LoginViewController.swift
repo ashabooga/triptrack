@@ -15,22 +15,19 @@ class LoginViewController: UIViewController {
     var error: NSError? = nil
     let reason = "Please authenticate to proceed."
     var passcode = String()
-    var appHasBeenOpened = false
-    var hasLaunched = false
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if appHasBeenOpened {
-            getPasscode()
-        }
+        getPasscode()
     }
     
     @IBOutlet weak var FaceIDButton: UIButton!
     
     @IBOutlet weak var PasscodeFieldText: UITextField!
-    @IBAction func PasscodeFieldText(_ sender: Any) {
+    
+    @IBAction func LoginPasscodeButton(_ sender: Any) {
         if PasscodeFieldText.text == passcode {
             LoggedIn()
         } else {
@@ -71,18 +68,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginToReset" {
-            let NavigationController = segue.destination as! UINavigationController
-            let LoginResetViewController = NavigationController.topViewController as! LoginResetViewController
-            
-            LoginResetViewController.appHasBeenOpened = self.appHasBeenOpened
-        }
-    }
-    
-    @IBAction func unwindToLogin(_ unwindSegue: UIStoryboardSegue) {
-    }
-    
     func savePasscode(passcode: String) {
         do {
             try KeychainManager.save(service: "Trip Track", account: "localUser", password: passcode.data(using: .utf8) ?? Data())
@@ -100,9 +85,6 @@ class LoginViewController: UIViewController {
         } catch {
             print("Failed to read passcode")
         }
-        
-        
-        
     }
 
 }
@@ -112,6 +94,7 @@ class KeychainManager {
     enum KeychainError: Error {
         case duplicateEntry
         case unknown(OSStatus)
+        case noPasscode
     }
     
     static func save(service: String, account: String, password: Data) throws {
@@ -140,5 +123,20 @@ class KeychainManager {
         print(status)
         
         return result as? Data
+    }
+    
+    static func update(service: String, account: String, password: Data) throws {
+            
+        let query: [String: AnyObject] = [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: service as AnyObject]
+        
+        let attributes: [String: AnyObject] = [kSecAttrAccount as String: account as AnyObject, kSecValueData as String: password as AnyObject]
+        
+        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        guard status != errSecItemNotFound else { throw KeychainError.noPasscode
+            
+        }
+        guard status == errSecSuccess else { throw KeychainError.unknown(status)
+        }
+        print("Updated")
     }
 }

@@ -39,6 +39,7 @@ class LoginResetViewController: UIViewController {
     }
     
     func SegueForwards() {
+        updatePasscode(passcode: PasscodeFieldOne.text!)
         performSegue(withIdentifier: "loginResetToMain", sender: nil)
 
     }
@@ -75,6 +76,15 @@ class LoginResetViewController: UIViewController {
             let alert = UIAlertController(title: "Passcodes don't match.", message: "Please re-enter matching passcodes.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
             present(alert, animated: true)
+        }
+    }
+    
+    
+    func updatePasscode(passcode: String) {
+        do {
+            try KeychainManager.update(service: "Trip Track", account: "localUser", password: passcode.data(using: .utf8) ?? Data())
+        } catch {
+            print(error)
         }
     }
 }

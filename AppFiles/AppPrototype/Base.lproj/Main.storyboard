@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FnD-Fw-uTJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FnD-Fw-uTJ">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,7 +15,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BcE-8j-vTG" customClass="PlanViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WTe-lE-q9Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MP-19-gQD">
@@ -54,7 +55,7 @@
                                 </connections>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-vQ-r4w">
-                                <rect key="frame" x="0.0" y="56" width="375" height="650"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="697"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="Spb-jq-ZAM">
@@ -106,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiX-6e-m9v">
-                                <rect key="frame" x="2" y="47" width="372" height="44"/>
+                                <rect key="frame" x="2" y="0.0" width="372" height="44"/>
                                 <items>
                                     <navigationItem title="PLAN DETAILS" id="ofo-5B-Kdf">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="bb6-sa-fVL">
@@ -138,7 +139,7 @@
                                 </connections>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bn1-0J-LpS">
-                                <rect key="frame" x="0.0" y="124" width="375" height="654"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="735"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayW-Zk-Pkf">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -446,7 +447,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6Y-4J-LKo">
-                                <rect key="frame" x="0.0" y="47" width="377" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="377" height="44"/>
                                 <items>
                                     <navigationItem title="NEW PLAN" id="a5T-a1-OD2">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="T9b-rL-Qjh">
@@ -467,7 +468,7 @@
                                 </connections>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO9-sG-wmy">
-                                <rect key="frame" x="0.0" y="91" width="377" height="753"/>
+                                <rect key="frame" x="0.0" y="44" width="377" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tir-pe-cum">
                                         <rect key="frame" x="0.0" y="0.0" width="377" height="1475"/>
@@ -485,34 +486,34 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpi-UT-Kfn">
-                                                <rect key="frame" x="13" y="173.33333333333331" width="63" height="15.666666666666657"/>
+                                                <rect key="frame" x="13" y="175" width="63" height="15.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1b-3F-Zv5">
-                                                <rect key="frame" x="13" y="299.33333333333331" width="84" height="15.666666666666686"/>
+                                                <rect key="frame" x="13" y="302.66666666666669" width="84" height="15.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBa-6a-Scb">
-                                                <rect key="frame" x="11" y="446.33333333333337" width="104" height="15.666666666666686"/>
+                                                <rect key="frame" x="11" y="451.33333333333331" width="104" height="15.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accomodation Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0n-nH-oK5">
-                                                <rect key="frame" x="11" y="637.33333333333337" width="141" height="15.666666666666629"/>
+                                                <rect key="frame" x="11" y="644" width="141" height="15.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6uE-tI-5Sp">
-                                                <rect key="frame" x="11" y="130" width="222" height="34.333333333333343"/>
+                                                <rect key="frame" x="11" y="130" width="222" height="36"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-ee-mv0">
-                                                <rect key="frame" x="11" y="387" width="218" height="34.333333333333314"/>
+                                                <rect key="frame" x="11" y="390.33333333333331" width="218" height="36"/>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WSD-lQ-svM">
                                                 <rect key="frame" x="13" y="779" width="218" height="34"/>
@@ -537,7 +538,7 @@
                                                 </connections>
                                             </searchBar>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="f5h-KN-WeE">
-                                                <rect key="frame" x="7" y="468" width="361" height="56"/>
+                                                <rect key="frame" x="7" y="473" width="361" height="56"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="2d8-rd-KIl" id="DxV-aK-icM"/>
@@ -551,19 +552,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSPORT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeE-Ov-eSj">
-                                                <rect key="frame" x="11" y="270.33333333333331" width="103" height="21"/>
+                                                <rect key="frame" x="11" y="273.66666666666669" width="103" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOMODATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1D-NM-ske">
-                                                <rect key="frame" x="11" y="607.33333333333337" width="139" height="21"/>
+                                                <rect key="frame" x="11" y="614" width="139" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lFi-Li-TdA">
-                                                <rect key="frame" x="11" y="534" width="220" height="34.333333333333371"/>
+                                                <rect key="frame" x="11" y="539" width="220" height="36"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ACTIVITIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxh-b5-a6E">
                                                 <rect key="frame" x="16" y="904" width="103" height="21"/>
@@ -581,14 +582,14 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HDa-9C-NMO">
-                                                <rect key="frame" x="8" y="321" width="362" height="56"/>
+                                                <rect key="frame" x="8" y="324.33333333333331" width="362" height="56"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="2d8-rd-KIl" id="52m-ri-oxf"/>
                                                 </connections>
                                             </searchBar>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jr8-AO-Kaj">
-                                                <rect key="frame" x="14" y="197" width="219" height="34.333333333333343"/>
+                                                <rect key="frame" x="14" y="198.66666666666666" width="219" height="36"/>
                                             </datePicker>
                                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TzC-xp-MYY">
                                                 <rect key="frame" x="11" y="607" width="349" height="161"/>
@@ -698,11 +699,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="8Bf-HS-3Fo" customClass="JournalViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vnN-1i-tAn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tqL-wx-4bs">
-                                <rect key="frame" x="0.0" y="36" width="375" height="670"/>
+                                <rect key="frame" x="0.0" y="83" width="375" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="670" id="pXn-tg-c7w"/>
@@ -723,7 +724,7 @@
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Dl-v2g">
-                                <rect key="frame" x="-3" y="-20" width="378" height="56"/>
+                                <rect key="frame" x="-3" y="27" width="378" height="56"/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL" style="editor" id="YNr-i6-lWL">
@@ -913,7 +914,7 @@
             <objects>
                 <viewController title="SearchViewController" id="qX1-Wc-rYk" customClass="SearchViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CzP-yL-QHv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="EXm-LZ-6hZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -937,7 +938,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkL-cD-nnc">
-                                <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="JOURNAL ENTRY" style="editor" id="Mhr-zt-c0C">
@@ -1077,7 +1078,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="XmX-zB-tTf" customClass="MapViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJM-4n-gUb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-vo-405">
@@ -1147,9 +1148,9 @@
         <!--LoginResetViewController-->
         <scene sceneID="J8P-RE-ESE">
             <objects>
-                <viewController title="LoginResetViewController" id="nGL-4j-dBV" customClass="LoginResetViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LoginResetViewController" modalPresentationStyle="fullScreen" id="nGL-4j-dBV" customClass="LoginResetViewController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mfQ-HK-li5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmo-Qt-c1h">
@@ -1183,7 +1184,7 @@
                         <outlet property="PasscodeFieldTwo" destination="QhD-xn-lXa" id="lGm-wt-tND"/>
                         <outlet property="resetButton" destination="Fmo-Qt-c1h" id="UwT-zS-DNa"/>
                         <segue destination="ZfQ-Za-EPO" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="PWE-cu-If7"/>
-                        <segue destination="66H-kc-LNV" kind="show" identifier="loginResetToMain" id="2cM-U7-6c1"/>
+                        <segue destination="66H-kc-LNV" kind="showDetail" identifier="loginResetToMain" id="2cM-U7-6c1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUQ-G9-LgS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1277,7 +1278,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99g-h4-G5V">
-                                <rect key="frame" x="111" y="321" width="153" height="34.333333333333314"/>
+                                <rect key="frame" x="111" y="274" width="153" height="78"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="faceid" catalog="system" title=" Face ID"/>
                                 <connections>
@@ -1285,18 +1286,15 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lc7-wy-zY6">
-                                <rect key="frame" x="111" y="409.33333333333331" width="153" height="34"/>
+                                <rect key="frame" x="111" y="406" width="153" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ouw-08-Ppx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="PasscodeFieldText:" destination="Fvm-cw-SH2" eventType="editingDidEnd" id="Qeg-pi-5nH"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPj-hE-s4x">
-                                <rect key="frame" x="92" y="466.33333333333331" width="153" height="28"/>
+                                <rect key="frame" x="92" y="463" width="153" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="PwQ-xT-Bz3"/>
                                 </constraints>
@@ -1306,6 +1304,15 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="ResetPasscodeButton:" destination="Fvm-cw-SH2" eventType="touchUpInside" id="n9e-cP-cDP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPK-ZW-8Ha">
+                                <rect key="frame" x="272" y="405" width="51" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Go"/>
+                                <connections>
+                                    <action selector="LoginPasscodeButton:" destination="Fvm-cw-SH2" eventType="touchUpInside" id="5JF-4k-2pT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1399,7 +1406,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SbM-3n-AkB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pl1-QB-0bk">
-                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
