@@ -1,4 +1,5 @@
 import CoreLocation
+import CoreData
 import UIKit
 import MapKit
 
@@ -74,6 +75,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let noImage = UIImage(named: "noImage") ?? UIImage()
                 photosList.append([noImage])
             }
+            
+            if titleList.count > 0 {
+                while photosList[0].isEmpty {
+                    photosList.remove(at: 0)
+                }
+            }
+            
             
             
         } else if unwindSegue.source is JournalDetailViewController {
@@ -226,6 +234,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             selectedEntry["photos"] = photosList[indexPat]
 //            selectedEntry["photoIDs"] = photoIDsList[indexPat]
             
+            
+            
             JournalDetailViewController.selectedEntry = self.selectedEntry
             print(self.selectedEntry)
             JournalDetailViewController.segueFromController = "MapViewController"
@@ -256,9 +266,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationList = []
             dateList = []
             textEntryList = []
-            photosList = [[]]
+            photosList = []
             latitudeList = []
             longitudeList = []
+            photosList = [[]]
+            
+            var dataPhoto = [Data]()
             
             for entry in managedJournal {
                 
@@ -266,17 +279,56 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 locationList.append(entry.locationNames!)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
-                photosList.append([UIImage(named: "noImage")!])
+                dataPhoto.append(entry.photoLists ?? Data())
                 latitudeList.append(entry.latitudes)
                 longitudeList.append(entry.longitudes)
-                
-//                photosList.append(entry.photoLists!)
+
+                dataPhoto.forEach { (imageData) in
+                    do {
+                        let dataArray = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(imageData) as? [Data] ?? []
+                        var imageArray: [UIImage] = []
+                        for data in dataArray {
+                            if let image = UIImage(data: data) {
+                                imageArray.append(image)
+                            }
+                        }
+                        
+                        photosList.append(imageArray)
+                        
+                        if titleList.count > 0 {
+                            while photosList[0].isEmpty {
+                                photosList.remove(at: 0)
+                            }
+                        }
+                        
+                        
+                        
+                        
+                    } catch {
+                        print("could not unarchive array: \(error)")
+                    }
+                }
                 
             }
-            print(titleList)
             
         } catch {
             print("Couldn't fetch core data")
+        }
+    }
+    
+    func deleteCoreData() {
+        // create the delete request for the specified entity
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Journal.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        // get reference to the persistent container
+        let persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+
+        // perform the delete
+        do {
+            try persistentContainer.viewContext.execute(deleteRequest)
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
@@ -289,12 +341,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func insertToCoreData() {
-        let coreDataResults = try! self.context.fetch(Journal.fetchRequest())
-        
-        for coreDataResult in coreDataResults {
-            self.context.delete(coreDataResult)
-            saveCoreData()
-        }
+        deleteCoreData()
         
         if titleList.count > 0 {
             
@@ -308,15 +355,51 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 newEntry.dates = dateList[i]
                 newEntry.textEntries = textEntryList[i]
                 
+
+                //to store array of images using encoding
+                
+                print("insert")
+                print(photosList)
+                let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
+                print("first convert")
+                print(photosList)
+                print(myImagesDataArray)
+                
+                
+                var images: Data?
+                do {
+                    images = try NSKeyedArchiver.archivedData(withRootObject: myImagesDataArray, requiringSecureCoding: false)
+                    // save the encoded data to Core Data
+                } catch {
+                    print("Error encoding images array: \(error.localizedDescription)")
+                }
+                newEntry.photoLists = images
+//                print("binary")
+//                print(images!)
+                
                 //            newEntry.photoLists = photosList[i]
                 //            newEntry.photoIDLists = photoIDsList[i]
                 saveCoreData()
-                
             }
-        
-            
-        
         }
+    }
+    
+    
+    func convertImageToData(myImagesArray: [UIImage]) -> [Data] {
+        var dataArray = [Data]()
+        for image in myImagesArray {
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                dataArray.append(imageData)
+            }
+        }
+      return dataArray
+    }
+    
+    
+    func convertDataToImages(imageDataArray: [Data]) -> [UIImage] {
+      var myImagesArray = [UIImage]()
+        imageDataArray.forEach({ (dataImage) in myImagesArray.append(UIImage(data: dataImage) ?? UIImage(named: "noImage")!)})
+      return myImagesArray
     }
     
     override func viewWillDisappear(_ animated: Bool) {

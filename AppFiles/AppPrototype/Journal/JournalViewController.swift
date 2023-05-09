@@ -133,8 +133,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 photosList.append([noImage])
             }
             
-            if photosList.count == 2 && photosList[0].isEmpty {
-                photosList.remove(at: 0)
+            if titleList.count > 0 {
+                while photosList[0].isEmpty {
+                    photosList.remove(at: 0)
+                }
             }
             
             print("UNWIND SHOULD BE FULL")
@@ -201,9 +203,17 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                         
                         photosList.append(imageArray)
                         
-                        if photosList.count == 2 && photosList[0].isEmpty {
-                            photosList.remove(at: 0)
+                        if titleList.count > 0 {
+                            print("HERE ___----------")
+                            print(photosList)
+                            print("--------")
+                            while photosList[0].isEmpty {
+                                photosList.remove(at: 0)
+                            }
                         }
+                        
+                        
+                        
                         
                     } catch {
                         print("could not unarchive array: \(error)")
