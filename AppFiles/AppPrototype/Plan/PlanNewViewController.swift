@@ -21,7 +21,7 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     var cityPlace = Place(name: "", id: "")
     var transportToPlace = Place(name: "", id: "")
     var transportFromPlace = Place(name: "", id: "")
-    
+    var isDeleted = false
     //IBOutlets
     
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -65,16 +65,20 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
         alert.addAction(UIAlertAction(title: "Delete Entry", style: .destructive, handler: { [self] (action: UIAlertAction!) in
             if self.segueFromController == "PlanViewController" {
                 performSegue(withIdentifier: "unwindToPlan", sender: nil)
+                
             } else if segueFromController == "PlanDetailViewController" {
                 performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
             }
         }))
         if errorMessage != "" {
+            isDeleted = true
             present(alert, animated: true)
             
         }
         else {
+            
             if self.segueFromController == "PlanViewController" {
+                
                 performSegue(withIdentifier: "unwindToPlan", sender: nil)
             } else if segueFromController == "PlanDetailViewController" {
                 performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
@@ -153,16 +157,21 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        selectedPlan["city"] = cityPlace.name
-        selectedPlan["startDate"] = StartDatePicker.date
-        selectedPlan["endDate"] = EndDatePicker.date
-        selectedPlan["transportToType"] = transportToPlace.name
-        selectedPlan["transportToDateTime"] = TransportToDatePicker.date
-        // Add time functionality
-        selectedPlan["transportFromType"] = transportFromPlace.name
-        selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
-        selectedPlan["activitiesTextEntry"] = ActivityTextField.text
+        if isDeleted == false {
+            selectedPlan["city"] = cityPlace.name
+            selectedPlan["startDate"] = StartDatePicker.date
+            selectedPlan["endDate"] = EndDatePicker.date
+            selectedPlan["transportToType"] = transportToPlace.name
+            selectedPlan["transportToDateTime"] = TransportToDatePicker.date
+            // Add time functionality
+            selectedPlan["transportFromType"] = transportFromPlace.name
+            selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
+            selectedPlan["activitiesTextEntry"] = ActivityTextField.text
+        }
+        if let PlanDetailViewController = segue.destination as? PlanDetailViewController {
+            PlanDetailViewController.isDeleted = self.isDeleted
+            
+        }
         if segue.identifier == "planToSearch" {
             let NavigationController = segue.destination as! UINavigationController
             let SearchViewController = NavigationController.topViewController as! SearchViewController

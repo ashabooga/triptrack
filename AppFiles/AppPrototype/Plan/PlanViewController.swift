@@ -110,11 +110,12 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             //if !(plans.count == 1 && plans[0]["city"] as? String == "")  {
               //  plans.remove(at: 0)
             //}
+  
             if plans.count == 1 && plans[0]["city"] as! String == ""{
                 plans.remove(at:0)
                 plans.append(selectedPlan)
             }
-            else {
+            else if selectedPlan["city"] as! String != ""{
                 plans.append(selectedPlan)
             }
             PlanNewViewController.isNewPlan = false
@@ -124,9 +125,15 @@ class PlanViewController: UIViewController, UITableViewDelegate, UITableViewData
             let PlanDetailViewController = unwindSegue.source as! PlanDetailViewController
 //            print(PlanDetailViewController.selectedPlan)
             self.selectedPlan = PlanDetailViewController.selectedPlan
-            let ID = selectedPlan["ID"] as! Int
-            
-            plans[ID] = selectedPlan
+            if selectedPlan["city"] as! String == ""{
+                
+            }
+            else{
+                let ID = selectedPlan["ID"] as! Int
+                
+                plans[ID] = selectedPlan
+                
+            }
         }
         
         planTable.reloadData()

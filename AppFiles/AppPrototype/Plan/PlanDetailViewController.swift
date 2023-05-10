@@ -10,7 +10,7 @@ import UIKit
 class PlanDetailViewController: UIViewController, UIBarPositioningDelegate, UINavigationBarDelegate {
     
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
-    
+    var isDeleted = false
     @IBOutlet weak var navigationBar: UINavigationBar!
     let dateFormatter = DateFormatter()
     @IBOutlet weak var CityLabel: UILabel!
@@ -41,10 +41,14 @@ class PlanDetailViewController: UIViewController, UIBarPositioningDelegate, UINa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "planDetailToEdit" {
             let PlanNewViewController = segue.destination as! PlanNewViewController
-            
-            PlanNewViewController.selectedPlan = self.selectedPlan
-            PlanNewViewController.isNewPlan = false
-            PlanNewViewController.segueFromController = "PlanDetailViewController"
+            PlanNewViewController.isDeleted = self.isDeleted
+            print("de")
+            print(isDeleted)
+            if !isDeleted{
+                PlanNewViewController.selectedPlan = self.selectedPlan
+                PlanNewViewController.isNewPlan = false
+                PlanNewViewController.segueFromController = "PlanDetailViewController"
+            }
         }
     }
     
