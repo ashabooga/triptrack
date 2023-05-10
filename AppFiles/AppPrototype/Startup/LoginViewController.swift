@@ -68,15 +68,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func savePasscode(passcode: String) {
-        do {
-            try KeychainManager.save(service: "Trip Track", account: "localUser", password: passcode.data(using: .utf8) ?? Data())
-        } catch {
-            print(error)
-        }
-    }
-    
-    func getPasscode(){
+    func getPasscode() {
         do {
             let data = (try KeychainManager.get(service: "Trip Track", account: "localUser"))!
             let keychainPasscode = String(decoding: data, as: UTF8.self)

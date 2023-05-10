@@ -39,7 +39,12 @@ class LoginResetViewController: UIViewController {
     }
     
     func SegueForwards() {
-        updatePasscode(passcode: PasscodeFieldOne.text!)
+        if appHasBeenOpened {
+            updatePasscode(passcode: PasscodeFieldOne.text!)
+        } else {
+            savePasscode(passcode: PasscodeFieldOne.text!)
+        }
+        
         performSegue(withIdentifier: "loginResetToMain", sender: nil)
 
     }
@@ -83,6 +88,14 @@ class LoginResetViewController: UIViewController {
     func updatePasscode(passcode: String) {
         do {
             try KeychainManager.update(service: "Trip Track", account: "localUser", password: passcode.data(using: .utf8) ?? Data())
+        } catch {
+            print(error)
+        }
+    }
+    
+    func savePasscode(passcode: String) {
+        do {
+            try KeychainManager.save(service: "Trip Track", account: "localUser", password: passcode.data(using: .utf8) ?? Data())
         } catch {
             print(error)
         }
