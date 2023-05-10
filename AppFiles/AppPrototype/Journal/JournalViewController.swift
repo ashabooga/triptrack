@@ -267,6 +267,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         } catch {
             print(error.localizedDescription)
         }
+        
     }
     
     func saveCoreData() {

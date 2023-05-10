@@ -20,8 +20,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = "Location Search"
-//        navigationController?.navigationBar
         if whichButton == "cityButton" {
             isCitySearch = true
         }
@@ -29,7 +27,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
             isCitySearch = false
         }
         view.addSubview(mapView)
-        searchVC.searchBar.backgroundColor = .systemGray2
+        searchVC.searchBar.backgroundColor = .white
         searchVC.searchResultsUpdater = self
         navigationItem.searchController = searchVC
     }
@@ -68,12 +66,59 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
     
     @objc func GoBack() {
-        if segueFromController == "JournalEntryViewController"{
-            performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
-            
+        if isCitySearch {
+            GeocodeAddress(requests: ["city", "country"], latitude: selectedLocation.latitude, longitude: selectedLocation.longitude) { result in
+                self.selectedPlace = Place(name: result[0] + ", " + result[1], id: self.selectedPlace.id)
+                
+                if self.segueFromController == "JournalEntryViewController" {
+                    self.performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
+                    
+                } else if self.segueFromController == "PlanEntryViewController" {
+                    self.performSegue(withIdentifier: "unwindToPlanEntry", sender: nil)
+                }
+            }
         }
-        else if segueFromController == "PlanEntryViewController"{
-            performSegue(withIdentifier: "unwindToPlanEntry", sender: nil)
+    }
+    
+    func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { completion($0?.first, $1) }
+    }
+    
+    func GeocodeAddress(requests: [String], latitude: Double, longitude: Double, completion: @escaping ([String]) -> Void) {
+        geocode(latitude: latitude, longitude: longitude) { placemark, error in
+            guard let placemark = placemark, error == nil else {
+                completion([]) // Call completion with empty string if there was an error
+                return
+            }
+            
+            let country = placemark.country ?? "N/A"
+            let addressName = placemark.thoroughfare ?? "N/A"
+            let city = placemark.locality ?? "N/A"
+            
+            var output: [String] = []
+            
+            if requests.count == 1 {
+                if requests[0] == "city" {
+                    output.append(city)
+                } else if requests[0] == "country" {
+                    output.append(country)
+                } else if requests[0] == "addressName" {
+                    output.append(addressName)
+                }
+            } else {
+                for request in requests {
+                    if request == "city" {
+                        output.append(city)
+                    } else if request == "country" {
+                        output.append(country)
+                    } else if request == "addressName" {
+                        output.append(addressName)
+                    }
+                }
+            }
+            
+            completion(output)
+            
         }
     }
 

@@ -32,7 +32,7 @@ final class GooglePlacesManager {
     public func findPlaces(query: String, completion: @escaping (Result<[Place], Error>) -> Void) {
         
         let filter = GMSAutocompleteFilter()
-
+        
         
         client.findAutocompletePredictions(fromQuery: query, filter: filter, sessionToken: nil, callback: { (results, error) in
             if error != nil {
