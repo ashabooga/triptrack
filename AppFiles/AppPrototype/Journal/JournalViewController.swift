@@ -352,23 +352,23 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
         navigationBar.delegate = self
         
-        if titleList.count > 1 {
-            for i in Range(0...titleList.count-1) {
-                GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[i], longitude: longitudeList[i]) { result in
-                    
-                    DispatchQueue.main.sync {
-                        self.subTitleList[i] = result
-                    }
-                }
-            }
-        } else if titleList.count == 1 {
-            GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[0], longitude: longitudeList[0]) { result in
-                
-                DispatchQueue.main.sync {
-                    self.subTitleList[0] = result
-                }
-            }
-        }
+//        if titleList.count > 1 {
+//            for i in Range(0...titleList.count-1) {
+//                GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[i], longitude: longitudeList[i]) { result in
+//
+//                    DispatchQueue.main.sync {
+//                        self.subTitleList[i] = result
+//                    }
+//                }
+//            }
+//        } else if titleList.count == 1 {
+//            GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[0], longitude: longitudeList[0]) { result in
+//
+//                DispatchQueue.main.sync {
+//                    self.subTitleList[0] = result
+//                }
+//            }
+//        }
         
         
         
