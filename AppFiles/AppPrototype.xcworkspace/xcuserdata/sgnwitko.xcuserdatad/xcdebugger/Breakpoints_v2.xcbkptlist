@@ -3,4 +3,22 @@
    uuid = "46770ABA-DF7E-4499-9494-152AB59DD25A"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE5D2F27-3196-416F-8321-D74B2643D594"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../var/folders/p5/n2v87bqs2213b87yf473dzk0rpmbd0/T/xcode/scm/triptrack/99a7c45465f97eb04b4cfbb6e913194d58a9c3b0/AppFiles/AppPrototype/Plan/PlanNewViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "PlanNewViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
