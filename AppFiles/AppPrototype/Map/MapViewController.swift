@@ -134,8 +134,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             firstRun = false
             
             //set CLLocationDegrees for latitide and longitude
-            let latDelta: CLLocationDegrees = 0.4
-            let lonDelta: CLLocationDegrees = 0.4
+            let latDelta: CLLocationDegrees = 0.6
+            let lonDelta: CLLocationDegrees = 0.6
             
             //setting a span defining how large area is depicted on the map
             let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)

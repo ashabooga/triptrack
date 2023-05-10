@@ -13,7 +13,8 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     //Variables
     var selectedPlan = ["ID" : Int(), "city" : String(), "startDate" : Date(), "endDate" : Date(), "transportToType" : String(), "transportToDateTime" : Date(), "transportFromType" : String(), "transportFromDateTime" : Date(), "activitesTextEntry" : String()] as [String : Any]
     var isNewPlan = false
-    var accomodationList = ["Accom1", "Accom2", "Accom3"]
+    var accomodationList = ["Hotel", "Air B&B", "Hostel", "Other", "Treehouse", "Tent", "Campervan"]
+    var transportList = ["Bus", "Coach", "Plane", "Other", "Boat", "Ferry", "Cruise", "Train", "Walk", "Crawl", "Horse", "Zipline", "Car", "Swim", "Cycle"]
     var segueFromController = String()
     var selectedLocation = CLLocationCoordinate2D()
     var selectedPlace = Place(name: "", id: "")
@@ -28,11 +29,11 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     
     @IBOutlet weak var citySearchButton: UIButton!
     
-    @IBOutlet weak var transportToButton: UIButton!
-    
-    @IBOutlet weak var transportFromButton: UIButton!
-    
     @IBOutlet weak var accomPicker: UIPickerView!
+    
+    @IBOutlet weak var transportFromPicker: UIPickerView!
+    
+    @IBOutlet weak var transportToPicker: UIPickerView!
     
     @IBOutlet weak var StartDatePicker: UIDatePicker!
     
@@ -52,7 +53,7 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     @IBAction func backAndSave(_ sender: Any) {
         var errorMessage = ""
 
-        if (citySearchButton.titleLabel?.text == " Location Search" || transportToButton.titleLabel?.text == " Location Search" || transportFromButton.titleLabel?.text == " Location Search") {
+        if (citySearchButton.titleLabel?.text == " Location Search") {
             if errorMessage != "" {
                 errorMessage = "Please fill title and location fields OR delete entry."
             } else {
@@ -88,25 +89,12 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     
     
     
+    @IBOutlet weak var cityButton: UIButton!
     @IBAction func cityButton(_ sender: Any) {
         whichButton = "cityButton"
         performSegue(withIdentifier: "planToSearch", sender: nil)
         
     }
-    
-    
-    @IBAction func transportToSearchButton(_ sender: Any) {
-        whichButton = "transportToSearchButton"
-        performSegue(withIdentifier: "planToSearch", sender: nil)
-    }
-    
-    
-    @IBAction func transportFromSearchButton(_ sender: Any) {
-        whichButton = "transportFromSearchButton"
-        performSegue(withIdentifier: "planToSearch", sender: nil)
-    }
-
-    
     
     @IBAction func unwindToPlanEntry(_ unwindSegue: UIStoryboardSegue) {
         if unwindSegue.source is SearchViewController {
@@ -118,14 +106,6 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
                 citySearchButton.setTitle(" " + selectedPlace.name, for: UIControl.State.normal)
                 cityPlace = selectedPlace
                 
-            }
-            else if whichButton == "transportToSearchButton" {
-                transportToButton.setTitle(" " + selectedPlace.name, for: .normal)
-                transportToPlace = selectedPlace
-            }
-            else if whichButton == "transportFromSearchButton" {
-                transportFromButton.setTitle(" " + selectedPlace.name, for: .normal)
-                transportFromPlace = selectedPlace
             }
         }
     }
@@ -140,6 +120,10 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
         super.viewDidLoad()
         accomPicker.delegate = self
         accomPicker.dataSource = self
+        transportToPicker.delegate = self
+        transportToPicker.dataSource = self
+        transportFromPicker.delegate = self
+        transportFromPicker.dataSource = self
         navigationBar.delegate = self
         
         // Set accom picker
@@ -147,9 +131,13 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
         EndDatePicker.date = selectedPlan["endDate"] as! Date
         TransportToDatePicker.date = selectedPlan["transportToDateTime"] as! Date
         TransportFromDatePicker.date = selectedPlan["transportFromDateTime"] as! Date
-//        CheckInDatePicker.date
-//        CheckOutDatePicker.date
         ActivityTextField.text = selectedPlan["activityTextEntry"] as? String
+        
+        if isNewPlan{
+            cityButton.titleLabel?.text = " Location Search"
+        } else {
+            cityButton.titleLabel?.text = " " + (selectedPlan["city"] as! String)
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -163,8 +151,6 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
             selectedPlan["endDate"] = EndDatePicker.date
             selectedPlan["transportToType"] = transportToPlace.name
             selectedPlan["transportToDateTime"] = TransportToDatePicker.date
-            // Add time functionality
-            selectedPlan["transportFromType"] = transportFromPlace.name
             selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
             selectedPlan["activitiesTextEntry"] = ActivityTextField.text
         }
@@ -200,11 +186,23 @@ extension PlanNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return accomodationList.count
+        if pickerView.tag == 1 {
+            return accomodationList.count
+        } else if pickerView.tag == 2 {
+            return transportList.count
+        } else {
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return accomodationList[row]
+        if pickerView.tag == 1 {
+            return accomodationList[row]
+        } else if pickerView.tag == 2 {
+            return transportList[row]
+        } else {
+            return ""
+        }
     }
 }
 

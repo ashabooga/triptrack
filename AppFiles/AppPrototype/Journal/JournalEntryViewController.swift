@@ -188,8 +188,10 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             let NavigationController = segue.destination as! UINavigationController
             let SearchViewController = NavigationController.topViewController as! SearchViewController
             
+//            print("AJSDLKAJS:LDKJ:LASKJD:LAKJSD:LKS")
             SearchViewController.selectedPlace = self.selectedPlace
             SearchViewController.selectedLocation = self.selectedLocation
+            SearchViewController.segueFromController = "JournalEntryViewController"
         }
     }
     

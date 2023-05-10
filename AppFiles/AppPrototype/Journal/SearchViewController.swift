@@ -69,13 +69,16 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         if isCitySearch {
             GeocodeAddress(requests: ["city", "country"], latitude: selectedLocation.latitude, longitude: selectedLocation.longitude) { result in
                 self.selectedPlace = Place(name: result[0] + ", " + result[1], id: self.selectedPlace.id)
-                
-                if self.segueFromController == "JournalEntryViewController" {
-                    self.performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
-                    
-                } else if self.segueFromController == "PlanEntryViewController" {
+                if self.segueFromController == "PlanEntryViewController" {
                     self.performSegue(withIdentifier: "unwindToPlanEntry", sender: nil)
                 }
+            }
+        } else {
+            if self.segueFromController == "JournalEntryViewController" {
+                self.performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
+                
+            } else if self.segueFromController == "PlanEntryViewController" {
+                self.performSegue(withIdentifier: "unwindToPlanEntry", sender: nil)
             }
         }
     }
@@ -134,6 +137,7 @@ extension SearchViewController: ResultsViewControllerDelegate {
         searchVC.searchBar.text = place.name
         
         navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector (GoBack)), animated: false)
+        print(segueFromController)
         
         let pin = MKPointAnnotation()
         pin.coordinate = coordinates
