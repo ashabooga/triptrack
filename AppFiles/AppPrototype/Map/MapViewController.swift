@@ -7,6 +7,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var titleList = [String]()
     var locationList = [String]()
+    var addressNameList = [String]()
+    var cityList = [String]()
+    var countryList = [String]()
     var dateList = [Date]()
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
@@ -24,7 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "addressName" : String(), "city" : String(), "country" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -63,12 +66,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             titleList.append(selectedEntry["title"] as? String ?? "No Title")
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
+            addressNameList.append(selectedEntry["addressName"] as? String ?? "No Address Name")
+            cityList.append(selectedEntry["city"] as? String ?? "No City Name")
+            countryList.append(selectedEntry["country"] as? String ?? "No Country Name")
             dateList.append(selectedEntry["date"] as? Date ?? Date())
             textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
             latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
             longitudeList.append(selectedEntry["longitude"] as? Double ?? 0.0)
             
-            //        photosList.append(selectedEntry["photos"] as? [UIImage] ?? [UIImage(named: "noImage")])
+
             if let selectedPhotos = selectedEntry["photos"] as? [UIImage] {
                 photosList.append(selectedPhotos)
             } else {
@@ -91,6 +97,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             titleList[id] = selectedEntry["title"] as? String ?? "No Title"
             locationList[id] = selectedEntry["location"] as? String ?? "No Location"
+            addressNameList[id] = selectedEntry["addressName"] as? String ?? "No Address Name"
+            cityList[id] = selectedEntry["city"] as? String ?? "No City Name"
+            countryList[id] = selectedEntry["country"] as? String ?? "No Country Name"
             dateList[id] = selectedEntry["date"] as? Date ?? Date()
             textEntryList[id] = selectedEntry["textEntry"] as? String ?? "No Text Entry"
             latitudeList[id] = selectedEntry["latitude"] as? Double ?? userLocation.coordinate.latitude
@@ -125,8 +134,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             firstRun = false
             
             //set CLLocationDegrees for latitide and longitude
-            let latDelta: CLLocationDegrees = 0.0025
-            let lonDelta: CLLocationDegrees = 0.0025
+            let latDelta: CLLocationDegrees = 0.4
+            let lonDelta: CLLocationDegrees = 0.4
             
             //setting a span defining how large area is depicted on the map
             let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
@@ -249,6 +258,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             selectedEntry["ID"] = indexPat
             selectedEntry["title"] = titleList[indexPat]
             selectedEntry["location"] = locationList[indexPat]
+            selectedEntry["addressName"] = addressNameList[indexPat]
+            selectedEntry["city"] = cityList[indexPat]
+            selectedEntry["country"] = countryList[indexPat]
             selectedEntry["latitude"] = latitudeList[indexPat]
             selectedEntry["longitude"] = longitudeList[indexPat]
             selectedEntry["date"] = dateList[indexPat]
@@ -259,7 +271,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             
             JournalDetailViewController.selectedEntry = self.selectedEntry
-            print(self.selectedEntry)
+//            print(self.selectedEntry)
             JournalDetailViewController.segueFromController = "MapViewController"
         } else if segue.identifier == "mapToWelcome" {
             let WelcomeViewController = segue.destination as! WelcomeViewController
@@ -268,11 +280,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let JournalEntryViewController = segue.destination as! JournalEntryViewController
             JournalEntryViewController.segueFromController = "MapViewController"
             
-            if tempLatitude != 0.0 {
-                selectedEntry["latitude"] = tempLatitude
-                selectedEntry["longitude"] = tempLongitude
-                JournalEntryViewController.selectedEntry = self.selectedEntry
-            }
+            selectedEntry["latitude"] = tempLatitude
+            selectedEntry["longitude"] = tempLongitude
+            JournalEntryViewController.selectedEntry = self.selectedEntry
             
             
         }
@@ -286,6 +296,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             titleList = []
             locationList = []
+            addressNameList = []
+            cityList = []
+            countryList = []
             dateList = []
             textEntryList = []
             photosList = []
@@ -299,6 +312,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 titleList.append(entry.titles!)
                 locationList.append(entry.locationNames!)
+                addressNameList.append(entry.addressNames!)
+                cityList.append(entry.cities!)
+                countryList.append(entry.countries!)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
                 dataPhoto.append(entry.photoLists ?? Data())
@@ -326,13 +342,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         
                         
                         
+                        
                     } catch {
                         print("could not unarchive array: \(error)")
                     }
                 }
                 
+               
+                
             }
-            
+            print(titleList.count)
         } catch {
             print("Couldn't fetch core data")
         }
@@ -372,6 +391,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 newEntry.titles = titleList[i]
                 newEntry.locationNames = locationList[i]
+                newEntry.addressNames = addressNameList[i]
+                newEntry.cities = cityList[i]
+                newEntry.countries = countryList[i]
                 newEntry.latitudes = latitudeList[i]
                 newEntry.longitudes = longitudeList[i]
                 newEntry.dates = dateList[i]
@@ -380,12 +402,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
                 //to store array of images using encoding
                 
-                print("insert")
-                print(photosList)
+//                print("insert")
+//                print(photosList)
                 let myImagesDataArray = convertImageToData(myImagesArray: photosList[i])
-                print("first convert")
-                print(photosList)
-                print(myImagesDataArray)
+//                print("first convert")
+//                print(photosList)
+//                print(myImagesDataArray)
                 
                 
                 var images: Data?

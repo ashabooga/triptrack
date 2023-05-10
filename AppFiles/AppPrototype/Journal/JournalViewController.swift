@@ -7,6 +7,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var titleList = [String]()
     var locationList = [String]()
+    var addressNameList = [String]()
+    var cityList = [String]()
+    var countryList = [String]()
     var dateList = [Date]()
     var textEntryList = [String]()
     var photosList = [[UIImage]]()
@@ -16,7 +19,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var subTitleList = [String]()
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "addressName" : String(), "city" : String(), "country" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     
     var tempLocationString = String()
     
@@ -46,7 +49,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "journalCell", for: indexPath)
         var content = UIListContentConfiguration.cell()
         content.text = titleList[indexPath.row]
-//        content.secondaryText = self.subTitleList[indexPath.row]
+        content.secondaryText = cityList[indexPath.row] + ", " + countryList[indexPath.row]
         cell.contentConfiguration = content
         return cell
     }
@@ -56,6 +59,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         selectedEntry["ID"] = indexPath.row
         selectedEntry["title"] = titleList[indexPath.row]
         selectedEntry["location"] = locationList[indexPath.row]
+        selectedEntry["addressName"] = addressNameList[indexPath.row]
+        selectedEntry["city"] = cityList[indexPath.row]
+        selectedEntry["country"] = countryList[indexPath.row]
         selectedEntry["date"] = dateList[indexPath.row]
         selectedEntry["textEntry"] = textEntryList[indexPath.row]
         selectedEntry["photos"] = photosList[indexPath.row]
@@ -74,6 +80,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         if editingStyle == .delete {
             titleList.remove(at: indexPath.row)
             locationList.remove(at: indexPath.row)
+            addressNameList.remove(at: indexPath.row)
+            cityList.remove(at: indexPath.row)
+            countryList.remove(at: indexPath.row)
             dateList.remove(at: indexPath.row)
             textEntryList.remove(at: indexPath.row)
             photosList.remove(at: indexPath.row)
@@ -120,6 +129,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             titleList.append(selectedEntry["title"] as? String ?? "No Title")
             locationList.append(selectedEntry["location"] as? String ?? "No Location")
+            addressNameList.append(selectedEntry["addressName"] as? String ?? "No Address Name")
+            cityList.append(selectedEntry["city"] as? String ?? "No City Name")
+            countryList.append(selectedEntry["country"] as? String ?? "No Country Name")
             dateList.append(selectedEntry["date"] as? Date ?? Date())
             textEntryList.append(selectedEntry["textEntry"] as? String ?? "No Text Entry")
             latitudeList.append(selectedEntry["latitude"] as? Double ?? 0.0)
@@ -150,6 +162,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             titleList[id] = selectedEntry["title"] as? String ?? "No Title"
             locationList[id] = selectedEntry["location"] as? String ?? "No Location"
+            addressNameList[id] = selectedEntry["addressName"] as? String ?? "No Address Name"
+            cityList[id] = selectedEntry["city"] as? String ?? "No City Name"
+            countryList[id] = selectedEntry["country"] as? String ?? "No Country Name"
             dateList[id] = selectedEntry["date"] as? Date ?? Date()
             textEntryList[id] = selectedEntry["textEntry"] as? String ?? "No Text Entry"
             
@@ -172,6 +187,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             titleList = []
             locationList = []
+            addressNameList = []
+            cityList = []
+            countryList = []
             dateList = []
             textEntryList = []
             photosList = []
@@ -185,6 +203,11 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 titleList.append(entry.titles!)
                 locationList.append(entry.locationNames!)
+                addressNameList.append(entry.addressNames!)
+                cityList.append(entry.cities!)
+                countryList.append(entry.countries!)
+                latitudeList.append(entry.latitudes)
+                longitudeList.append(entry.longitudes)
                 dateList.append(entry.dates!)
                 textEntryList.append(entry.textEntries!)
                 dataPhoto.append(entry.photoLists ?? Data())
@@ -222,11 +245,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("unarchived")
                 print(photosList)
                 
-                latitudeList.append(0.0)
-                longitudeList.append(0.0)
-                
-//                photosList.append(entry.photoLists!)
-                
             }
             
         } catch {
@@ -262,6 +280,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     func insertToCoreData() {
         deleteCoreData()
         
+        print("look-------------> " + String(titleList.count))
+        
         if titleList.count > 0 {
             
             for i in 0...titleList.count-1 {
@@ -269,6 +289,9 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 newEntry.titles = titleList[i]
                 newEntry.locationNames = locationList[i]
+                newEntry.addressNames = addressNameList[i]
+                newEntry.cities = cityList[i]
+                newEntry.countries = countryList[i]
                 newEntry.latitudes = latitudeList[i]
                 newEntry.longitudes = longitudeList[i]
                 newEntry.dates = dateList[i]
@@ -328,9 +351,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        print("disapperaing journal")
+        print("rIgHt HERE")
         insertToCoreData()
-//        print(titleList.count)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -351,26 +373,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onTerminate), name: UIScene.willDeactivateNotification, object: nil)
         navigationBar.delegate = self
-        
-//        if titleList.count > 1 {
-//            for i in Range(0...titleList.count-1) {
-//                GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[i], longitude: longitudeList[i]) { result in
-//
-//                    DispatchQueue.main.sync {
-//                        self.subTitleList[i] = result
-//                    }
-//                }
-//            }
-//        } else if titleList.count == 1 {
-//            GeocodeAddress(requests: ["city", "country"], latitude: latitudeList[0], longitude: longitudeList[0]) { result in
-//
-//                DispatchQueue.main.sync {
-//                    self.subTitleList[0] = result
-//                }
-//            }
-//        }
-        
-        
         
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 class JournalDetailViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate, UIBarPositioningDelegate  {
     
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "addressName" : String(), "city" : String(), "country" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
     
@@ -48,8 +48,6 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate, UINav
     
     @IBAction func backAndSave(_ sender: Any) {
         selectedEntry["title"] = titleLabel.text
-//        selectedEntry["location"] = "LOCATION"
-        //selectedEntry["date"] = dateLabel.date
         selectedEntry["textEntry"] = textEntry.text
         if segueFromController == "JournalViewController"{
             self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
@@ -59,14 +57,6 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate, UINav
             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
          }
     }
-    
-    
-    
-    
-    //func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //let page = scrollView.contentOffset.x/scrollView.frame.size.width
-      //  pageControl.currentPage = Int(page)
-    //}
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
@@ -151,17 +141,6 @@ class JournalDetailViewController: UIViewController, UIScrollViewDelegate, UINav
         scrollView.delegate = self
         scrollView.bringSubviewToFront(pageControl)
         
-
-        // Do any additional setup after loading the view.
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
