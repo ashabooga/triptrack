@@ -14,12 +14,20 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     let searchVC = UISearchController(searchResultsController: ResultsViewController())
     var selectedPlace = Place(name: "", id: "")
     var selectedLocation = CLLocationCoordinate2D()
+    var segueFromController = ""
+    var whichButton = ""
+    var isCitySearch = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        title = "Location Search"
 //        navigationController?.navigationBar
-        
+        if whichButton == "cityButton" {
+            isCitySearch = true
+        }
+        else{
+            isCitySearch = false
+        }
         view.addSubview(mapView)
         searchVC.searchBar.backgroundColor = .systemGray2
         searchVC.searchResultsUpdater = self
@@ -60,7 +68,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
     
     @objc func GoBack() {
-        performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
+        if segueFromController == "JournalEntryViewController"{
+            performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
+            
+        }
+        else if segueFromController == "PlanEntryViewController"{
+            performSegue(withIdentifier: "unwindToPlanEntry", sender: nil)
+        }
     }
 
 

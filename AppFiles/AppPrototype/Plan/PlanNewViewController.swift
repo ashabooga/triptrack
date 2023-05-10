@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPositioningDelegate {
     
@@ -14,16 +15,22 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     var isNewPlan = false
     var accomodationList = ["Accom1", "Accom2", "Accom3"]
     var segueFromController = String()
+    var selectedLocation = CLLocationCoordinate2D()
+    var selectedPlace = Place(name: "", id: "")
+    var whichButton = ""
+    var cityPlace = Place(name: "", id: "")
+    var transportToPlace = Place(name: "", id: "")
+    var transportFromPlace = Place(name: "", id: "")
     
     //IBOutlets
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
-    @IBOutlet weak var CitySearchBar: UISearchBar!
+    @IBOutlet weak var citySearchButton: UIButton!
     
-    @IBOutlet weak var TransportToSearchBar: UISearchBar!
+    @IBOutlet weak var transportToButton: UIButton!
     
-    @IBOutlet weak var TransportFromSearchBar: UISearchBar!
+    @IBOutlet weak var transportFromButton: UIButton!
     
     @IBOutlet weak var accomPicker: UIPickerView!
     
@@ -43,11 +50,79 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     
     
     @IBAction func backAndSave(_ sender: Any) {
+        var errorMessage = ""
+
+        if (citySearchButton.titleLabel?.text == " Location Search" || transportToButton.titleLabel?.text == " Location Search" || transportFromButton.titleLabel?.text == " Location Search") {
+            if errorMessage != "" {
+                errorMessage = "Please fill title and location fields OR delete entry."
+            } else {
+                errorMessage = "Please fill location field OR delete entry."
+            }
+        }
         
-        if segueFromController == "PlanViewController" {
-            performSegue(withIdentifier: "unwindToPlan", sender: nil)
-        } else if segueFromController == "PlanDetailViewController" {
-            performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
+        let alert = UIAlertController(title: "Fields Left Empty", message: errorMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete Entry", style: .destructive, handler: { [self] (action: UIAlertAction!) in
+            if self.segueFromController == "PlanViewController" {
+                performSegue(withIdentifier: "unwindToPlan", sender: nil)
+            } else if segueFromController == "PlanDetailViewController" {
+                performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
+            }
+        }))
+        if errorMessage != "" {
+            present(alert, animated: true)
+            
+        }
+        else {
+            if self.segueFromController == "PlanViewController" {
+                performSegue(withIdentifier: "unwindToPlan", sender: nil)
+            } else if segueFromController == "PlanDetailViewController" {
+                performSegue(withIdentifier: "unwindToPlanDetail", sender: nil)
+            }
+        }
+    }
+    
+    
+    
+    @IBAction func cityButton(_ sender: Any) {
+        whichButton = "cityButton"
+        performSegue(withIdentifier: "planToSearch", sender: nil)
+        
+    }
+    
+    
+    @IBAction func transportToSearchButton(_ sender: Any) {
+        whichButton = "transportToSearchButton"
+        performSegue(withIdentifier: "planToSearch", sender: nil)
+    }
+    
+    
+    @IBAction func transportFromSearchButton(_ sender: Any) {
+        whichButton = "transportFromSearchButton"
+        performSegue(withIdentifier: "planToSearch", sender: nil)
+    }
+
+    
+    
+    @IBAction func unwindToPlanEntry(_ unwindSegue: UIStoryboardSegue) {
+        if unwindSegue.source is SearchViewController {
+            let SearchViewController = unwindSegue.source as! SearchViewController
+            self.selectedPlace = SearchViewController.selectedPlace
+            self.selectedLocation = SearchViewController.selectedLocation
+            self.whichButton = SearchViewController.whichButton
+            if whichButton == "cityButton" {
+                citySearchButton.setTitle(" " + selectedPlace.name, for: UIControl.State.normal)
+                cityPlace = selectedPlace
+                
+            }
+            else if whichButton == "transportToSearchButton" {
+                transportToButton.setTitle(" " + selectedPlace.name, for: .normal)
+                transportToPlace = selectedPlace
+            }
+            else if whichButton == "transportFromSearchButton" {
+                transportFromButton.setTitle(" " + selectedPlace.name, for: .normal)
+                transportFromPlace = selectedPlace
+            }
         }
     }
     
@@ -63,9 +138,6 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
         accomPicker.dataSource = self
         navigationBar.delegate = self
         
-        CitySearchBar.text = selectedPlan["city"] as? String
-        TransportToSearchBar.text = selectedPlan["transportToType"] as? String
-        TransportFromSearchBar.text = selectedPlan["transportFromType"] as? String
         // Set accom picker
         StartDatePicker.date = selectedPlan["startDate"] as! Date
         EndDatePicker.date = selectedPlan["endDate"] as! Date
@@ -81,16 +153,24 @@ class PlanNewViewController: UIViewController, UINavigationBarDelegate, UIBarPos
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        selectedPlan["city"] = CitySearchBar.text
+
+        selectedPlan["city"] = cityPlace.name
         selectedPlan["startDate"] = StartDatePicker.date
         selectedPlan["endDate"] = EndDatePicker.date
-        selectedPlan["transportToType"] = TransportToSearchBar.text
+        selectedPlan["transportToType"] = transportToPlace.name
         selectedPlan["transportToDateTime"] = TransportToDatePicker.date
         // Add time functionality
-        selectedPlan["transportFromType"] = TransportFromSearchBar.text
+        selectedPlan["transportFromType"] = transportFromPlace.name
         selectedPlan["transportFromDateTime"] = TransportFromDatePicker.date
         selectedPlan["activitiesTextEntry"] = ActivityTextField.text
-        // Add time functionality
+        if segue.identifier == "planToSearch" {
+            let NavigationController = segue.destination as! UINavigationController
+            let SearchViewController = NavigationController.topViewController as! SearchViewController
+            SearchViewController.whichButton = whichButton
+            SearchViewController.segueFromController = "PlanEntryViewController"
+            // Add time functionality
+            
+        }
     }
     
 
