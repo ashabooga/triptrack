@@ -15,13 +15,11 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
 
-    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
+    var selectedEntry = ["ID" : Int(), "title" : String(), "location" : String(), "addressName" : String(), "city" : String(), "country" : String(), "latitude" : Double(), "longitude" : Double(), "date" : Date(), "textEntry" : String(), "photos" : [UIImage](), "photoIDs" : [String]()] as [String : Any]
     var isNewEntry = false
     
 
     var imagePicker = UIImagePickerController()
-    var selectedCountry: String?
-    var countryList = ["Algeria", "Andorra", "Angola", "India", "Thailand"]
     var currentDate = Date()
     var imageList = [UIImage]()
     var page = UIPageControl()
@@ -85,26 +83,34 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             }
         }))
 
-        present(alert, animated: true)
-        
-//        if alert.
-        
-        
-        selectedEntry["title"] = titleText.text
-        selectedEntry["date"] = datePicker.date
-        selectedEntry["textEntry"] = thoughtTextView.text
-        selectedEntry["photos"] = imageList
-        selectedEntry["location"] = selectedPlace.name
-        selectedEntry["latitude"] = selectedLocation.latitude
-        selectedEntry["longitude"] = selectedLocation.longitude
-        if segueFromController == "JournalViewController" {
-            self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
-        }
-        else if segueFromController == "MapViewController" {
-            self.performSegue(withIdentifier: "unwindToMap", sender: nil)
-         }
-        else if segueFromController == "JournalDetailViewController" {
-            self.performSegue(withIdentifier: "unwindToDetail", sender: nil)
+        if errorMessage != "" {
+            present(alert, animated: true)
+        } else {
+            selectedEntry["title"] = titleText.text
+            selectedEntry["date"] = datePicker.date
+            selectedEntry["textEntry"] = thoughtTextView.text
+            if imageList.count == 0 {
+                selectedEntry["photos"] = [UIImage(named: "noImage")]
+            } else {
+                selectedEntry["photos"] = imageList
+            }
+            selectedEntry["location"] = selectedPlace.name
+            
+            GeocodeAddress(requests: ["addressName"], latitude: selectedLocation.latitude, longitude: selectedLocation.longitude) { results in
+                self.selectedEntry["addressName"] = results
+            }
+            
+            selectedEntry["latitude"] = selectedLocation.latitude
+            selectedEntry["longitude"] = selectedLocation.longitude
+            if segueFromController == "JournalViewController" {
+                self.performSegue(withIdentifier: "unwindToJournal", sender: nil)
+            }
+            else if segueFromController == "MapViewController" {
+                self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+            }
+            else if segueFromController == "JournalDetailViewController" {
+                self.performSegue(withIdentifier: "unwindToDetail", sender: nil)
+            }
         }
     }
 
@@ -275,5 +281,56 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate, UINavig
             }
         }
         
+    }
+    
+    
+    func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { completion($0?.first, $1) }
+    }
+    
+    func GeocodeAddress(requests: [String], latitude: Double, longitude: Double, completion: @escaping (String) -> Void) {
+        geocode(latitude: latitude, longitude: longitude) { placemark, error in
+            guard let placemark = placemark, error == nil else {
+                completion("") // Call completion with empty string if there was an error
+                return
+            }
+            
+            let country = placemark.country ?? "N/A"
+            let addressName = placemark.thoroughfare ?? "N/A"
+            let city = placemark.locality ?? "N/A"
+            
+            var output = ""
+            
+            if requests.count == 0 {
+                completion("No input to call GeocodeAddress")
+            } else if requests.count == 1 {
+                if requests[0] == "city" {
+                    completion(city)
+                } else if requests[0] == "country" {
+                    completion(country)
+                } else if requests[0] == "addressName" {
+                    completion(addressName)
+                } else {
+                    completion("Incorrect input to call GeocodeAddress")
+                }
+            } else {
+                for request in requests {
+                    if request == "city" {
+                        output += city
+                    } else if request == "country" {
+                        output += country
+                    } else if request == "addressName" {
+                        output += addressName
+                    }
+                    
+                    if request != requests.last {
+                        output += ", "
+                    }
+                }
+            }
+            
+            completion(output)
+            
+        }
     }
 }

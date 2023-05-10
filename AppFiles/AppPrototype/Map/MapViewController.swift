@@ -205,10 +205,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 indexPat = index
                 performSegue(withIdentifier: "mapToDetailJournal", sender: nil)
-                print("test")
             }
             else {
                 index += 1
+            }
+        }
+    }
+    
+    func reloadAnnotations() {
+        let annotations = mapView.annotations
+        mapView.removeAnnotations(annotations)
+        
+        if latitudeList.count == 1 {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate.latitude = latitudeList[0]
+            annotation.coordinate.longitude = longitudeList[0]
+            annotation.title = titleList[0]
+            
+            mapView.addAnnotation(annotation)
+        } else if latitudeList.count > 1 {
+            for i in Range(0...latitudeList.count-1) {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate.latitude = latitudeList[i]
+                annotation.coordinate.longitude = longitudeList[i]
+                annotation.title = titleList[i]
+                
+                mapView.addAnnotation(annotation)
             }
         }
     }
@@ -403,30 +425,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("disapperaing map")
-        
         insertToCoreData()
-        print(titleList.count)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("appearing map")
-        
-        
+    override func viewWillAppear(_ animated: Bool) {
         if !isSegueing{
             fetchCoreData()
         } else {
             isSegueing = false
         }
-        print(titleList.count)
         
-        for i in 0..<latitudeList.count {
-            let coordinate = CLLocationCoordinate2D(latitude: latitudeList[i], longitude: longitudeList[i])
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = titleList[i]
-            mapView.addAnnotation(annotation)
-        }
+        reloadAnnotations()
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {

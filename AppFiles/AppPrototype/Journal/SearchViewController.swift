@@ -62,10 +62,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     @objc func GoBack() {
         performSegue(withIdentifier: "unwindToJournalEntry", sender: nil)
     }
-    
-//    func position(for bar: UIBarPositioning) -> UIBarPosition {
-//        return .topAttached
-//    }
 
 
 }
